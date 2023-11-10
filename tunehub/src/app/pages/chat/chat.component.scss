@@ -11,7 +11,7 @@
       text-align: center;
       width: 80%;
       height: 70%;
-      background: linear-gradient(to bottom, white, #fcf3e4);
+      background: white;
       border: 2px solid #7743DB;
       border-radius: 25px;
       display: inline-block;
@@ -88,12 +88,34 @@
       align-items: center;
       width: 60%;
       height: 70%;
-      background: linear-gradient(to bottom, white, #fcf3e4);
+      background: white;
       border-radius: 25px;
       text-align: center;
+      .chat-header{
+        height: 10%;
+        background-color: #d3d3d3;
+        border-top-left-radius:25px ;
+        border-top-right-radius:25px ;
+        display: flex;
+        align-items: center;
+        .chat-name{
+          background-color: #FFFF;
+          min-width: 150px;
+          max-width: max-content;
+          border-radius: 25px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 5px;
+          font-size: 20px;
+          margin-left: 20px;
+        }
+      }
+
       .chat-list{
         width: 80%;
-        height: 75%;
+        height: 70%;
         margin: 20px;
         list-style: none;
         background-color: #d3d3d3;
@@ -144,26 +166,29 @@
         }
       }
       .sender-container{
-        border-top: 1px solid #C3ACD0;
-        
+        background-color: #d3d3d3;
+        height: 15%;
+        border-bottom: 0px solid transparent;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
         .sender-box{
           margin-top: 15px;
-          
-          // background-color: #7743DB;
           display: flex;
           align-items: center;
           justify-content: center;
           .sender-input{
+            margin-top: 15px;
             margin-right: 10px;
             border-radius: 25px;
             width: 50%;
             height: 25px;
             padding-left: 10px;
             border: 1px solid transparent;
-            background-color: #d3d3d3;
+            background-color: white;
             outline: none;
           }
           .sender-button{
+            margin-top: 15px;
             background-color: #7743DB;
             color: #fcf3e4;
             border-radius: 25px;

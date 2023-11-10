@@ -25,7 +25,7 @@
     .login-container {
       text-align: center;
       width: 30%;
-      background: linear-gradient(to bottom, white, #fcf3e4);
+      background: white;
       border-radius: 25px;
       
       mat-form-field{
@@ -44,7 +44,7 @@
           min-width: 100px;
         }
         li .google-button{
-            background-color: #FFFBF5;
+            background-color: white;
             border: 1px solid #7743DB;
             color: #333;
         }
