@@ -1,20 +1,86 @@
-mat-toolbar {
-    background: transparent;
-    position: fixed;
-    margin-top: 20px;
-    
+.nav-bar {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  z-index: 1000;
+}
+
+.nav-logo-container{
+  width: 25%;
+  text-align: center;
+  // border: 1px solid black;
+}
+.nav-items-container{
+  width: 45%;
+  // border: 1px solid black;
+}
+.nav-search-container{
+  width: 30%;
+  // border: 1px solid black;
+}
+
+.nav-logo-container,
+.nav-items-container,
+.nav-search-container {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.logo-container,
+.nav-items,
+.nav-search-container li {
+  margin-right: 20px; /* Adjusted margin for better spacing */
 }
 
 .logo {
-    width: 15%; /* 10% width */
-    color: white;
-    text-align: center;
-  }
-
-  .logo h1{
-    font-size: 25px;
-  }
-
-
-
   
+  font-weight: bold;
+  margin: 0; /* Remove default margin */
+  span {
+    color: #FFFBF5;
+    font-size: 35px;
+  }
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+.nav-items span {
+  font-size: 20px;
+}
+.nav-items i {
+  font-size: 30px;
+  color: #FFFBF5;
+}
+.nav-items input{
+  border-radius: 25px;
+  border: 1px solid transparent;
+  background-color: #FFFBF5;
+  height: 15px;
+  padding: 10px;
+}
+
+.nav-items .search-button{
+  color: #FFFBF5;
+}
+.nav-items button mat-icon{
+  color: #FFFBF5;
+}
+
+.nav-items button:hover{
+  border-bottom: 3px solid black;
+  // border-radius: 25px;
+
+}
+.nav-items .search-button:hover{
+  border-bottom: none;
+
+}
+
+

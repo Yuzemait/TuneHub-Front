@@ -2,14 +2,15 @@
 .section1 {
     height: 100vh; /* Full viewport height */
     width: 70%; /* 15% width */
-    background: #7743DB;
+    background:linear-gradient(to bottom, #7743DB, #6627dc);
     float: left;
   }
   
   .section2 {
     height: 100vh; /* Full viewport height */
     width: 30%; /* 75% width */
-    background: #C3ACD0;
+    background: linear-gradient(to bottom, #C3ACD0, #b88bd2);
+    // background-color: #C3ACD0;
     float: left;
   }
 
@@ -25,12 +26,12 @@
 
   .container h1 {
     font-size: 70px;
-    color: white;
+    color: #FFFBF5;
     font-weight: bold;
   }
   .container h2 {
     font-size: 20px;
-    color: white;
+    color: #FFFBF5;
     text-align: left;
   }
 
@@ -38,7 +39,7 @@
     background-color: #333;
     margin: 10px;
     border-radius: 50px;
-    color: white;
+    color: #FFFBF5;
     padding: 20px;
 
 

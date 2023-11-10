@@ -1,0 +1,192 @@
+.section1 {
+    height: 100vh;
+    width: 25%;
+    background: linear-gradient(to bottom, #C3ACD0, #b88bd2);
+    float: left;
+    display: flex;
+    justify-content: center;
+  
+    .contacts-container {
+      margin-top: 120px;
+      text-align: center;
+      width: 80%;
+      height: 70%;
+      background: linear-gradient(to bottom, white, #fcf3e4);
+      border: 2px solid #7743DB;
+      border-radius: 25px;
+      display: inline-block;
+      justify-content: center;
+  
+      .contact-search {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        width: 100%;
+        height: 10%;
+        align-items: center;
+        display: inline-block;
+        .search-input{
+            margin-top: 10px;
+            width: 60%;
+            height: 30px;
+            box-sizing: border-box;
+            border-radius: 50px;
+            padding-left: 10px;
+            border: 1px solid transparent;
+            background-color: #d3d3d3;
+            outline: none;
+        }
+        .search-button{
+          margin-left: 10px;
+          color: #fcf3e4;
+          background-color: #7743DB;
+          width: fit-content;
+          border-radius: 50px;
+          height: 30px;
+        }
+      }
+  
+      .contact-list {
+        width: 98%;
+        height: 85%;
+        margin: auto;
+        list-style: none;
+        padding: 0; /* Remove default padding */
+        display: flex;
+        flex-direction: column; /* Arrange contacts vertically */
+        overflow-y: scroll;
+        border-bottom: 2px solid #7743DB;
+        border-top: 2px solid #7743DB;
+        
+  
+        .contact {
+          width: 100%;
+          box-sizing: border-box; /* Include border in the total width */
+          margin-bottom: 10px; /* Adjust margin as needed */
+          padding: 10px; /* Add padding as needed */
+          border-bottom: 1px solid #333;
+          button{
+            width: 100%;
+          }
+          
+        }
+      }
+    }
+  }
+  
+  .section2 {
+    height: 100vh;
+    width: 75%;
+    background:linear-gradient(to bottom, #7743DB, #6627dc);
+    display: flex;
+    justify-content: center;
+    float: left;
+    .chat-container{
+      
+      margin-top: 120px;
+      justify-content: center;
+      align-items: center;
+      width: 60%;
+      height: 70%;
+      background: linear-gradient(to bottom, white, #fcf3e4);
+      border-radius: 25px;
+      text-align: center;
+      .chat-list{
+        width: 80%;
+        height: 75%;
+        margin: 20px;
+        list-style: none;
+        background-color: #d3d3d3;
+        padding: 10px;
+        border-radius: 25px;
+        display: inline-block;
+        
+        .message{
+          display: inline-block;
+          width: 100%;
+          margin: auto;
+          min-height: 25px;
+          max-height: fit-content;
+          align-items: center;
+          justify-content: right;
+          .received{
+           background-color: #7743DB;
+           min-width: 50px;
+           max-width: 80%;
+           border-radius: 25px;
+           margin-left: 20px;
+           float: left;
+           min-height: 25px;
+           max-height: fit-content;
+           text-align: center;
+          }
+          .sent{
+           background-color: #6627dc;
+           min-width: 50px;
+           max-width: 80%;
+           border-radius: 25px;
+           min-height: 25px;
+           max-height: fit-content;
+           float: right;
+           text-align: center;
+           margin-right: 20px;
+          }
+          span {
+            
+            margin-left: 20px;
+            margin-right: 20px;
+            color: #fcf3e4;
+            small{
+              margin-left: 10px;
+              color: #b88bd2;
+            }
+          }
+        }
+      }
+      .sender-container{
+        border-top: 1px solid #C3ACD0;
+        
+        .sender-box{
+          margin-top: 15px;
+          
+          // background-color: #7743DB;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .sender-input{
+            margin-right: 10px;
+            border-radius: 25px;
+            width: 50%;
+            height: 25px;
+            padding-left: 10px;
+            border: 1px solid transparent;
+            background-color: #d3d3d3;
+            outline: none;
+          }
+          .sender-button{
+            background-color: #7743DB;
+            color: #fcf3e4;
+            border-radius: 25px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+  
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #FFFF;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #8658dc;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7743DB;
+  }

@@ -1,13 +1,58 @@
-<mat-toolbar >
-    <div class="logo">
-        <h1>TuneHub</h1>
-    </div>
-    <div class="elements">
-        <button mat-button>Home</button>
-        <button mat-button>About Us</button>
-        <button mat-mini-fab><mat-icon>search</mat-icon></button>
-        <input type="text">
-        
-    </div>
-    
-  </mat-toolbar>
+<!-- <div class="nav-bar">
+    <ul class="nav-items-container">
+        <li class="logo-container">
+                <button class="logo" mat-button>TuneHub</button>
+        </li>
+        <li class="nav-bar-item">
+            <button mat-button><span>Home</span></button>
+        </li>
+        <li class="nav-bar-item">
+            <button mat-button>About Us</button>
+        </li>
+        <li class="nav-bar-item">
+            <button mat-button><i class="fa fa-user-circle" aria-hidden="true"></i></button>
+        </li>
+        <li class="nav-bar-item">
+            <button mat-button><i class="fa fa-cloud" aria-hidden="true"></i></button>
+        </li>
+        <li class="nav-bar-search">
+            <mat-form-field>
+                <button class="search-button" matSuffix><mat-icon>search</mat-icon></button>
+                <input matInput placeholder="label" value="Search">
+            </mat-form-field>
+        </li>
+
+    </ul>
+</div> -->
+<div class="nav-bar">
+    <ul class="nav-logo-container">
+        <li class="logo-container">
+                <button class="logo" routerLink="" mat-button><span>TuneHub</span></button>
+        </li>
+    </ul>
+    <ul class="nav-items-container">
+        <li class="nav-items">
+            <button mat-button routerLink=""><span>Home</span></button>
+        </li>
+        <li class="nav-items">
+            <button mat-button><span>About Us</span></button>
+        </li>
+        <li class="nav-items">
+            <button mat-button><span>Songs</span></button>
+        </li>
+    </ul>
+    <ul class="nav-search-container">
+        <li class="nav-items">
+            <button routerLink="profile" mat-button><i class="fa fa-user-circle" aria-hidden="true"></i></button>
+        </li>
+        <li class="nav-items">
+            <button routerLink="chat" mat-button><i class="fa fa-comment" aria-hidden="true"></i></button>
+        </li>
+        <li class="nav-items">
+            <input type="text" name="" id="">
+        </li>
+        <li class="nav-items">
+            <button mat-button><mat-icon>search</mat-icon></button>
+        </li>
+    </ul>
+</div>
