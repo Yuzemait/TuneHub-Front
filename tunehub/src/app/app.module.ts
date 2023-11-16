@@ -12,6 +12,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { MusicPlayerComponent } from './layout/music-player/music-player.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,13 +25,15 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     LoginComponent,
     ProfileComponent,
     ChatComponent,
-    SignUpComponent
+    SignUpComponent,
+    MusicPlayerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

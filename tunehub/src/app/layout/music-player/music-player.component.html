@@ -1,0 +1,37 @@
+<div class="player-container">
+    <div class="arrow-container">
+        <button class="arrow"><mat-icon>headphones</mat-icon></button>
+    </div>
+    
+    <div class="music-player-container">
+        <audio controls id="audioPlayer" (timeupdate)="updateProgress($event)">
+        </audio>
+        <div class="image-container">
+            <!-- <img src="" alt=""> -->
+        </div>
+        <div class="song-name-container">
+            <span>{{songName}}</span>
+        </div>
+        
+        <div class="time-container">
+            <span>{{ formatTime(currentTime) }}</span>
+            <input class="progress-bar" [(ngModel)]="currentTime" min="0" max="{{duration}}" step="1" type="range" (input)="setTime()">
+            <span>{{ formatTime(duration) }}</span>
+        </div>
+        <div class="playbutton-container">
+            <button class="skip-button" (click)="playPrev()" mat-fab>
+                <mat-icon>skip_previous</mat-icon>
+            </button>
+            <button class="play-button" (click)="togglePlayback()" mat-fab>
+                <mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
+            </button>
+            <button class="skip-button" (click)="playNext()" mat-fab>
+                <mat-icon>skip_next</mat-icon>
+            </button>
+        </div>
+        <div class="volume-bar-container">
+            <input [(ngModel)]="currentVolume" min="0" max="1" step="0.1" (input)="setVolume()" type="range" class="volume-bar">
+            <mat-icon class="mute-button" (click) = "muteVolume()">{{ currentVolume > 0 ? 'volume_up' : 'volume_mute' }}</mat-icon>
+        </div>
+    </div>
+</div>
