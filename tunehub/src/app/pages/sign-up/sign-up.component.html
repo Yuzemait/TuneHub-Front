@@ -1,1 +1,49 @@
-<p>sign-up works!</p>
+<div class="section1"></div>
+<div class="section2"></div>
+
+<div class="signup-section">
+    <div class="signup-container">
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <ul class="signup-list">
+                <li>
+                    <mat-form-field>
+                        <mat-icon matPrefix>account_circle</mat-icon>
+                        <input matInput placeholder="Username" formControlName="username">
+                    </mat-form-field>
+                </li>
+                <li>
+                    <mat-form-field>
+                        <mat-icon matPrefix>email</mat-icon>
+                        <input matInput placeholder="Email" formControlName="email">
+                    </mat-form-field>
+                </li>
+                <li>
+                    <mat-form-field>
+                        <mat-icon matPrefix>key</mat-icon>
+                        <input matInput type="password" placeholder="Password" formControlName="password">
+                    </mat-form-field>
+                </li>
+                <li>
+                    <mat-form-field>
+                        <mat-icon matPrefix>key</mat-icon>
+                        <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+                    </mat-form-field>
+                </li>
+                <li>
+                    <button mat-raised-button type="submit">Sign Up</button>
+                </li>
+                <li><span>Or</span></li>
+                <li>
+                    <button class="google-button" mat-raised-button>Sign up with Google <i class="fa fa-google-plus" aria-hidden="true"></i></button>
+                </li>
+            </ul>
+        </form>
+        <hr>
+        <ul class="login-list">
+            <li style="font-size: 20px;">Already have an account?</li>
+            <li>
+                <button mat-raised-button>Login</button>
+            </li>
+        </ul>
+    </div>
+</div>

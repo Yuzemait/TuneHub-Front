@@ -1,0 +1,73 @@
+
+.section1 {
+    height: 100vh; /* Full viewport height */
+    width: 70%; /* 15% width */
+    background:linear-gradient(to bottom, #7743DB, #6627dc);
+    float: left;
+    z-index: -1000;
+  }
+  
+.section2 {
+    height: 100vh; /* Full viewport height */
+    width: 30%; /* 75% width */
+    background: linear-gradient(to bottom, #C3ACD0, #b88bd2);
+    float: left;
+    z-index: -1000;
+}
+
+
+.signup-section {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    .signup-container {
+      text-align: center;
+      width: 30%;
+      background: white;
+      border-radius: 25px;
+      
+      mat-form-field {
+        margin-top: 10px;
+      }
+      .signup-list {
+        list-style: none;
+        display: inline;
+        li {
+            margin-top: 10px;
+        }
+        li button {
+          background-color: #7743DB;
+          color: #FFFBF5;
+          border-radius: 50px;
+          min-width: 100px;
+        }
+        li .google-button {
+            background-color: white;
+            border: 1px solid #7743DB;
+            color: #333;
+        }
+        li span {
+            color: #898682;
+        }
+      }
+      .login-list {
+        width: 100%;
+        box-sizing: border-box;
+        list-style: none;
+        display: inline;
+        li {
+            margin-top: 10px;
+            button {
+                background-color: #7743DB;
+                color: white;
+                border-radius: 50px;
+                min-width: 100px;
+                margin-bottom: 20px;
+            }
+        }
+      }
+    }
+}
