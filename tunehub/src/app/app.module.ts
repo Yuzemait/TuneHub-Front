@@ -15,6 +15,8 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MusicPlayerComponent } from './layout/music-player/music-player.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     ProfileComponent,
     ChatComponent,
-    SignUpComponent
+    SignUpComponent,
+    MusicPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -34,8 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
