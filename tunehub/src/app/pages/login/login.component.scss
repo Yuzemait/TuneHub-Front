@@ -23,6 +23,10 @@
     align-items: center;
     height: 100%; /* This ensures the container takes up the full height of the viewport */
     .login-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
       width: 30%;
       background: white;
@@ -44,9 +48,7 @@
           min-width: 100px;
         }
         li .google-button{
-            background-color: white;
             border: 1px solid #7743DB;
-            color: #333;
         }
         li span {
             color: #898682;

@@ -43,16 +43,20 @@
     </ul>
     <ul class="nav-search-container">
         <li class="nav-items">
-            <button routerLink="profile" mat-button><i class="fa fa-user-circle" aria-hidden="true"></i></button>
+            <button *ngIf="loginStatus" routerLink="profile" mat-button><i class="fa fa-user-circle" aria-hidden="true"></i></button>
         </li>
         <li class="nav-items">
-            <button routerLink="chat" mat-button><i class="fa fa-comment" aria-hidden="true"></i></button>
+            <button *ngIf="loginStatus" routerLink="chat" mat-button><i class="fa fa-comment" aria-hidden="true"></i></button>
         </li>
         <li class="nav-items">
+            <button *ngIf="loginStatus" mat-button (click)="logout()"><mat-icon>exit_to_app</mat-icon></button>
+        </li> 
+        <!-- <li class="nav-items">
             <input type="text" name="" id="">
         </li>
         <li class="nav-items">
             <button mat-button><mat-icon>search</mat-icon></button>
-        </li>
+        </li> -->
+     
     </ul>
 </div>

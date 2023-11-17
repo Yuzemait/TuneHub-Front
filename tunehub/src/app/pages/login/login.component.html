@@ -5,31 +5,38 @@
 <div class="login-section">
     <div class="login-container">
         <ul class="login-list">
-            <li>
-                <mat-form-field>
-                    <mat-icon matPrefix>account_circle</mat-icon>
-                    <input matInput placeholder="Username">
-                </mat-form-field>
-            </li>
-            <li>
-                <mat-form-field>
-                    <mat-icon matPrefix>key</mat-icon>
-                    <input matInput placeholder="Password">
-                </mat-form-field>
-            </li>
-            <li>
-                <button mat-raised-button>Login</button>
-            </li>
+            <form [formGroup]="loginForm" (submit)="login()">
+                <li>
+                    <mat-form-field>
+                        <mat-icon matPrefix>account_circle</mat-icon>
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email">
+                        <mat-error *ngIf="hasError('email', 'required')">Este campo es requerido</mat-error>
+                        <mat-error *ngIf="hasError('email', 'email')">Se necesita un correo valido</mat-error>
+                    </mat-form-field>
+                </li>
+                <li>
+                    <mat-form-field>
+                        <mat-icon matPrefix>key</mat-icon>
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" formControlName="password">
+                        <mat-error *ngIf="hasError('password', 'required')">Este campo es requerido</mat-error>
+                    </mat-form-field>
+                </li>
+                <li>
+                    <button mat-raised-button type="submit">Login</button>
+                </li>
+            </form>
             <li><span>Or</span></li>
             <li>
-                <button class="google-button" mat-raised-button >Log in with Google <i class="fa fa-google-plus" aria-hidden="true"></i></button>
+                <asl-google-signin-button class='google-button' type='standard' size='medium'></asl-google-signin-button>
             </li>
         </ul>
         <hr>
         <ul class="signup-list">
             <li style="font-size: 20px;">New Account?</li>
             <li>
-                <button mat-raised-button>Sign Up</button>
+                <button routerLink="/sign-up" mat-raised-button>Sign Up</button>
             </li>
         </ul>
 
