@@ -27,18 +27,18 @@
 <div class="nav-bar">
     <ul class="nav-logo-container">
         <li class="logo-container">
-                <button class="logo" routerLink="" mat-button><span>TuneHub</span></button>
+                <span class="logo"mat-button><span>TuneHub</span></span>
         </li>
     </ul>
     <ul class="nav-items-container">
         <li class="nav-items">
-            <button mat-button routerLink=""><span>Home</span></button>
+            <button *ngIf="!loginStatus"  mat-button routerLink=""><span>Join us</span></button>
         </li>
         <li class="nav-items">
             <button mat-button><span>About Us</span></button>
         </li>
         <li class="nav-items">
-            <button mat-button><span>Songs</span></button>
+            <button *ngIf="loginStatus" mat-button><span>Songs</span></button>
         </li>
     </ul>
     <ul class="nav-search-container">

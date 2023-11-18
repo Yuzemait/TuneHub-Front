@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from 'src/app/shared/services/token.service';
 
 @Component({
   selector: 'app-music-player',
@@ -6,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./music-player.component.scss']
 })
 export class MusicPlayerComponent implements OnInit {
+  
+  loginStatus: boolean = false;
+
+  constructor(private tokenService: TokenService) {
+    this.tokenService.loginStatus.subscribe((status:boolean) =>{
+      this.loginStatus = status;
+    });
+
+  }
 
   playlist: string[] = 
   ['assets/song1.mp3',
