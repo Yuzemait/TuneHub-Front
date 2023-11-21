@@ -30,10 +30,8 @@ export class HeaderComponent {
       if(user){
         this.loginService.googleLogin(user.idToken).subscribe({
           next: (response: Token) => {
-            //Guardar el token con el tokenService
-            //Redirigir a home
             setTimeout(() => {
-              this.tokenService.save('123123123123');
+              this.tokenService.save(response.token);
               this.router.navigate(['profile']);
             });
             console.log('Si se logueo');
