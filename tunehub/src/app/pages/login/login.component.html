@@ -22,13 +22,16 @@
                         <mat-error *ngIf="hasError('password', 'required')">Este campo es requerido</mat-error>
                     </mat-form-field>
                 </li>
+                <li *ngIf="incorrectCredentials">
+                    <p style="color: red;">Correo o contraseña incorrectos. Por favor, verifica e intenta de nuevo.</p>
+                </li>
                 <li>
                     <button mat-raised-button type="submit">Login</button>
                 </li>
             </form>
             <li><span>Or</span></li>
             <li>
-                <asl-google-signin-button class='google-button' type='standard' size='medium'></asl-google-signin-button>
+                <asl-google-signin-button class='google-button' type='standard' size='large'></asl-google-signin-button>
             </li>
         </ul>
         <hr>

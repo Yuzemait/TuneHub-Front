@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { Token } from '../interfaces/token';
+
 
 
 @Injectable({
@@ -7,13 +11,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
   
-  createUser(userData: any) {
-    return this.http.post('http://localhost:3000/users', userData);
+  userRegister(username: string, email: string, password: string): Observable<Token> {
+    const url: string = environment.apiUrl + 'auth/register';
+
+    const body = { username, email, password };
+    
+    return this.httpClient.post<Token>(url, body);
   }
 
-  login(userData: any){
-    return this.http.post('http://localhost:3000/users', userData);
-  }
+
 }

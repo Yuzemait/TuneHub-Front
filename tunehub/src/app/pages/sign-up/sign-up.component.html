@@ -1,40 +1,59 @@
 <div class="section1"></div>
 <div class="section2"></div>
 
+
+
 <div class="signup-section">
     <div class="signup-container">
-        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="signupForm" (ngSubmit)="signup()">
             <ul class="signup-list">
                 <li>
                     <mat-form-field>
                         <mat-icon matPrefix>account_circle</mat-icon>
-                        <input matInput placeholder="Username" formControlName="username">
+                        <mat-label>Username</mat-label>
+                        <input matInput formControlName="username">
+                        <mat-error *ngIf="hasError('username', 'required')">Este campo es requerido</mat-error>
+                        <mat-error *ngIf="hasError('username', 'minlength')">El nombre de usuario debe tener al menos 3 caracteres</mat-error>
                     </mat-form-field>
                 </li>
                 <li>
                     <mat-form-field>
                         <mat-icon matPrefix>email</mat-icon>
-                        <input matInput placeholder="Email" formControlName="email">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email">
+                        <mat-error *ngIf="hasError('email', 'required')">Este campo es requerido</mat-error>
+                        <mat-error *ngIf="hasError('email', 'email')">Se necesita un correo válido</mat-error>
                     </mat-form-field>
                 </li>
                 <li>
                     <mat-form-field>
                         <mat-icon matPrefix>key</mat-icon>
-                        <input matInput type="password" placeholder="Password" formControlName="password">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" formControlName="password">
+                        <mat-error *ngIf="hasError('password', 'required')">Este campo es requerido</mat-error>
+                        <mat-error *ngIf="hasError('password', 'minlength')">La contraseña debe tener al menos 8 caracteres</mat-error>
                     </mat-form-field>
                 </li>
                 <li>
                     <mat-form-field>
                         <mat-icon matPrefix>key</mat-icon>
-                        <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+                        <mat-label>Confirm Password</mat-label>
+                        <input matInput type="password" formControlName="confirmPassword">
+                        <mat-error *ngIf="hasError('confirmPassword', 'required')">Este campo es requerido</mat-error>
+                        <mat-error *ngIf="hasError('confirmPassword', 'match')">Las contraseñas no coinciden</mat-error>
                     </mat-form-field>
+                </li>
+                <li>
+                    <mat-checkbox formControlName="terms">
+                        I accept the terms and conditions
+                    </mat-checkbox>
+                    <mat-error *ngIf="submitted && hasError('terms', 'required')">Debe aceptar los términos y condiciones</mat-error>
+                </li>
+                <li *ngIf="userAlreadyExists">
+                    <p style="color: red;">Ya hay un usuario registrado con este correo electrónico. Por favor, utiliza otro correo.</p>
                 </li>
                 <li>
                     <button mat-raised-button type="submit">Sign Up</button>
-                </li>
-                <li><span>Or</span></li>
-                <li>
-                    <button class="google-button" mat-raised-button>Sign up with Google <i class="fa fa-google-plus" aria-hidden="true"></i></button>
                 </li>
             </ul>
         </form>

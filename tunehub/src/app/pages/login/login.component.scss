@@ -30,7 +30,17 @@
       text-align: center;
       width: 30%;
       background: white;
-      border-radius: 25px;
+      border-radius: 35px;
+
+      hr{
+        height: 1px; /* o la altura deseada */
+        width: 100%; /* ajusta según sea necesario */
+        background-color:#898682; /* color de la línea */
+        border: none; /* puede ser necesario quitar el borde predeterminado */
+        margin: 0; /* asegúrate de que no haya margen alrededor del hr */
+
+
+      }
       
       mat-form-field{
         margin-top: 10px;
@@ -40,6 +50,7 @@
         display: inline;
         li{
             margin-top: 10px;
+            margin-right: 40px;
         }
         li button{
           background-color: #7743DB;
@@ -61,6 +72,7 @@
         display: inline;
         li {
             margin-top: 10px;
+            margin-right: 35px;
             button{
                 background-color: #7743DB;
                 color: white;

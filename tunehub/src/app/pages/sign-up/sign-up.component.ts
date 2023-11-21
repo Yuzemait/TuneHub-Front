@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../shared/services/user.service';
+import { LoginService } from 'src/app/shared/services/login.service';
+import { TokenService } from 'src/app/shared/services/token.service';
+import { Router } from '@angular/router';
+import { Token } from 'src/app/shared/interfaces/token';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,40 +14,66 @@ import { UserService } from '../../shared/services/user.service';
 
 export class SignUpComponent {
   signupForm: FormGroup;
+  submitted = false;
+  userAlreadyExists = false;
 
   constructor(
     private formBuilder: FormBuilder, 
-    private userService: UserService
+    private userService: UserService,
+    private loginService: LoginService,
+    private tokenService: TokenService,
+    private router: Router
     ) {
-    this.signupForm = formBuilder.group({
-      username: ['', Validators.required],
+    this.signupForm = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', [Validators.required,Validators.minLength(8), this.comparePasswords.bind(this)]],
+      terms: [false, Validators.requiredTrue]
+    }, {
+      validators: [() => this.comparePasswords()]
     });
   }
 
-  onSubmit() {
-    if (this.signupForm.valid) {
-      // Extract the form data
-      const userData = {
-        username: this.signupForm.value.username,
-        email: this.signupForm.value.email,
-        password: this.signupForm.value.password,
-      };
+  comparePasswords() {
+    if (!this.signupForm) return null;
   
-      // Use the UserService to send the data
-      this.userService.createUser(userData).subscribe(
-        response => {
-          console.log('User created successfully', response);
-        },
-        error => {
-          console.error('Error occurred while creating user', error);
-          // Handle errors
-        }
-      );
+    const { password, confirmPassword } = this.signupForm.getRawValue();
+  
+    if (password === confirmPassword) {
+      return null;
+    } else {
+      return {
+        match: true
+      };
     }
   }
-  
 
+  hasError(controlName: string, errorName: string){
+    return this.signupForm.controls[controlName].errors &&
+      this.signupForm.controls[controlName].errors![errorName];
+  }
+
+  signup(): void {
+    this.submitted = true;
+  
+    if (this.signupForm.valid) {
+      const { username, email, password } = this.signupForm.value;
+      
+      this.userService.userRegister(username, email, password).subscribe({
+        next: () => {
+          alert('Registro exitoso. Favor de iniciar sesión')
+          this.router.navigate(['login']);
+          
+        },
+        error: (err) => {
+          if (err.status === 400 && err.error.message === 'El usuario ya existe') {
+            this.userAlreadyExists = true;
+          } else {
+            alert('No se pudo hacer el registro.');
+          }
+        }
+      });
+    }
+  }
 }

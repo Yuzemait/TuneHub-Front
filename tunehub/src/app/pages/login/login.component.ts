@@ -12,6 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  incorrectCredentials = false; 
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,11 +40,15 @@ export class LoginComponent {
           this.router.navigate(['profile']);
           console.log('Inicio de sesión exitoso');
         },
-        error: () => {
-          alert('No se pudo iniciar sesión');
+        error: (err) => {
+          if (err.status === 401 && err.error.message === 'Correo o contraseña incorrectos') {
+            this.incorrectCredentials = true;
+          } else {
+            console.error('Error en el inicio de sesión:', err);
+            alert('No se pudo iniciar sesión.');
+          }
         }
       });
     }
   }
-
 }
