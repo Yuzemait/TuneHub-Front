@@ -25,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MusicPlayerComponent } from './layout/music-player/music-player.component';
 import { FormsModule } from '@angular/forms';
 import { LoginStatusDirective } from './shared/directives/login-status.directive';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { LoginStatusDirective } from './shared/directives/login-status.directive
     ChatComponent,
     SignUpComponent,
     MusicPlayerComponent,
-    LoginStatusDirective
+    LoginStatusDirective,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

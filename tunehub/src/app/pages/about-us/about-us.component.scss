@@ -1,0 +1,44 @@
+.section1 {
+    height: 100vh;
+    width: 70%;
+    background: linear-gradient(to bottom, #7743DB, #6627dc);
+    float: left;
+    z-index: -1000;
+  }
+  
+  .section2 {
+    height: 100vh;
+    width: 30%;
+    background: linear-gradient(to bottom, #C3ACD0, #b88bd2);
+    float: left;
+    z-index: -1000;
+  }
+  
+  .container{
+    width: 80%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: auto;
+    margin-left: 100px;
+
+    h2{
+        font-size: 50px;
+        color: #FFFBF5;
+        font-weight: bold;
+        line-height: 1.2; /* Ajusta este valor según sea necesario */
+    }
+    p {
+        line-height: 1.6;
+        font-size: 16px;
+        font-weight:550;
+    }
+  }
+
+  
+
+
+
+
+
