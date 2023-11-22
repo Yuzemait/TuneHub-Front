@@ -7,13 +7,22 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { UnauthGuard } from './shared/guards/unauth.guard';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { ExploreComponent } from './pages/explore/explore.component';
+import { ArtistComponent } from './pages/artist/artist.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent,canActivate: [UnauthGuard]},
   {path: 'login', component: LoginComponent, canActivate: [UnauthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'chat', component:ChatComponent, canActivate: [AuthGuard]},
-  {path: 'sign-up', component:SignUpComponent, canActivate: [UnauthGuard]}
+  {path: 'sign-up', component:SignUpComponent, canActivate: [UnauthGuard]},
+  {path: 'explore', component:ExploreComponent, canActivate: [AuthGuard]},
+
+  {path: 'artist', component:ArtistComponent, canActivate: [AuthGuard], children:[
+    {path: ':id/chat', component:ArtistComponent, canActivate: [AuthGuard]}
+  ]}
+
+  
 ];
 
 @NgModule({
