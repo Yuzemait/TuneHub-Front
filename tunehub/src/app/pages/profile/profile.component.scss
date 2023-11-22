@@ -1,23 +1,36 @@
-
 .section1 {
-    height: 100vh; /* Full viewport height */
-    width: 25%; /* 15% width */
+    height: 100vh;
+    width: 25%;
     background: linear-gradient(to bottom, #7743DB, #6627dc);
-
     float: left;
     z-index: -1000;
-    .user-image-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+
+
+    .user-image-container {
         width: 100%;
         text-align: center;
         margin-top: 150px;
-        .user-image{
+
+        .user-image {
             font-size: 180px;
             color: #FFFBF5;
         }
     }
 
-  }
-  
+    h2 {
+        text-align: center;
+        color: #FFFBF5;
+        margin: 10px 0;
+    }
+
+    button {
+        margin-top: 20px; /* Ajusta el margen superior según sea necesario */
+    }
+}
+
 .section2 {
     height: 100vh; /* Full viewport height */
     width: 75%; /* 75% width */
@@ -31,6 +44,7 @@
             border-bottom: 3px solid #FFFBF5;
             color: #FFFBF5;
             width: min-content;
+            white-space: nowrap;
         }
         .user-options{
             list-style: none;

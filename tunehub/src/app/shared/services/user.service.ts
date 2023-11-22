@@ -31,7 +31,7 @@ export class UserService {
       'token': token
     });
 
-    const url: string = `${environment.apiUrl}/user-data`;
+    const url: string = `${environment.apiUrl}users/user-data`;
     return this.httpClient.get<User>(url, {headers} );
   }
 
