@@ -17,7 +17,7 @@ export class ExploreComponent {
     this.artistService.getAllArtists().subscribe(
       data => {
         this.artists = data;
-        console.log(data);
+        console.log("artist data: ", data);
       },
       error => {
         console.log(error);
@@ -26,7 +26,7 @@ export class ExploreComponent {
     this.albumService.getAllAlbums().subscribe(
       data => {
         this.albums = data;
-        console.log(data);
+        //console.log(data);
       },
       error => {
         console.log(error);

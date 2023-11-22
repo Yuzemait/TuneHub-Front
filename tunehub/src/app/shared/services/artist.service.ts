@@ -12,12 +12,15 @@ export class ArtistService {
   constructor(private http: HttpClient) { }
 
   getAllArtists(): Observable<any> {
-    const url :string = environment.apiUrl
-
+    const url :string = environment.apiUrl+'users/artists'
     return this.http.get(url);
   }
-  getArtistById(id: Number){
-    const url :string = `environment.apiUrl/${id}`
+  getArtistById(id: string): Observable<any>{
+    const url :string = environment.apiUrl+'users/'+id
+    return this.http.get(url)
+  }
+  getChatbyArtistId(id:string): Observable<any>{
+    const url: string  = environment.apiUrl +'chats/'+id
     return this.http.get(url)
   }
 

@@ -8,7 +8,7 @@
             <h1>Popular Artists</h1>
             <ul class="playlist-list">
                 <li class="playlist-item" *ngFor="let artist of artists">
-                    <a [routerLink]="['/artist', artist.id]">
+                    <a [routerLink]="['/artists', artist.id]">
                         <div class="playlist-image">
                             <i class="fa fa-play-circle" aria-hidden="true"></i>
                         </div>

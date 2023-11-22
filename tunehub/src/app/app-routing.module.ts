@@ -16,14 +16,17 @@ const routes: Routes = [
   {path: 'about-us', component: AboutUsComponent,canActivate: [UnauthGuard]},
   {path: 'login', component: LoginComponent, canActivate: [UnauthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'chat', component:ChatComponent, canActivate: [AuthGuard]},
+  {path: 'chat', component:ChatComponent, canActivate: [AuthGuard], children:[
+    {path: 'chat/:id', component:ChatComponent, canActivate: [AuthGuard]}
+]},
   {path: 'sign-up', component:SignUpComponent, canActivate: [UnauthGuard]},
   {path: 'explore', component:ExploreComponent, canActivate: [AuthGuard]},
-
+  {path: 'artists/:id', component:ArtistComponent, canActivate: [AuthGuard]}
+/*
   {path: 'artist', component:ArtistComponent, canActivate: [AuthGuard], children:[
     {path: ':id/chat', component:ArtistComponent, canActivate: [AuthGuard]}
   ]}
-
+*/
   
 ];
 
