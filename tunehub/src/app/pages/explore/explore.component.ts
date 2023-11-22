@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ArtistService } from '../../shared/services/artist.service';
+import { AlbumsService } from 'src/app/shared/services/albums.service';
 
 @Component({
   selector: 'app-explore',
@@ -8,8 +9,9 @@ import { ArtistService } from '../../shared/services/artist.service';
 })
 export class ExploreComponent {
   artists: any[] = [];
+  albums: any[] = [];
 
-  constructor(private artistService: ArtistService) { }
+  constructor(private artistService: ArtistService, private albumService: AlbumsService) { }
 
   ngOnInit(): void {
     this.artistService.getAllArtists().subscribe(
@@ -21,6 +23,16 @@ export class ExploreComponent {
         console.log(error);
       }
     );
+    this.albumService.getAllAlbums().subscribe(
+      data => {
+        this.albums = data;
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+
   }
 
 }

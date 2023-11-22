@@ -10,7 +10,7 @@ export class AlbumsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllCollections(): Observable<any> {
+  getAllAlbums(): Observable<any> {
     return this.http.get(this.baseUrl);
   }
 }

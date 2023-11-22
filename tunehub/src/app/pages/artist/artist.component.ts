@@ -13,20 +13,9 @@ export class ArtistComponent implements OnInit {
     private route: ActivatedRoute,
     private artistService: ArtistService
   ) { }
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const artistId = params.get('id');
-      if (artistId) {
-        this.artistService.getArtistById(artistId).subscribe(
-          data => {
-            this.artist = data;
-          },
-          error => {
-            console.error('Error fetching artist:', error);
-          }
-        );
-      }
-    });
+
+  ngOnInit(): void {}
+
   }
 
-}
+    

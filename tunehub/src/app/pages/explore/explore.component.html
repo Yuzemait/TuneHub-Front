@@ -1,110 +1,33 @@
-<div class="section1">
-    <div class="user-image-container">
-        <i class="fa fa-user-circle user-image" aria-hidden="true"></i>
+
+    <div class="main-container">
+        <div class="search-container">
+            <input type="text" placeholder="Search for artists albums or songs..." class="search-input">
+        </div>
+
+        <div class="playlist-container">
+            <h1>Popular Artists</h1>
+            <ul class="playlist-list">
+                <li class="playlist-item" *ngFor="let artist of artists">
+                    <a [routerLink]="['/artist', artist.id]">
+                        <div class="playlist-image">
+                            <i class="fa fa-play-circle" aria-hidden="true"></i>
+                        </div>
+                        <div class="playlist-name">{{ artist.username }}</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="playlist-container">
+            <h1>Popular Albums</h1>
+            <ul class="playlist-list">
+                <li class="playlist-item" *ngFor="let album of albums">
+                    <div class="playlist-image">
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                    </div>
+                    <div class="playlist-name">{{ album.name }}</div>
+                </li>
+            </ul>
+        </div>
+
     </div>
-</div>
-<div class="section2">
-    <div class="user-info-container">
-        <h1>Username</h1>
-    </div>
-    <div class="playlist-container">
-        <h1>Artist </h1>
-        <ul class="playlist-list" >
-            
-            <li class="playlist-item" *ngFor="let artist of artists">
-                <a [routerLink]="['/artist', artist.id]">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                
-                <div class="playlist-name">{{ artist.id }}</div>
-             </a>
-            </li> 
-        </ul>
-    </div>
-    <div class="playlist-container">
-        <h1>Rock</h1>
-        <ul class="playlist-list">
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Rock</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Pop</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Reggae</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Rock</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Pop</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Reggae</div>
-            </li> 
-            
-        </ul>
-    </div>
-    <div class="playlist-container">
-        <h1>Category 3</h1>
-        <ul class="playlist-list">
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Rock</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Pop</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Reggae</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Rock</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Pop</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Reggae</div>
-            </li> 
-            
-        </ul>
-    </div>
-    
-</div>
+
