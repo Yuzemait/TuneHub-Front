@@ -18,14 +18,17 @@
 }
 
 .playlist-container {
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 30px;
+    
     h1 {
         margin-bottom: 10px;
-        border-bottom: 3px solid #FFFBF5;
         color: #FFFBF5;
-        width: min-content;
+        
     }
     .playlist-list {
+        
         list-style: none;
         overflow-x: auto;
         background: linear-gradient(to bottom, #7743DB, #6627dc);
