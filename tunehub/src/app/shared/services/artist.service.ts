@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArtistService {
-  private baseUrl = 'http://localhost:3000/users/artists';
+  
 
   constructor(private http: HttpClient) { }
 
   getAllArtists(): Observable<any> {
-    return this.http.get(this.baseUrl);
+    const url :string = environment.apiUrl
+
+    return this.http.get(url);
   }
   getArtistById(id: Number){
-    return this.http.get(`${this.baseUrl}/${id}`)
-
+    const url :string = `environment.apiUrl/${id}`
+    return this.http.get(url)
   }
 
 }
