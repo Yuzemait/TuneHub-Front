@@ -1,0 +1,125 @@
+.main-container {
+    padding-top: 60px;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(to bottom, #C3ACD0, #b88bd2);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.user-info-container {
+    margin-top: 50px;
+    h1 {
+        border-bottom: 3px solid #FFFBF5;
+        color: #FFFBF5;
+        width: min-content;
+        margin-bottom: 20px;
+    }
+}
+
+.playlist-container {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 30px;
+    
+    h1 {
+        margin-bottom: 10px;
+        color: #FFFBF5;
+        
+    }
+    .playlist-list {
+        
+        list-style: none;
+        overflow-x: auto;
+        background: linear-gradient(to bottom, #7743DB, #6627dc);
+        border-left: 6px solid #FFFBF5;
+        border-right: 6px solid #FFFBF5;
+        box-sizing: border-box;
+        white-space: nowrap;
+        height: 250px;
+        padding: 10px 0;
+    }
+    .playlist-item {
+        width: 200px;
+        display: inline-block;
+        margin-right: 15px;
+        .playlist-image {
+            margin: auto;
+            margin-top: 30px;
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            border: 4px solid #FFFBF5;
+            background-color: #494949;
+            text-align: center;
+            i {
+                color: #FFFBF5;
+                font-size: 50px;
+                padding: 10px;
+                margin-top: 40px;
+            }
+        }
+        .playlist-name {
+            margin-top: 15px;
+            text-align: center;
+            color: #FFFBF5;
+            font-size: 20px;
+        }
+    }
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 12px;
+}
+  
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.search-container {
+    padding-top: 150px;
+    text-align: center;
+    margin: 30px 0; /* Increased margin for more space around the search bar */
+}
+
+.search-input {
+    width: 50%; /* Increase width if needed */
+    padding: 20px 25px; /* Larger padding for a bigger appearance */
+    border: none;
+    border-radius: 40px; /* More rounded corners */
+    font-size: 18px; /* Larger font size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: all 0.3s ease;
+
+    /* Optional: Increase the size of the placeholder text */
+    ::placeholder {
+        font-size: 18px;
+        opacity: 0.7;
+    }
+}
+
+.search-input:focus {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    .search-input {
+        width: 80%; /* Larger width on smaller screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .search-input {
+        width: 90%; /* Even larger width on very small screens */
+    }
+}

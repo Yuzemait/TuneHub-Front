@@ -26,6 +26,8 @@ import { MusicPlayerComponent } from './layout/music-player/music-player.compone
 import { FormsModule } from '@angular/forms';
 import { LoginStatusDirective } from './shared/directives/login-status.directive';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { ExploreComponent } from './pages/explore/explore.component';
+import { ArtistComponent } from './pages/artist/artist.component';
 
 
 @NgModule({
@@ -39,6 +41,9 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
     ChatComponent,
     SignUpComponent,
     MusicPlayerComponent,
+    LoginStatusDirective,
+    ExploreComponent,
+    ArtistComponent,
     LoginStatusDirective,
     AboutUsComponent
   ],
