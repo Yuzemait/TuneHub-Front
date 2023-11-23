@@ -4,11 +4,14 @@
     </div>
     <h2>{{user.username}}</h2>
     <h2>{{user.email}}</h2>
-    <button mat-raised-button>Edit profile</button>
+    <button *ngIf="!isEditMode && !isChangePasswordMode" mat-raised-button (click)="toggleEditMode()">Edit profile</button>
+    <button *ngIf="!isEditMode && !isChangePasswordMode" mat-raised-button (click)="toggleChangePasswordMode()">Change Password</button>
 </div>
+
+
+
 <div class="section2">
-    <h2></h2>
-    <div class="user-info-container">
+    <div *ngIf="!isEditMode && !isChangePasswordMode" class="user-info-container">
         <h1>Welcome</h1>
         <ul class="user-options">
             <li class="u-option">
@@ -22,7 +25,7 @@
             </li>
         </ul>
     </div>
-    <div class="playlist-container">
+    <div *ngIf="!isEditMode && !isChangePasswordMode " class="playlist-container">
         <h1>Playlists</h1>
         <ul class="playlist-list">
             <li class="playlist-item">
@@ -67,5 +70,57 @@
             <li class="p-option"><button mat-raised-button >Create Playlist</button></li>
             
         </ul>
+    </div>
+    <div *ngIf="isEditMode" class="edit-form-container">
+        <div  class="edit-form">
+            <h2>Edit Profile</h2>
+            <form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+                <mat-form-field>
+                    <mat-label for="username">Username</mat-label>
+                    <input matInput type="text" id="username" name="username"  formControlName="username"  required>
+                    <mat-error *ngIf="hasError('username', 'required')">Este campo es requerido</mat-error>
+                    <mat-error *ngIf="hasError('username', 'minlength')">El nombre de usuario debe tener al menos 3 caracteres</mat-error>
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <mat-label for="email">Email</mat-label>
+                    <input matInput type="email" id="email" name="email"  formControlName="email"  required>
+                    <mat-error *ngIf="hasError('email', 'required')">Este campo es requerido</mat-error>
+                    <mat-error *ngIf="hasError('email', 'email')">Se necesita un correo valido</mat-error>
+                </mat-form-field>
+                
+                <div class="button-container">
+                    <button mat-raised-button type="submit">Save Changes</button>
+                    <button mat-raised-button type="button" (click)="toggleEditMode()">Cancel</button>
+            
+                </div>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="isChangePasswordMode" class="password-form-container">
+        <div  class="password-form">
+            <h2>Change password</h2>
+            <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+                <mat-form-field>
+                    <mat-label for="newPassword">New Password</mat-label>
+                    <input matInput type="password" id="newPassword" name="newPassword" formControlName="newPassword" required>
+                    <mat-error *ngIf="hasPasswordError('newPassword', 'required')">This field is required</mat-error>
+                    <mat-error *ngIf="hasPasswordError('newPassword', 'minlength')">Password must be at least 8 characters</mat-error>
+                </mat-form-field>
+               
+                <mat-form-field>
+                    <mat-label for="confirmPassword">Confirm Password</mat-label>
+                    <input matInput type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" required>
+                    <mat-error *ngIf="hasPasswordError('confirmPassword', 'required')">This field is required</mat-error>
+                    <mat-error *ngIf="hasPasswordError('confirmPassword', 'match')">Las contraseñas no coinciden</mat-error>
+
+                </mat-form-field>
+
+                <div class="button-container">
+                  <button mat-raised-button type="submit">Change Password</button>
+                  <button mat-raised-button type="button" (click)="toggleChangePasswordMode()">Cancel</button>
+                </div>
+              </form>
+        </div>
     </div>
 </div>

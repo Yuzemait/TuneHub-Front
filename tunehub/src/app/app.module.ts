@@ -56,6 +56,7 @@ import { ArtistComponent } from './pages/artist/artist.component';
     HttpClientModule,
     FormsModule,
     SocialLoginModule,
+
   ],
   providers: [{
     provide: 'SocialAuthServiceConfig',

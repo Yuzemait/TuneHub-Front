@@ -26,7 +26,6 @@ export class HeaderComponent {
     });
 
     this.socialAuth.authState.subscribe((user: SocialUser) => {
-      console.log('Social user: ', user);
       if(user){
         this.loginService.googleLogin(user.idToken).subscribe({
           next: (response: Token) => {
@@ -34,7 +33,6 @@ export class HeaderComponent {
               this.tokenService.save(response.token);
               this.router.navigate(['profile']);
             });
-            console.log('Si se logueo');
           },
           error: () => {
             alert('No se pudo iniciar sesión')

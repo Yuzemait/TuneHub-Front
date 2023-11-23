@@ -35,6 +35,20 @@ export class UserService {
     return this.httpClient.get<User>(url, {headers} );
   }
 
+  updateUser(
+    userId: string,
+    username: string,
+    email: string,
+    password: string
+  ): Observable<User> {
+    const url: string = `${environment.apiUrl}users/${userId}`;
+
+    const body = { username, email, password };
+
+    return this.httpClient.put<User>(url, body);
+  }
+
+
 
 
 
