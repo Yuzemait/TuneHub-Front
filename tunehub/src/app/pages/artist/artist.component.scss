@@ -8,6 +8,56 @@
     flex-direction: column;
     align-items: center; /* Centra horizontalmente */
 
+    .events-container {
+        
+        width: 90%;
+        text-align: center;
+        margin-top: 20px;
+        color: #FFFBF5;
+        height: 200px; /* Adjust the height as needed */
+        overflow-y: auto; /* Enables vertical scrolling */
+        padding: 10px;
+        border-radius: 5px;
+        background:linear-gradient(to bottom, #C3ACD0, #b88bd2); /* Optional: for better visibility */
+        width
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .events-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        .event-item {
+            background-color: #7743DB;
+            margin-bottom: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        
+    }
+    .add-event-button {
+        background-color: white;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 10px;
+
+        &:hover {
+            background-color: #7743DB;
+        }
+    }
+    
 
     .user-image-container {
         width: 100%;

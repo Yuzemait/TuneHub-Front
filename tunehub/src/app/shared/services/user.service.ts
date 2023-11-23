@@ -27,7 +27,7 @@ export class UserService {
     
     return this.httpClient.post<Token>(url, body);
   }
-
+  
   getUserData(): Observable<User> {
     const token = this.tokenService.get();
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ArtistService } from '../../shared/services/artist.service';
 
+
 @Component({
   selector: 'app-artist',
   templateUrl: './artist.component.html',
@@ -13,7 +14,8 @@ export class ArtistComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private artistService: ArtistService
+    private artistService: ArtistService,
+    
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +33,8 @@ export class ArtistComponent implements OnInit {
       }
     });
   }
+
+  
   
 
   }

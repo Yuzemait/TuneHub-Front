@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { SocialLoginModule, SocialAuthServiceConfig} from '@abacritt/angularx-social-login';
 import {
@@ -28,6 +29,8 @@ import { LoginStatusDirective } from './shared/directives/login-status.directive
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { ArtistComponent } from './pages/artist/artist.component';
+import { EventComponent } from './pages/event/event.component';
+import { ChatMenuComponent } from './pages/chat-menu/chat-menu.component';
 import { EditProfileComponent } from './pages/profile/edit-profile/edit-profile.component';
 import { UserInfoComponent } from './pages/profile/user-info/user-info.component';
 import { ChangePasswordComponent } from './pages/profile/change-password/change-password.component';
@@ -49,6 +52,9 @@ import { ChangePasswordComponent } from './pages/profile/change-password/change-
     ArtistComponent,
     LoginStatusDirective,
     AboutUsComponent,
+    EventComponent,
+    ChatMenuComponent,
+    AboutUsComponent,
     EditProfileComponent,
     UserInfoComponent,
     ChangePasswordComponent
@@ -62,6 +68,7 @@ import { ChangePasswordComponent } from './pages/profile/change-password/change-
     HttpClientModule,
     FormsModule,
     SocialLoginModule,
+    MatDialogModule
 
   ],
   providers: [{

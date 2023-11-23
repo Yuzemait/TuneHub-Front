@@ -3,7 +3,16 @@
         <i class="fa fa-user-circle user-image" aria-hidden="true"></i>
     </div>
     <h2>{{artist.username}}</h2>
-    <h2><button mat-raised-button [routerLink]="['/chats', artist.id]">Chat</button></h2>
+    <h2><button mat-raised-button [routerLink]="['/chats', artist.ownChat]">Go to Chat</button></h2>
+
+    <div class="events-container">
+        <h2>Upcoming Events</h2>
+        <ul class="events-list">
+            <li class="event-item">Event 1 - Date</li>
+        </ul>
+        
+    </div>
+    
 </div>
 <div class="section2">
     <h2></h2>
@@ -47,3 +56,4 @@
     </div>
 
 </div>
+
