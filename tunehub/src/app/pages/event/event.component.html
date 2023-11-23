@@ -1,0 +1,28 @@
+<div class="dialog-container">
+    <div class="event-form">
+        <button class="close-button" (click)="closeDialog()">&times;</button>
+        <form>
+            <div class="form-group">
+                <label for="eventName">Event Name:</label>
+                <input type="text" id="eventName" name="eventName" class="form-control" placeholder="Enter event name">
+            </div>
+
+            <div class="form-group">
+                <label for="eventDate">Event Date:</label>
+                <input type="date" id="eventDate" name="eventDate" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="eventCategory">Event Category:</label>
+                <select id="eventCategory" name="eventCategory" class="form-control">
+                    <option value="concert">Concert</option>
+                    <option value="albumRelease">Album Release</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit</button>
+            
+        </form>
+    </div>
+</div>

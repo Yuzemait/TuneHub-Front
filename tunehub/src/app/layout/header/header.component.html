@@ -46,7 +46,7 @@
             <button *ngIf="loginStatus" routerLink="profile" mat-button><i class="fa fa-user-circle" aria-hidden="true"></i></button>
         </li>
         <li class="nav-items">
-            <button *ngIf="loginStatus" [routerLink]="['/chats', ]" mat-button><i class="fa fa-comment" aria-hidden="true"></i></button>
+            <button *ngIf="loginStatus" [routerLink]="['/chats', chat]" mat-button><i class="fa fa-comment" aria-hidden="true"></i></button>
         </li>
         <li class="nav-items">
             <button *ngIf="loginStatus" mat-button (click)="logout()"><mat-icon>exit_to_app</mat-icon></button>

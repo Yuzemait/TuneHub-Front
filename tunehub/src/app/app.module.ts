@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { SocialLoginModule, SocialAuthServiceConfig} from '@abacritt/angularx-social-login';
 import {
@@ -28,6 +29,8 @@ import { LoginStatusDirective } from './shared/directives/login-status.directive
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { ArtistComponent } from './pages/artist/artist.component';
+import { EventComponent } from './pages/event/event.component';
+import { ChatMenuComponent } from './pages/chat-menu/chat-menu.component';
 
 
 @NgModule({
@@ -45,7 +48,9 @@ import { ArtistComponent } from './pages/artist/artist.component';
     ExploreComponent,
     ArtistComponent,
     LoginStatusDirective,
-    AboutUsComponent
+    AboutUsComponent,
+    EventComponent,
+    ChatMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +61,7 @@ import { ArtistComponent } from './pages/artist/artist.component';
     HttpClientModule,
     FormsModule,
     SocialLoginModule,
+    MatDialogModule
 
   ],
   providers: [{

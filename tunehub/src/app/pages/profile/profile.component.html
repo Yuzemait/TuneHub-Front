@@ -6,6 +6,8 @@
     <h2>{{user.email}}</h2>
     <button *ngIf="!isEditMode && !isChangePasswordMode" mat-raised-button (click)="toggleEditMode()">Edit profile</button>
     <button *ngIf="!isEditMode && !isChangePasswordMode" mat-raised-button (click)="toggleChangePasswordMode()">Change Password</button>
+    <button mat-raised-button (click)="openAddEventDialog()">Add Event</button>
+
 </div>
 
 

@@ -12,6 +12,7 @@ import { Token } from 'src/app/shared/interfaces/token';
 })
 export class HeaderComponent {
 
+  chat: string = "17d0ac7c-83fc-43c0-8a98-b754b585241c"
   loginStatus: boolean = false;
 
   constructor(
