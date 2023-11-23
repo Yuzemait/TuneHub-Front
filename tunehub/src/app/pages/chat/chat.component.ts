@@ -37,6 +37,9 @@ export class ChatComponent {
       if (this.id) {
         this.getChatByUserId()
       }
+      else{
+        
+      }
       
     });
   }
