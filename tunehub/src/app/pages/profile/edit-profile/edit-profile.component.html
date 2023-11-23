@@ -1,0 +1,26 @@
+<div class="edit-form-container">
+    <div class="edit-form">
+      <h2>Edit Profile</h2>
+      <form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+        <mat-form-field>
+          <mat-label for="username">Username</mat-label>
+          <input matInput type="text" id="username" name="username" formControlName="username" required>
+          <mat-error *ngIf="hasError('username', 'required')">Este campo es requerido</mat-error>
+          <mat-error *ngIf="hasError('username', 'minlength')">El nombre de usuario debe tener al menos 3 caracteres</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label for="email">Email</mat-label>
+          <input matInput type="email" id="email" name="email" formControlName="email" required>
+          <mat-error *ngIf="hasError('email', 'required')">Este campo es requerido</mat-error>
+          <mat-error *ngIf="hasError('email', 'email')">Se necesita un correo valido</mat-error>
+        </mat-form-field>
+  
+        <div class="button-container">
+          <button mat-raised-button type="submit">Save Changes</button>
+          <button mat-raised-button type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

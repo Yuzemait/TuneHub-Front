@@ -11,15 +11,16 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { ArtistComponent } from './pages/artist/artist.component';
 
+
 const routes: Routes = [
-  {path: '', component: HomeComponent,canActivate: [UnauthGuard]},
-  {path: 'about-us', component: AboutUsComponent,canActivate: [UnauthGuard]},
-  {path: 'login', component: LoginComponent, canActivate: [UnauthGuard]},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'chats/:id', component:ChatComponent, canActivate: [AuthGuard]},
-  {path: 'sign-up', component:SignUpComponent, canActivate: [UnauthGuard]},
-  {path: 'explore', component:ExploreComponent, canActivate: [AuthGuard]},
-  {path: 'artists/:id', component:ArtistComponent, canActivate: [AuthGuard]}
+  { path: '', component: HomeComponent, canActivate: [UnauthGuard] },
+  { path: 'about-us', component: AboutUsComponent, canActivate: [UnauthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [UnauthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'chats/:id', component: ChatComponent, canActivate: [AuthGuard] },
+  { path: 'sign-up', component: SignUpComponent, canActivate: [UnauthGuard] },
+  { path: 'explore', component: ExploreComponent, canActivate: [AuthGuard] },
+  { path: 'artists/:id', component: ArtistComponent, canActivate: [AuthGuard] },
 /*
   {path: 'artist', component:ArtistComponent, canActivate: [AuthGuard], children:[
     {path: ':id/chat', component:ArtistComponent, canActivate: [AuthGuard]}

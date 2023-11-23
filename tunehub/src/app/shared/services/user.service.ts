@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Token } from '../interfaces/token';
 import { User } from '../interfaces/user';
 import { TokenService } from './token.service';
@@ -12,6 +12,11 @@ import { TokenService } from './token.service';
   providedIn: 'root'
 })
 export class UserService {
+  
+  selectedUser: BehaviorSubject<User> = new BehaviorSubject<User>({ id: '', username: '', email: '', password: '', artistStatus: false });
+  user$ = this.selectedUser.asObservable();
+  isEditModeSubject = new BehaviorSubject<boolean>(false);
+  isEditMode$ = this.isEditModeSubject.asObservable();
 
   constructor(private httpClient: HttpClient, private tokenService: TokenService) { }
   
@@ -48,7 +53,14 @@ export class UserService {
     return this.httpClient.put<User>(url, body);
   }
 
+  setUser(user: User) {
+    this.selectedUser.next(user);
+  }
 
+  toggleEditMode(): void {
+    const currentEditMode = this.isEditModeSubject.value;
+    this.isEditModeSubject.next(!currentEditMode);
+  }
 
 
 

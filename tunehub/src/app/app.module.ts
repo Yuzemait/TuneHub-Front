@@ -28,6 +28,9 @@ import { LoginStatusDirective } from './shared/directives/login-status.directive
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { ArtistComponent } from './pages/artist/artist.component';
+import { EditProfileComponent } from './pages/profile/edit-profile/edit-profile.component';
+import { UserInfoComponent } from './pages/profile/user-info/user-info.component';
+import { ChangePasswordComponent } from './pages/profile/change-password/change-password.component';
 
 
 @NgModule({
@@ -45,7 +48,10 @@ import { ArtistComponent } from './pages/artist/artist.component';
     ExploreComponent,
     ArtistComponent,
     LoginStatusDirective,
-    AboutUsComponent
+    AboutUsComponent,
+    EditProfileComponent,
+    UserInfoComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

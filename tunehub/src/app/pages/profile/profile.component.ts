@@ -10,27 +10,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false }
-  isEditMode = false;
-  isChangePasswordMode = false;
-  editForm: FormGroup;
-  changePasswordForm: FormGroup;
+  isEditProfileVisible = false;
+  isChangePasswordVisible = false;
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) {
-    this.editForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-    });
-
-    this.changePasswordForm = this.formBuilder.group({
-      newPassword: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(8), this.comparePasswords.bind(this)]],
-    });
+  constructor(private userService: UserService) {
+   
   }
 
   ngOnInit(): void {
     this.userService.getUserData().subscribe(
       (data) => {
         this.user = data;
+        this.userService.setUser(this.user);
       },
       (error) => {
         console.error('Error al obtener datos del usuario:', error);
@@ -38,81 +29,37 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  toggleEditMode(): void {
-    this.isEditMode = !this.isEditMode;
-    if (this.isEditMode) {
-      this.editForm.patchValue({
-        username: this.user.username,
-        email: this.user.email,
-      });
-    } else {
-      this.editForm.reset();
-    }
+  showEditProfile() {
+    this.isEditProfileVisible = true;
   }
 
-  toggleChangePasswordMode(): void {
-    this.isChangePasswordMode = !this.isChangePasswordMode;
-    if (!this.isChangePasswordMode) this.changePasswordForm.reset();
+  hideEditProfile() {
+    this.isEditProfileVisible = false;
   }
 
-  saveChanges(): void {
-    if (this.editForm.valid) {
-      const { username, email } = this.editForm.value;
-
-      this.userService.updateUser(this.user.id, username, email, this.user.password)
-        .subscribe(
-          (updatedUser) => {
-            this.user = updatedUser;
-            this.isEditMode = false;
-          },
-          (error) => {
-            console.error('Error al actualizar usuario:', error);
-          }
-        );
-    }
+  showChangePassword() {
+    this.isChangePasswordVisible = true;
+    this.isEditProfileVisible = false;
   }
 
-  changePassword(): void {
-    console.log(this.changePasswordForm.valid);
-    if (this.changePasswordForm.valid) {
-      const { newPassword } = this.changePasswordForm.value;
-      console.log(newPassword);
-        this.userService.updateUser(this.user.id, this.user.username, this.user.email, newPassword)
-        .subscribe(
-          (updatedUser) => {
-            console.log(updatedUser);
-            this.isChangePasswordMode = false;
-            this.changePasswordForm.reset();
-          },
-          (error) => {
-            console.error('Error al actualizar usuario:', error);
-          }
-        );
-     }
+  hideChangePassword() {
+    this.isChangePasswordVisible = false;
+  }
+
+  onChangesSaved() {
+    this.hideEditProfile();
+    this.hideChangePassword();
+    this.userService.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
+
+  onChangePassword() {
+    this.hideChangePassword();
+    this.hideEditProfile();
   }
 
 
-  hasError(controlName: string, errorName: string) {
-    return this.editForm.controls[controlName].errors &&
-      this.editForm.controls[controlName].errors![errorName];
-  }
 
-  hasPasswordError(controlName: string, errorName: string) {
-    return this.changePasswordForm.controls[controlName].errors &&
-      this.changePasswordForm.controls[controlName].errors![errorName];
-  }
-
-  comparePasswords() {
-    if (!this.changePasswordForm) return null;
-  
-    const { newPassword, confirmPassword } = this.changePasswordForm.getRawValue();
-  
-    if (newPassword === confirmPassword) {
-      return null;
-    } else {
-      return {
-        match: true
-      };
-    }
-  }
 }
+
