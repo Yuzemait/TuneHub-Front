@@ -4,36 +4,9 @@
             <input class="search-input" type="text" name="" id="">
             <button class="search-button" mat-raised-button><mat-icon>search</mat-icon></button>
         </div>
-        <ul class="contact-list">
+        <ul class="contact-list" *ngFor="let chat in chats">
             <li class="contact">
-                <button mat-button>Jose Cota</button>
-            </li>
-            <li class="contact">
-                <button mat-button>Jose Cota</button>
-            </li>
-            <li class="contact">
-                <button mat-button>Jose Cota</button>
-            </li>
-            <li class="contact">
-                <button mat-button>Jose Cota</button>
-            </li>
-            <li class="contact">
-                <button mat-button>Jose Cota</button>
-            </li>
-            <li class="contact">
-                <button mat-button>Jose Cota</button>
-            </li>
-            <li class="contact">
-                <button mat-button>Jose Cota</button>
-            </li>
-            <li class="contact">
-                <button mat-button>Jose Cota</button>
-            </li>
-            <li class="contact">
-                <button mat-button>Jose Cota</button>
-            </li>
-            <li class="contact">
-                <button mat-button>Jose Cota</button>
+                <button mat-button>{{chat.id}}</button>
             </li>
             
         </ul>
