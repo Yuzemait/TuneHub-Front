@@ -3,7 +3,7 @@
         <i class="fa fa-user-circle user-image" aria-hidden="true"></i>
     </div>
     <h2>{{artist.username}}</h2>
-    <h2></h2>
+    <h2><button mat-raised-button [routerLink]="['/chats', artist.id]">Chat</button></h2>
 </div>
 <div class="section2">
     <h2></h2>
@@ -11,6 +11,22 @@
         <h1>Welcome</h1>
         <ul class="description">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, harum! Commodi dignissimos, iure aspernatur rem iusto id quidem hic vel.
+            
+            
+        </ul>
+    </div>
+    <div class="playlist-container">
+        <h1>Canciones</h1>
+        <ul class="playlist-list">
+            <li class="playlist-item">
+                <div class="playlist-image">
+                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                </div>
+                <div class="playlist-name">Rock</div>
+            </li> 
+        </ul>
+        <ul class="playlist-options">
+            
             
         </ul>
     </div>
@@ -23,41 +39,11 @@
                 </div>
                 <div class="playlist-name">Rock</div>
             </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Pop</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Reggae</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Rock</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Pop</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Reggae</div>
-            </li> 
-            
         </ul>
         <ul class="playlist-options">
             
             
         </ul>
     </div>
+
 </div>

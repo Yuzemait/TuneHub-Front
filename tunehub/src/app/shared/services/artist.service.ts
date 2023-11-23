@@ -19,7 +19,7 @@ export class ArtistService {
     const url :string = environment.apiUrl+'users/'+id
     return this.http.get(url)
   }
-  getChatbyArtistId(id:string): Observable<any>{
+  getChatbyArtistId(id: string): Observable<any>{
     const url: string  = environment.apiUrl +'chats/'+id
     return this.http.get(url)
   }
