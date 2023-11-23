@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ArtistService } from '../../shared/services/artist.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/interfaces/user';
+import {Chat} from 'src/app/shared/interfaces/chat'
 
 
 
@@ -11,10 +12,12 @@ import { User } from 'src/app/shared/interfaces/user';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent {
+export class ChatComponent implements OnInit {
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false }
+  chats: Chat[] = []
   id : string = '';
   chat: any = ''
-  chats: any = [''];
+  chatids: [string] |undefined = ['']
   
   constructor(
     private route: ActivatedRoute,
@@ -23,39 +26,32 @@ export class ChatComponent {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-      this.userService.getUserData().subscribe(
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.user = data;
+        this.chatids = this.user.chats
+        if(this.chatids){
+          this.getUserChats(this.chatids)
+        }
+      },
+      (error) => {
+        console.error('Error al obtener datos del usuario:', error);
+      }
+    );
+  }
+  getUserChats(chatlist: [string]){
+    chatlist.forEach(element => {
+      this.artistService.getChatbyArtistId(element).subscribe(
         (data) => {
-          this.chats= data.chats;
-          console.log('Chats del usuario:', this.chats);
+          this.chats.push(data);
+          console.log(data);
         },
         (error) => {
-          console.error('Error chats del usuario:', error);
+          console.log('error getting artist', error);
         }
       );
-      if (this.id) {
-        this.getChatByUserId()
-      }
-      else{
-        
-      }
       
     });
   }
-  getChatByUserId(){
-    this.artistService.getChatbyArtistId(this.id).subscribe(
-          
-      (data) => {
-        this.chat = data;
-        console.log(data);
-      },
-      (error) => {
-        console.log('error getting artist', error);
-      }
-    );
-
-  }
-
 }
 
