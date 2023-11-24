@@ -40,11 +40,13 @@ export class ChatComponent implements OnInit {
     );
   }
   getUserChats(chatlist: [string]){
+    
     chatlist.forEach(element => {
       this.artistService.getChatbyArtistId(element).subscribe(
         (data) => {
           this.chats.push(data);
-          console.log(data);
+
+          console.log("chat: ",data);
         },
         (error) => {
           console.log('error getting artist', error);
