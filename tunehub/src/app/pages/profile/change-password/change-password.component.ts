@@ -31,7 +31,7 @@ export class ChangePasswordComponent implements OnInit{
   changePassword(): void {
     if (this.changePasswordForm.valid) {
       const { newPassword } = this.changePasswordForm.value;
-        this.userService.updateUser(this.user.id, this.user.username, this.user.email, newPassword)
+        this.userService.updateUser(this.user.id, this.user.username, this.user.email, newPassword, this.user.artistStatus)
         .subscribe(
           (updatedUser) => {
             this.changePasswordForm.reset();

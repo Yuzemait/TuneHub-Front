@@ -34,6 +34,9 @@ import { ChatMenuComponent } from './pages/chat-menu/chat-menu.component';
 import { EditProfileComponent } from './pages/profile/edit-profile/edit-profile.component';
 import { UserInfoComponent } from './pages/profile/user-info/user-info.component';
 import { ChangePasswordComponent } from './pages/profile/change-password/change-password.component';
+import { ConfirmDialogComponent } from './pages/profile/confirm-dialog/confirm-dialog.component';
+import { IsArtistDirective } from './shared/directives/is-artist.directive';
+import { ArtistInfoComponent } from './pages/profile/artist-info/artist-info.component';
 
 
 @NgModule({
@@ -57,7 +60,10 @@ import { ChangePasswordComponent } from './pages/profile/change-password/change-
     AboutUsComponent,
     EditProfileComponent,
     UserInfoComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ConfirmDialogComponent,
+    IsArtistDirective,
+    ArtistInfoComponent
   ],
   imports: [
     BrowserModule,

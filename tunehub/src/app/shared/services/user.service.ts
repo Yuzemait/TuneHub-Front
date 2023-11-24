@@ -44,11 +44,12 @@ export class UserService {
     userId: string,
     username: string,
     email: string,
-    password: string
+    password: string | null,
+    artistStatus: boolean
   ): Observable<User> {
     const url: string = `${environment.apiUrl}users/${userId}`;
 
-    const body = { username, email, password };
+    const body = { username, email, password, artistStatus };
 
     return this.httpClient.put<User>(url, body);
   }

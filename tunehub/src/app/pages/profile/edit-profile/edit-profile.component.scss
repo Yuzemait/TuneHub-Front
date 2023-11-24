@@ -42,3 +42,18 @@
         }
       }
    }
+
+   .upgrade-to-artist{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px; 
+
+      button {
+        flex-grow: 1;
+        margin: 0 5px;
+        background-color: #7743DB;
+        color: #fff;
+      }
+
+   }

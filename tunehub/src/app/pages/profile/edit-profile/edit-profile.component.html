@@ -23,4 +23,8 @@
       </form>
     </div>
   </div>
+
+  <div *appIsArtist="false" class="upgrade-to-artist">
+    <button mat-raised-button type="button" (click)="upgrade()">Upgrade to artist account<mat-icon>grade</mat-icon></button>
+  </div>
   

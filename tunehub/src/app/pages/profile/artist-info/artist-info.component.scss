@@ -1,4 +1,4 @@
-.user-info-container{
+.artist-info-container{
     margin-top: 150px;
     padding: 10px;
     h1 {
@@ -7,7 +7,7 @@
         width: min-content;
         white-space: nowrap;
     }
-    .user-options{
+    .artist-options{
         list-style: none;
         .u-option{
             display: inline;
@@ -20,7 +20,12 @@
     }
 
 }
-.playlist-container{
+
+.container{
+    margin-bottom: 100px;
+}
+
+.album-container, .song-container{
     margin-top: 50px;
     margin-left: 10px;
     width: 90%;
@@ -31,7 +36,7 @@
         color: #FFFBF5;
         width: min-content;
     }
-    .playlist-list{
+    .album-list, .song-list{
         list-style: none;
         overflow-x: auto;
         background:linear-gradient(to bottom, #7743DB, #6627dc);
@@ -42,11 +47,11 @@
         white-space: nowrap;
         height: 250px;
 
-        .playlist-item{
+        .album-item, .song-item{
             // border: solid black 1px;
             width: 200px;
             display: inline-block;
-            .playlist-image{
+            .album-image, .song-image{
                 // padding: auto;
                 margin: auto;
                 margin-top: 30px;
@@ -63,7 +68,7 @@
                     margin-top: 40px;
                 }
             }
-            .playlist-name{
+            .album-name, .song-name{
                 margin-top: 15px;
                 text-align: center;
                 color: #FFFBF5;
@@ -71,7 +76,7 @@
             }
         }
     }
-    .playlist-options{
+    .album-options, song-options{
 
         .p-option{
             display: inline-block;  
@@ -82,6 +87,11 @@
             }
         }
     }
+}
+
+
+span{
+    margin-bottom: 100px;
 }
 
 ::-webkit-scrollbar {

@@ -2,6 +2,10 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { TokenService } from 'src/app/shared/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -17,7 +21,12 @@ export class EditProfileComponent implements OnInit {
   editForm: FormGroup;
 
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) {
+  constructor(
+    private userService: UserService,
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private tokenService: TokenService,
+    private  router: Router) {
     this.editForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -44,7 +53,7 @@ export class EditProfileComponent implements OnInit {
     if (this.editForm.valid) {
       const { username, email } = this.editForm.value;
 
-      this.userService.updateUser(this.user.id, username, email, this.user.password)
+      this.userService.updateUser(this.user.id, username, email, null, this.user.artistStatus)
         .subscribe(
           (updatedUser) => {
             this.user = updatedUser;
@@ -65,8 +74,36 @@ export class EditProfileComponent implements OnInit {
       this.editForm.controls[controlName].errors![errorName];
   }
 
+  upgrade(){
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Confirmación',
+        message: '¿Estás seguro de que deseas actualizar tu cuenta a artista? Esta acción cerrará tu sesión actual y dejarás de tener acceso a tus playlists. No se podrá revertir cambios.'
+      }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
 
+        this.userService.updateUser(this.user.id, this.user.username, this.user.email, null, true)
+        .subscribe(
+          (updatedUser) => {
+            console.log(updatedUser);
+            this.user = updatedUser;
+            this.tokenService.remove();
+            this.router.navigate(['login'])
+          },
+          (error) => {
+            console.error('Error al actualizar usuario:', error);
+          }
+        );
+        
+      }
+    });
+
+     
+
+  }
   
   
 }
