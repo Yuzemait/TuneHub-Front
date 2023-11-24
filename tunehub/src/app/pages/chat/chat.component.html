@@ -6,9 +6,8 @@
         </div>
         <ul class="contact-list" *ngFor="let chat of chats">
             <li class="contact">
-                <button mat-button [routerLink]="['/chats', chat.id]"> {{chat.id}}</button>
+                <button mat-button (click)="getMessegesForChat(chat.id)" > {{chat.id}}</button>
             </li>
-            
         </ul>
 
     </div>
@@ -20,15 +19,10 @@
                 <span>{{chat.id}}</span>
             </div>
         </div>
-        <ul class="chat-list">
-            <li class="message">
+        <ul class="chat-list" >
+            <li class="message"*ngFor="let m of userMesseges">
                     <div class="sent">
-                        <span>Hola! Escucha mi canción <small>00:18</small> </span> 
-                    </div>
-            </li>
-            <li class="message">
-                    <div class="received">
-                        <span>Al rato we <small>00:22</small></span>  
+                        <span>{{m.content}} <small>{{m.date}}</small> </span> 
                     </div>
             </li>
         </ul>
