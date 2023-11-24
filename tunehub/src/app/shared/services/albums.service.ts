@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AlbumsService {
-  private baseUrl = 'http://localhost:3000/collections';
+  private baseUrl = 'http://localhost:3000/albums';
 
   constructor(private http: HttpClient) { }
 
