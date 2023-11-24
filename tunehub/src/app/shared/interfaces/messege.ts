@@ -1,6 +1,6 @@
 export interface Messege {
     id: string;
-    userId: string;
+    user_id: string;
     chatId: string;
     content: string;
     date: Date;

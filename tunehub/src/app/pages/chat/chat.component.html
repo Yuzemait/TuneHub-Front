@@ -20,9 +20,12 @@
             </div>
         </div>
         <ul class="chat-list" >
-            <li class="message"*ngFor="let m of userMesseges">
-                    <div class="sent">
-                        <span>{{m.content}} <small>{{m.date}}</small> </span> 
+            <li class="message"*ngFor="let m of allMesseges">
+                    <div class="sent" *ngIf="isUsers(m)">
+                        <span>{{m.content}} <small>{{m.date| date:'medium' }}</small> </span> 
+                    </div>
+                    <div class="received" *ngIf="!isUsers(m)">
+                        <span>{{m.content}} <small>{{m.date| date:'medium'}}</small></span> 
                     </div>
             </li>
         </ul>

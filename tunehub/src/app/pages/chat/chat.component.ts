@@ -6,6 +6,7 @@ import { ChatService } from 'src/app/shared/services/chat.service';
 import { User } from 'src/app/shared/interfaces/user';
 import {Chat} from 'src/app/shared/interfaces/chat';
 import {Messege} from 'src/app/shared/interfaces/messege';
+import { elementAt } from 'rxjs';
 
 
 
@@ -59,24 +60,21 @@ export class ChatComponent implements OnInit {
     });
   }
   getMessegesForChat(chat_id: string) {
-    console.log("Fetching messages for chat ID:", chat_id);
     this.currentChat = chat_id;
     this.chatService.getMessegesbyChatId(chat_id).subscribe(
       (data) => {
         this.allMesseges = data;
         this.userMesseges = [];
         this.othersMesseges = [];
+        
   
         this.allMesseges.forEach(element => {
-          if(element.userId == this.user.id){
+          if(element.user_id == this.user.id){
             this.userMesseges.push(element);
           } else {
             this.othersMesseges.push(element);
           }
         });
-  
-        console.log("User messages:", this.userMesseges);
-        console.log("Other messages:", this.othersMesseges);
       },
       (error) => {
         console.error('Error getting messages for chat:', error);
@@ -84,6 +82,17 @@ export class ChatComponent implements OnInit {
     );
   }
   sendChat(){
+
+  }
+  isUsers(m:Messege){
+    console.log(m.user_id,this.user.id );
+    if(m.user_id == this.user.id){
+      return true
+      
+    }
+    else{
+      return false
+    }
 
   }
   
