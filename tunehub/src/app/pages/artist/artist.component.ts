@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ArtistService } from '../../shared/services/artist.service';
+import { UserService } from 'src/app/shared/services/user.service';
+import { User } from 'src/app/shared/interfaces/user';
+import { ChatService } from 'src/app/shared/services/chat.service';
 
 
 @Component({
@@ -11,14 +14,17 @@ import { ArtistService } from '../../shared/services/artist.service';
 export class ArtistComponent implements OnInit {
   id : string = '';
   artist: any;
-  
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false }
   constructor(
     private route: ActivatedRoute,
     private artistService: ArtistService,
+    private userService: UserService, 
+    private chatService: ChatService
     
   ) { }
 
   ngOnInit(): void {
+    this.setUserData()
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
       if (this.id) {
@@ -33,6 +39,21 @@ export class ArtistComponent implements OnInit {
       }
     });
   }
+  setUserData(){
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.user = data;
+      },
+      (error) => {
+        console.error('Error al obtener datos del usuario:', error);
+      });
+  }
+  joinChat(){
+
+  }
+
+  
+  
 
   
   

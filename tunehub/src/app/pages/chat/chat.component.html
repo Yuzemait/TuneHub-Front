@@ -6,7 +6,7 @@
         </div>
         <ul class="contact-list">
             <li class="contact"  *ngFor="let chat of chats">
-                <button mat-button (click)="getMessegesForChat(chat.id)" > {{chat.id}}</button>
+                <button mat-button (click)="getMessegesForChat(chat.id)" > {{chat.name}}</button>
             </li>
         </ul>
 
