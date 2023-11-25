@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from 'src/app/shared/services/token.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-music-player',
@@ -18,8 +19,8 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   playlist: string[] = 
-  ['assets/song1.mp3',
-   'assets/song2.mp3'];
+  [environment.apiUrl+'assets/d9f86b9a-8c6e-4c6f-b2df-ecf570c29cee.mp3'];
+
   currentSongIndex: number = 0;
   isPlaying: boolean = false;
   currentTime: number = 0;
@@ -28,7 +29,7 @@ export class MusicPlayerComponent implements OnInit {
   songName: string = '';
   
   ngOnInit(): void {
-    this.playSong(0);
+    // this.playSong(0);
   }
 
   playSong(index: number): void {

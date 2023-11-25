@@ -37,6 +37,7 @@ import { ChangePasswordComponent } from './pages/profile/change-password/change-
 import { ConfirmDialogComponent } from './pages/profile/confirm-dialog/confirm-dialog.component';
 import { IsArtistDirective } from './shared/directives/is-artist.directive';
 import { ArtistInfoComponent } from './pages/profile/artist-info/artist-info.component';
+import { CreateSongComponent } from './pages/profile/create-song/create-song.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { ArtistInfoComponent } from './pages/profile/artist-info/artist-info.com
     ChangePasswordComponent,
     ConfirmDialogComponent,
     IsArtistDirective,
-    ArtistInfoComponent
+    ArtistInfoComponent,
+    CreateSongComponent
   ],
   imports: [
     BrowserModule,
