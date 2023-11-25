@@ -45,8 +45,9 @@ export class ChatComponent implements OnInit {
     this.socket.on('messegeReceived', (messege:Messege) => {
       this.allMesseges.push(messege)
     })
-
-    
+    this.setUserData()
+  }
+  setUserData(){
     this.userService.getUserData().subscribe(
       (data) => {
         this.user = data;
@@ -58,8 +59,7 @@ export class ChatComponent implements OnInit {
       },
       (error) => {
         console.error('Error al obtener datos del usuario:', error);
-      }
-    );
+      });
   }
   getUserChats(chatlist: [string]){
     chatlist.forEach(element => {

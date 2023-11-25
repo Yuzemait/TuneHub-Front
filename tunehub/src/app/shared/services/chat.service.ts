@@ -13,8 +13,12 @@ export class ChatService {
 
   joinChat(chat_id:string, user_id:string) {
     if(chat_id && user_id){
-      const url: string = `${environment.apiUrl}users/user-data`;
-      return this.httpClient.get(url);
+      const body = {
+        'userId' : user_id,
+        'chatId' : chat_id
+      }
+      const url: string = `${environment.apiUrl}chats/join`;
+      return this.httpClient.put(url, body);
     }
     return 'not found'
   }
@@ -28,6 +32,6 @@ export class ChatService {
   getMessegesbyChatId(chat_id:string):Observable<Messege[]>{
     const url: string = `${environment.apiUrl}chats/messege/`+chat_id;
     return this.httpClient.get<Messege[]>(url)
-
   }
+
 }
