@@ -23,4 +23,11 @@ export class SongService {
 
     return this.http.post<any>(`${this.apiUrl}songs/create`, formData, { headers });
   }
+
+  getSongs(){
+    return this.http.get<any>(`${this.apiUrl}songs`);
+  }
+  getSongsById(id:string){
+    return this.http.get<any>(`${this.apiUrl}songs/${id}`);
+  }
 }
