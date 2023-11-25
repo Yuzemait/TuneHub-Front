@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ArtistService } from '../../shared/services/artist.service';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -7,6 +8,8 @@ import { User } from 'src/app/shared/interfaces/user';
 import {Chat} from 'src/app/shared/interfaces/chat';
 import {Messege} from 'src/app/shared/interfaces/messege';
 import { elementAt } from 'rxjs';
+import { io, Socket } from 'socket.io-client';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -24,15 +27,26 @@ export class ChatComponent implements OnInit {
   othersMesseges: Messege[] = []
   allMesseges: Messege[] = []
   currentChat: string = ''
+  socket: Socket;
+  content: string = ''
   
-  constructor(
-    private route: ActivatedRoute,
-    private artistService: ArtistService,
-    private userService: UserService,
-    private chatService: ChatService
-  ) { }
+  constructor(private route: ActivatedRoute, 
+    private artistService: ArtistService, 
+    private userService: UserService, 
+    private chatService: ChatService) { 
+    this.socket = io(environment.apiUrl)
+  }
 
   ngOnInit(): void {
+    console.log('here in ng');
+    this.socket.on('userConnected', ()=>{
+      console.log("un usuario se conecto");
+    })
+    this.socket.on('messegeReceived', (messege:Messege) => {
+      this.allMesseges.push(messege)
+    })
+
+    
     this.userService.getUserData().subscribe(
       (data) => {
         this.user = data;
@@ -81,11 +95,23 @@ export class ChatComponent implements OnInit {
       }
     );
   }
-  sendChat(){
-
+  sendMessege() {
+    const newMessage: Messege = {
+      id: '', 
+      user_id: this.user.id,
+      chatId: this.currentChat,
+      content: this.content,
+      date: new Date()
+    };
+  
+    this.socket.emit('messegeSent', newMessage);
+  
+  
+    this.content = '';
   }
+  
+  
   isUsers(m:Messege){
-    console.log(m.user_id,this.user.id );
     if(m.user_id == this.user.id){
       return true
       

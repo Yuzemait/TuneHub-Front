@@ -4,8 +4,8 @@
             <input class="search-input" type="text" name="" id="">
             <button class="search-button" mat-raised-button><mat-icon>search</mat-icon></button>
         </div>
-        <ul class="contact-list" *ngFor="let chat of chats">
-            <li class="contact">
+        <ul class="contact-list">
+            <li class="contact"  *ngFor="let chat of chats">
                 <button mat-button (click)="getMessegesForChat(chat.id)" > {{chat.id}}</button>
             </li>
         </ul>
@@ -22,17 +22,17 @@
         <ul class="chat-list" >
             <li class="message"*ngFor="let m of allMesseges">
                     <div class="sent" *ngIf="isUsers(m)">
-                        <span>{{m.content}} <small>{{m.date| date:'medium' }}</small> </span> 
+                        <span>{{m.content}} <small>{{m.date| date:'mediumTime' }}</small> </span> 
                     </div>
                     <div class="received" *ngIf="!isUsers(m)">
-                        <span>{{m.content}} <small>{{m.date| date:'medium'}}</small></span> 
+                        <span>{{m.content}} <small>{{m.date| date:'mediumTime'}}</small></span> 
                     </div>
             </li>
         </ul>
         <div class="sender-container">
             <div class="sender-box">
-                <input class="sender-input" type="text">
-                <button mat-raised-button class="sender-button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                <input class="sender-input" type="text" [(ngModel)]="content">
+                <button mat-raised-button (click)="sendMessege()" class="sender-button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
             </div>
         </div>
     </div>
