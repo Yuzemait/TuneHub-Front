@@ -1,15 +1,10 @@
 <div class="dialog-container">
     <div class="song-form">
         <button class="close-button" (click)="closeDialog()">&times;</button>
-        <form>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="eventName">Song:</label>
-                <input type="text" id="song-name" name="song-name" class="form-control" placeholder="Enter song name">
-            </div>
-
-            <div class="form-group">
-                <label for="eventDate">Song Artist:</label>
-                <input type="text" id="artist-name" name="artist-name" class="form-control" placeholder="Enter artist name">
+                <input type="text" formControlName="name" id="song-name" name="song-name" class="form-control" placeholder="Enter song name">
             </div>
 
             <div class="form-group">
@@ -23,7 +18,8 @@
                 <button id="song-button" (click)="triggerSongInput()"  type="button" mat-button><mat-icon>music_note</mat-icon></button>
             </div>
 
-            <button type="submit" class="btn-submit">Submit</button>
+            <button type="submit"  color="primary" mat-raised-button>Submit</button>
+
             
         </form>
     </div>
