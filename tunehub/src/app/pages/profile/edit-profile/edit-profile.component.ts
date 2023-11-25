@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { TokenService } from 'src/app/shared/services/token.service';
 import { Router } from '@angular/router';
+import { ChatService } from 'src/app/shared/services/chat.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -22,6 +23,7 @@ export class EditProfileComponent implements OnInit {
 
 
   constructor(
+    private chatService: ChatService,
     private userService: UserService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
@@ -97,9 +99,13 @@ export class EditProfileComponent implements OnInit {
             console.error('Error al actualizar usuario:', error);
           }
         );
+
+        this.chatService.joinChat(this.user.id, this.user.username)
         
       }
     });
+
+  
 
      
 

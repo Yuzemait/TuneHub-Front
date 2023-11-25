@@ -23,8 +23,6 @@ export class ChatService {
     return 'not found'
   }
 
-
-
   getUserChatsbyChatId(chat_id:string):Observable<Chat> {
     const url: string = `${environment.apiUrl}chats/${chat_id}`
     return this.httpClient.get<Chat>(url)
@@ -32,6 +30,16 @@ export class ChatService {
   getMessegesbyChatId(chat_id:string):Observable<Messege[]>{
     const url: string = `${environment.apiUrl}chats/messege/`+chat_id;
     return this.httpClient.get<Messege[]>(url)
+  }
+
+  createChat(user_id: string, username: string ){
+    const url: string = `${environment.apiUrl}chats/join`;
+    const body = {
+      'userId' : user_id,
+      'chatName' : username
+    }
+    return this.httpClient.post(url, body);
+
   }
 
 }
