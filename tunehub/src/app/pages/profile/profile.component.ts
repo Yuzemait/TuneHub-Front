@@ -11,7 +11,7 @@ import { EventComponent } from 'src/app/pages/event/event.component';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false }
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address : '' }
   isEditProfileVisible = false;
   isChangePasswordVisible = false;
 
@@ -58,6 +58,28 @@ export class ProfileComponent implements OnInit {
     this.hideChangePassword();
     this.hideEditProfile();
   }
+  formatAddress(address: string): string {
+    // Check if the address is valid and long enough
+    if (address && address.length > 10) {
+      // Show the first 6 characters, ellipses, and the last 4 characters
+      return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+    }
+    return address;
+  }
+
+  copyAddressToClipboard(address: string|undefined) {
+    if(!address){
+      address = ''
+    }
+    console.log(address);
+    navigator.clipboard.writeText(address).then(() => {
+        // You can add some logic here to show a confirmation message
+        console.log('Address copied to clipboard');
+    }).catch(err => {
+        console.error('Could not copy text: ', err);
+    });
+  }
+
 
 }
 

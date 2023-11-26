@@ -8,6 +8,7 @@ export interface User {
     playlists?: [string],
     chats?: [string],
     albums?: [string],
-    events?: [string]
+    events?: [string],
+    address?:string
 
 }

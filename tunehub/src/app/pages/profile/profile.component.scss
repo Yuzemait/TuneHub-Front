@@ -41,5 +41,14 @@
     z-index: -1000;
       
 }
+.address-container {
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.address-container h2 {
+    margin-right: 10px;
+}
 
 

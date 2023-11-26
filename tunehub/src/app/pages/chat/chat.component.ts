@@ -62,10 +62,13 @@ export class ChatComponent implements OnInit {
       });
   }
   getUserChats(chatlist: [string]){
-    chatlist.forEach(element => {
+    let chatset = [...new Set(chatlist)];
+
+    chatset.forEach(element => {
       this.artistService.getChatbyArtistId(element).subscribe(
         (data) => {
-          this.chats.push(data);        },
+          this.chats.push(data);        
+        },
         (error) => {
           console.log('error getting artist', error);
         }

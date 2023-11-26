@@ -13,7 +13,7 @@ import { TokenService } from './token.service';
 })
 export class UserService {
   
-  selectedUser: BehaviorSubject<User> = new BehaviorSubject<User>({ id: '', username: '', email: '', password: '', artistStatus: false });
+  selectedUser: BehaviorSubject<User> = new BehaviorSubject<User>({ id: '', username: '', email: '', password: '', artistStatus: false, address: ''});
   user$ = this.selectedUser.asObservable();
   isEditModeSubject = new BehaviorSubject<boolean>(false);
   isEditMode$ = this.isEditModeSubject.asObservable();
