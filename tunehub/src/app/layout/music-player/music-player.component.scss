@@ -46,6 +46,14 @@
             border: 2px solid black;
             border-radius: 10px;
             margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+            }
         }
         .song-name-container{
             margin-top: auto;
