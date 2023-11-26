@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventService } from 'src/app/shared/services/event.service';
+import { Event } from 'src/app/shared/interfaces/event';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-event',
@@ -10,8 +12,12 @@ import { EventService } from 'src/app/shared/services/event.service';
 })
 export class EventComponent {
   artistId: string = '';
+  editingEvent: Event | null = null; 
+  eventId: string | null = null
+  
 
   eventForm: FormGroup;
+  
 
   constructor(
     private dialogRef: MatDialogRef<EventComponent>,
@@ -28,8 +34,25 @@ export class EventComponent {
     });
 
     this.artistId = data.artistId;
+    this.editingEvent = data.editingEventData || null; 
+    this.eventId = data.eventId ? String(data.eventId) : null; 
+    
+    
+    this.setupFormForEditing(); 
   }
 
+  private setupFormForEditing() {
+    if (this.editingEvent) {
+      
+      const isoDate = formatDate(this.editingEvent.date, 'yyyy-MM-dd', 'en-US');
+
+      this.eventForm.patchValue({
+        eventName: this.editingEvent.name,
+        eventDate: isoDate,
+        eventCategory: this.editingEvent.category,
+      });
+    }
+  }
   closeDialog() {
     this.dialogRef.close();
   }
@@ -48,24 +71,31 @@ export class EventComponent {
         date: this.eventForm.value.eventDate,
         category: this.eventForm.value.eventCategory,
       };
-
-      this.eventService.createEvent(eventData).subscribe(
-        (response) => {
-          console.log('Evento creado con éxito:', response);
-          this.dialogRef.close(response);
-        },
-        (error) => {
-          console.error('Error al crear el evento:', error);
-        }
-      );
-      
-      
-    }else{
+  
+      if (this.editingEvent) {
+        this.eventService.editEvent(String(this.eventId), eventData).subscribe(
+          (response) => {
+            console.log('Evento editado con éxito:', response);
+            this.dialogRef.close(response);
+          },
+          (error) => {
+            console.error('Error al editar el evento:', error);
+          }
+        );
+      } else {
+        this.eventService.createEvent(eventData).subscribe(
+          (response) => {
+            console.log('Evento creado con éxito:', response);
+            this.dialogRef.close(response);
+          },
+          (error) => {
+            console.error('Error al crear el evento:', error);
+          }
+        );
+      }
+    } else {
       this.eventForm.markAllAsTouched();
     }
-
-
-
-  
   }
+
 }

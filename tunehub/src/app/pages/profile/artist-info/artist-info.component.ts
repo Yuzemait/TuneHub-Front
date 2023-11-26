@@ -74,8 +74,23 @@ export class ArtistInfoComponent implements OnInit{
   }
 
   editEvent(event: Event): void {
-    // Lógica para editar el evento
-    console.log('Edit event:', event);
+    const dialogRef = this.dialog.open(EventComponent, {
+      width: '30%',
+      data: { editingEventData: event, eventId: event.id }
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.eventService.getArtistEvents(this.user.id).subscribe(
+          (data) => {
+            this.events = data;
+          },
+          (error) => {
+            console.error('Error al obtener eventos del usuario:', error);
+          }
+        );
+      }
+    });
   }
 
   deleteEvent(event: Event): void {
