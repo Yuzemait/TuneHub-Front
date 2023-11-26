@@ -3,16 +3,25 @@
         <i class="fa fa-user-circle user-image" aria-hidden="true"></i>
     </div>
     <h2>{{artist.username}}</h2>
+    <h2>Artist<mat-icon>grade</mat-icon></h2>
     <h2><button mat-raised-button [routerLink]="['/chats', artist.ownChat]">Go to Chat</button></h2>
     <h2><button mat-raised-button [routerLink]="['/chats', artist.ownChat]">Join Chat</button></h2>
 
     <div class="events-container">
         <h2>Upcoming Events</h2>
-        <ul class="events-list">
-            <li class="event-item">Event 1 - Date</li>
-        </ul>
-        
-    </div>
+      
+        <ng-container *ngIf="events && events.length > 0; else noEvents">
+          <ul class="events-list">
+            <li class="event-item" *ngFor="let event of events">
+              {{ event.name }} - {{ event.date | date }}: {{ event.category }}
+            </li>
+          </ul>
+        </ng-container>
+      
+        <ng-template #noEvents>
+          <p>No upcoming events</p>
+        </ng-template>
+      </div>
     
 </div>
 <div class="section2">

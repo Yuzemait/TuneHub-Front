@@ -47,11 +47,18 @@ export class UserService {
     password: string | null,
     artistStatus: boolean
   ): Observable<User> {
+    const token = this.tokenService.get();
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': token
+    });
+
     const url: string = `${environment.apiUrl}users/${userId}`;
 
     const body = { username, email, password, artistStatus };
 
-    return this.httpClient.put<User>(url, body);
+    return this.httpClient.put<User>(url,  body, { headers });
   }
 
   setUser(user: User) {

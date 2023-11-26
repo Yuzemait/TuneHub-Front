@@ -4,6 +4,8 @@ import { ArtistService } from '../../shared/services/artist.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/interfaces/user';
 import { ChatService } from 'src/app/shared/services/chat.service';
+import { Event } from 'src/app/shared/interfaces/event';
+import { EventService } from 'src/app/shared/services/event.service';
 
 
 @Component({
@@ -13,24 +15,35 @@ import { ChatService } from 'src/app/shared/services/chat.service';
 })
 export class ArtistComponent implements OnInit {
   id : string = '';
-  artist: any;
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false }
+  artist  = { id: '', username: '', email: '', password: '', artistStatus: false, ownChat: '' };
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false}
+  events: Event[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private artistService: ArtistService,
     private userService: UserService, 
-    private chatService: ChatService
+    private chatService: ChatService,
+    private eventService: EventService
     
   ) { }
 
   ngOnInit(): void {
-    this.setUserData()
+    this.setUserData();
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
       if (this.id) {
         this.artistService.getArtistById(this.id).subscribe(
           (data) => {
             this.artist = data;
+            this.eventService.getArtistEvents(this.id).subscribe(
+              (data) => {
+                this.events = data;
+              },
+              (error) => {
+                console.error('Error al obtener eventos del usuario:', error);
+              }
+            );
           },
           (error) => {
             console.log('error getting artist', error);
@@ -39,6 +52,7 @@ export class ArtistComponent implements OnInit {
       }
     });
   }
+
   setUserData(){
     this.userService.getUserData().subscribe(
       (data) => {

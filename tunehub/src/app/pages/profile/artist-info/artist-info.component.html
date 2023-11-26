@@ -13,6 +13,31 @@
             </li>
         </ul>
     </div>
+    <hr>
+    
+    <div class="events-container">
+        <h2>Upcoming Events</h2>
+      
+        <ng-container *ngIf="events && events.length > 0; else noEvents">
+          <ul class="events-list">
+            <li class="event-item" *ngFor="let event of events">
+              {{ event.name }} - {{ event.date | date }}: {{ event.category }}
+              <button mat-icon-button color="primary" (click)="editEvent(event)">
+                <mat-icon aria-label="Edit">edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteEvent(event)">
+                <mat-icon aria-label="Delete">delete</mat-icon>
+              </button>
+            </li>
+          </ul>
+        </ng-container>
+      
+        <ng-template #noEvents>
+          <p>No upcoming events</p>
+        </ng-template>
+      </div>
+      
+      
     <div  class="album-container">
         <h1>Albums</h1>
         <ul class="album-list">

@@ -21,6 +21,54 @@
 
 }
 
+hr{
+    height: 2px; /* o la altura deseada */
+    width: 90%; /* ajusta según sea necesario */
+    background-color: #FFFBF5; /* color de la línea */
+    border: none; /* puede ser necesario quitar el borde predeterminado */
+    margin-left: 30px; /* asegúrate de que no haya margen alrededor del hr */
+
+
+  }
+
+
+.events-container {
+        
+    width: 90%;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 15px;
+    color: #FFFBF5;
+    height: 200px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding: 10px;
+    border-radius: 5px;
+    background:linear-gradient(to bottom, #7743DB, #6627dc);
+    width
+
+    h2 {
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+
+    .events-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+    }
+
+    .event-item {
+        background: linear-gradient(to bottom, #C3ACD0, #b88bd2);
+        margin-bottom: 5px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    
+}
+
 .container{
     margin-bottom: 100px;
 }

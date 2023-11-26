@@ -1,28 +1,36 @@
 <div class="dialog-container">
-    <div class="event-form">
-        <button class="close-button" (click)="closeDialog()">&times;</button>
-        <form>
-            <div class="form-group">
-                <label for="eventName">Event Name:</label>
-                <input type="text" id="eventName" name="eventName" class="form-control" placeholder="Enter event name">
-            </div>
+  <div class="event-form">
+    <button class="close-button" (click)="closeDialog()">&times;</button>
+    <form [formGroup]="eventForm" (ngSubmit)="submitEvent()">
+      <div class="form-group">
+        <label for="eventName">Event Name:</label>
+        <input type="text" id="eventName" name="eventName" class="form-control" placeholder="Enter event name" formControlName="eventName">
+        <div *ngIf="eventForm.get('eventName')?.invalid && eventForm.get('eventName')?.touched" class="error-message">
+          Event Name is required.
+        </div>
+      </div>
 
-            <div class="form-group">
-                <label for="eventDate">Event Date:</label>
-                <input type="date" id="eventDate" name="eventDate" class="form-control">
-            </div>
+      <div class="form-group">
+        <label for="eventDate">Event Date:</label>
+        <input type="date" id="eventDate" name="eventDate" class="form-control" formControlName="eventDate">
+        <div *ngIf="eventForm.get('eventDate')?.invalid && eventForm.get('eventDate')?.touched" class="error-message">
+          Event Date is required.
+        </div>
+      </div>
 
-            <div class="form-group">
-                <label for="eventCategory">Event Category:</label>
-                <select id="eventCategory" name="eventCategory" class="form-control">
-                    <option value="concert">Concert</option>
-                    <option value="albumRelease">Album Release</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
+      <div class="form-group">
+        <label for="eventCategory">Event Category:</label>
+        <select id="eventCategory" name="eventCategory" class="form-control" formControlName="eventCategory">
+          <option value="Concert">Concert</option>
+          <option value="Album Release">Album Release</option>
+          <option value="Other">Other</option>
+        </select>
+        <div *ngIf="eventForm.get('eventCategory')?.invalid && eventForm.get('eventCategory')?.touched" class="error-message">
+          Event Category is required.
+        </div>
+      </div>
 
-            <button type="submit" class="btn-submit">Submit</button>
-            
-        </form>
-    </div>
+      <button type="submit" class="btn-submit">Submit</button>
+    </form>
+  </div>
 </div>
