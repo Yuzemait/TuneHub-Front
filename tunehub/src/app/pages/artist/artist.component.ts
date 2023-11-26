@@ -6,6 +6,8 @@ import { User } from 'src/app/shared/interfaces/user';
 import { ChatService } from 'src/app/shared/services/chat.service';
 import { Event } from 'src/app/shared/interfaces/event';
 import { EventService } from 'src/app/shared/services/event.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ChatpopupComponent } from './chatpopup/chatpopup.component';
 
 
 @Component({
@@ -24,7 +26,8 @@ export class ArtistComponent implements OnInit {
     private artistService: ArtistService,
     private userService: UserService, 
     private chatService: ChatService,
-    private eventService: EventService
+    private eventService: EventService,
+    public dialog: MatDialog
     
   ) { }
 
@@ -62,8 +65,22 @@ export class ArtistComponent implements OnInit {
         console.error('Error al obtener datos del usuario:', error);
       });
   }
-  joinChat(){
 
+  openDialog(): void {
+    let currentChat = {
+      userProfile: this.user, 
+      artistProfile: this.artist
+    };
+  
+    const dialogRef = this.dialog.open(ChatpopupComponent, {
+      width: '40%',
+      data: currentChat
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // You can also do something with the result here
+    });
   }
 
   

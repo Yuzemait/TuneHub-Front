@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs'
+import { Observable, of, throwError } from 'rxjs'
 import { Chat } from '../interfaces/chat';
 import { environment } from 'src/environments/environment';
 import { Messege } from '../interfaces/messege';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,16 +12,17 @@ export class ChatService {
 
   constructor(private httpClient: HttpClient) { }
 
-  joinChat(chat_id:string, user_id:string) {
-    if(chat_id && user_id){
+  joinChat(chat_id: string, user_id: string): Observable<any> {
+    if (chat_id && user_id) {
       const body = {
-        'userId' : user_id,
-        'chatId' : chat_id
-      }
+        'userId': user_id,
+        'chatId': chat_id
+      };
       const url: string = `${environment.apiUrl}chats/join`;
       return this.httpClient.put(url, body);
+    } else {
+      return throwError(() => new Error('not found'));
     }
-    return 'not found'
   }
 
   getUserChatsbyChatId(chat_id:string):Observable<Chat> {
