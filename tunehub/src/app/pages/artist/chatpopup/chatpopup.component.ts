@@ -29,4 +29,7 @@ export class ChatpopupComponent {
     }
     return result
   }
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }
