@@ -6,6 +6,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { CreateSongComponent } from '../create-song/create-song.component';
 import { EventService } from 'src/app/shared/services/event.service';
 import { Event } from 'src/app/shared/interfaces/event';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-artist-info',
@@ -94,8 +95,42 @@ export class ArtistInfoComponent implements OnInit{
   }
 
   deleteEvent(event: Event): void {
-    // Lógica para eliminar el evento
-    console.log('Delete event:', event);
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Confirmar acción',
+        message: '¿Estás seguro de que quieres realizar esta acción?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const artistId = this.user.id;
+        const eventId = event.id;
+      
+        if (artistId && eventId) {
+          this.eventService.removeEvent(artistId, eventId).subscribe(
+            () => {
+              this.eventService.getArtistEvents(artistId).subscribe(
+                (data) => {
+                  this.events = data;
+                },
+                (error) => {
+                  console.error('Error al obtener eventos del usuario:', error);
+                }
+              );
+            },
+            (error) => {
+              console.error('Error al eliminar el evento:', error);
+            }
+          );
+        } else {
+          console.error('Error: artistId o eventId es undefined.');
+        }
+      } 
+    });
+
+  
   }
 
 

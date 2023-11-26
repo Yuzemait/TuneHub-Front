@@ -48,4 +48,21 @@ export class EventService {
     return this.http.put<Event>(url, updateData, { headers });
   }
 
+  removeEvent(artistId: string, eventId: string): Observable<Event> {
+    const token = this.tokenService.get();
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': token
+    });
+
+
+    const body = { artistId };
+
+    const url = `${environment.apiUrl}events/${eventId}`;
+    return this.http.request<Event>('delete', url, { body, headers });
+  }
+
+
+
 }
