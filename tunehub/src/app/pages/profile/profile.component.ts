@@ -91,7 +91,7 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-  hasChat(user: User){
+  hasChat(){
     if(this.user.ownChat){
       return true
     }

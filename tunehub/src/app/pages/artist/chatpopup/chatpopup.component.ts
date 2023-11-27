@@ -27,6 +27,7 @@ export class ChatpopupComponent {
       this.chatService.joinChat(chatId,userId).subscribe(
         (data)=>{
           result = data
+          this.launchAnnouncement(result)
           console.log("result: " , result.transaction);
         }
       )
@@ -35,6 +36,21 @@ export class ChatpopupComponent {
     else{
       return 'failed'
     }
+  }
+  launchAnnouncement(info: any): void {
+
+    if(info.transaction.sent == 'yes'){
+      alert('you succesfully bought. here is your transaction: '+info.transaction.hash);
+    }
+    if(info.transaction.sold == 'yes'){
+      alert('you succesfully sold here is your transaction:: '+info.transaction.hash);
+    }
+    if(info.transaction.sold == 'yes' ||info.transaction.sent == 'yes'){
+      alert('there was an error processing your transaction make sure you have funds '+info.transaction.hash);
+
+    }
+
+    
   }
 
   closeDialog() {
@@ -50,7 +66,7 @@ export class ChatpopupComponent {
       this.chatService.leaveChat(chatId,userId).subscribe(
         (data)=>{
           result = data
-          console.log("result: " , result.transaction);
+          this.launchAnnouncement(result)
         }
       )
       return result
