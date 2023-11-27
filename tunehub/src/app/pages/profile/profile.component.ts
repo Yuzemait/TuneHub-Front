@@ -80,24 +80,7 @@ export class ProfileComponent implements OnInit {
         console.error('Could not copy text: ', err);
     });
   }
-  createChat(user: User){
-    this.chatService.createChat(this.user.id, this.user.username).subscribe(
-      (data) => {
-       
-        console.log(data);
-      },
-      (error) => {
-        console.error('Error al obtener datos del usuario:', error);
-      }
-    );
-  }
-  hasChat(){
-    if(this.user.ownChat){
-      return true
-    }
-    else return false    
-  }
-
+  
 
 }
 
