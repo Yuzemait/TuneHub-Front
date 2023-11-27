@@ -14,24 +14,66 @@ export class ChatpopupComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ChatpopupComponent>,
     private chatService: ChatService
-  ) { }
+  ) {}
 
   buyShares(){
-    console.log("here");
+    
     let result: any = ''
-    if(this.data.artist.ownChat && this.data.user.id){
-      console.log(this.data.artist.ownChat);
-      let chatId: string = this.data.artist.ownChat;
-      let userId: string = this.data.user.id
+    console.log(this.data.artistProfile.id);
+    if( this.data.userProfile.id){
+      console.log("here");
+      let chatId: string = this.data.artistProfile.ownChat;
+      let userId: string = this.data.userProfile.id
       this.chatService.joinChat(chatId,userId).subscribe(
         (data)=>{
           result = data
+          this.launchAnnouncement(result)
+          console.log("result: " , result.transaction);
         }
       )
+      return result
     }
-    return result
+    else{
+      return 'failed'
+    }
   }
+  launchAnnouncement(info: any): void {
+
+    if(info.transaction.sent == 'yes'){
+      alert('you succesfully bought. here is your transaction: '+info.transaction.hash);
+    }
+    if(info.transaction.sold == 'yes'){
+      alert('you succesfully sold here is your transaction:: '+info.transaction.hash);
+    }
+    if(info.transaction.sold == 'yes' ||info.transaction.sent == 'yes'){
+      alert('there was an error processing your transaction make sure you have funds '+info.transaction.hash);
+
+    }
+
+    
+  }
+
   closeDialog() {
     this.dialogRef.close();
+  }
+  sellShares(){
+    let result: any = ''
+    console.log(this.data.artistProfile.id);
+    if( this.data.userProfile.id){
+      console.log("here");
+      let chatId: string = this.data.artistProfile.ownChat;
+      let userId: string = this.data.userProfile.id
+      this.chatService.leaveChat(chatId,userId).subscribe(
+        (data)=>{
+          result = data
+          this.launchAnnouncement(result)
+        }
+      )
+      return result
+    }
+    else{
+      return 'failed'
+    }
+
   }
 }

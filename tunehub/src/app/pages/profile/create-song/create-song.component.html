@@ -8,12 +8,12 @@
             </div>
 
             <div class="form-group">
-                <input type="file" id="file-input" (change)="handleFileInput($event)">
+                <input type="file" id="file-input" name="file" (change)="handleFileInput($event)">
                 <label for="file-button">Select song image: {{selectedFile}}</label>
                 <button id="file-button" (click)="triggerFileInput()"  type="button" mat-button><mat-icon>image</mat-icon></button>
             </div>
             <div class="form-group">
-                <input type="file" id="song-input" (change)="handleSongInput($event)">
+                <input type="file" id="song-input" name="songFile" (change)="handleSongInput($event)">
                 <label for="song-button">Select song: {{selectedSong}}</label>
                 <button id="song-button" (click)="triggerSongInput()"  type="button" mat-button><mat-icon>music_note</mat-icon></button>
             </div>

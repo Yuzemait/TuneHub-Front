@@ -3,6 +3,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/interfaces/user';
 import { MatDialog } from '@angular/material/dialog';
 import { EventComponent } from 'src/app/pages/event/event.component';
+import { ChatService } from 'src/app/shared/services/chat.service';
 
 
 @Component({
@@ -11,11 +12,11 @@ import { EventComponent } from 'src/app/pages/event/event.component';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address : '' }
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address : '' , imgId: 'default.png', ownChat:""}
   isEditProfileVisible = false;
   isChangePasswordVisible = false;
 
-  constructor(private userService: UserService, public dialog: MatDialog) {}
+  constructor(private userService: UserService, public dialog: MatDialog, private chatService: ChatService) {}
 
   ngOnInit(): void {
     this.userService.getUserData().subscribe(
@@ -78,6 +79,23 @@ export class ProfileComponent implements OnInit {
     }).catch(err => {
         console.error('Could not copy text: ', err);
     });
+  }
+  createChat(user: User){
+    this.chatService.createChat(this.user.id, this.user.username).subscribe(
+      (data) => {
+       
+        console.log(data);
+      },
+      (error) => {
+        console.error('Error al obtener datos del usuario:', error);
+      }
+    );
+  }
+  hasChat(){
+    if(this.user.ownChat){
+      return true
+    }
+    else return false    
   }
 
 

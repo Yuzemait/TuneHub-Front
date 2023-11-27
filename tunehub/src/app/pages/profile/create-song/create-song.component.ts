@@ -20,7 +20,8 @@ export class CreateSongComponent {
   selectedFile: string = '';
   selectedSong: string = '';
   signupForm: FormGroup;
-  file: File | null = null;
+  files: File[] = [];
+  // songFile: File | null = null;
 
   ngOnInit() {
     // Retrieve the token from localStorage
@@ -36,10 +37,10 @@ export class CreateSongComponent {
   onSubmit(): void {
 
     
-    if (this.signupForm.valid && this.file) {
+    if (this.signupForm.valid && this.files[0] && this.files[1]) {
       const formData = this.signupForm.value;
       console.log("Submit");
-      this.songService.uploadSong(this.file, formData).subscribe(
+      this.songService.uploadSong(this.files,formData).subscribe(
         (data) => {
           console.log('Song uploaded successfully:', data);
           // Handle the response from the server if needed
@@ -72,10 +73,10 @@ export class CreateSongComponent {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files) {
       // Access the selected file(s) from the files property
-      const file = inputElement.files[0];
+      this.files[0] = inputElement.files[0];
       // You can also display the file name or other information as needed
-      if (file) {
-        this.selectedFile = file.name
+      if (this.files[0]) {
+        this.selectedFile = this.files[0].name
       }
     }
   }
@@ -83,10 +84,10 @@ export class CreateSongComponent {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files) {
       // Access the selected file(s) from the files property
-      this.file = inputElement.files[0];
+      this.files[1] = inputElement.files[0];
       // You can also display the file name or other information as needed
-      if (this.file) {
-        this.selectedSong = this.file.name
+      if (this.files[1]) {
+        this.selectedSong = this.files[1].name
       }
     }
   }

@@ -15,11 +15,14 @@ import { ChatpopupComponent } from './chatpopup/chatpopup.component';
   templateUrl: './artist.component.html',
   styleUrls: ['./artist.component.scss']
 })
+
+
 export class ArtistComponent implements OnInit {
   id : string = '';
-  artist  = { id: '', username: '', email: '', password: '', artistStatus: false, ownChat: '' };
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false}
+  artist  = { id: '', username: '', email: '', password: '', artistStatus: false, ownChat: '' , imgId: 'default.png'};
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, imgId:''}
   events: Event[] = [];
+  // imgId: string = 'default.png';
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +34,7 @@ export class ArtistComponent implements OnInit {
     
   ) { }
 
+
   ngOnInit(): void {
     this.setUserData();
     this.route.params.subscribe((params: Params) => {
@@ -39,6 +43,7 @@ export class ArtistComponent implements OnInit {
         this.artistService.getArtistById(this.id).subscribe(
           (data) => {
             this.artist = data;
+            
             this.eventService.getArtistEvents(this.id).subscribe(
               (data) => {
                 this.events = data;
@@ -71,6 +76,7 @@ export class ArtistComponent implements OnInit {
       userProfile: this.user, 
       artistProfile: this.artist
     };
+    console.log('Opening dialog with data:', currentChat);
   
     const dialogRef = this.dialog.open(ChatpopupComponent, {
       width: '40%',
@@ -81,6 +87,12 @@ export class ArtistComponent implements OnInit {
       console.log('The dialog was closed');
       // You can also do something with the result here
     });
+  }
+  haveChat(){
+    if(this.artist.ownChat){
+      return true
+    }
+    else return false
   }
   
   

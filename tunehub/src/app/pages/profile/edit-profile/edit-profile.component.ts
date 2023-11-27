@@ -19,8 +19,11 @@ export class EditProfileComponent implements OnInit {
   @Output() changesSaved: EventEmitter<void> = new EventEmitter<void>();
 
   
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false }
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false , imgId: ''}
   editForm: FormGroup;
+  selectedFile: string = '';
+
+  imgFile: File | null = null;
 
 
   constructor(
@@ -64,7 +67,7 @@ export class EditProfileComponent implements OnInit {
     if (this.editForm.valid) {
       const { username, email } = this.editForm.value;
 
-      this.userService.updateUser(this.user.id, username, email, null, this.user.artistStatus)
+      this.userService.updateUser(this.user.id, username, email, null, this.user.artistStatus, this.imgFile)
         .subscribe(
           (updatedUser) => {
             this.user = updatedUser;
@@ -96,7 +99,7 @@ export class EditProfileComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
 
-        this.userService.updateUser(this.user.id, this.user.username, this.user.email, null, true)
+        this.userService.updateUser(this.user.id, this.user.username, this.user.email, null, true, this.imgFile)
         .subscribe(
           (updatedUser) => {
             console.log(updatedUser);
@@ -113,11 +116,24 @@ export class EditProfileComponent implements OnInit {
         
       }
     });
+  }
+  triggerFileInput(){
+    const fileInput = document.getElementById("file-input");
+    if (fileInput){
+      fileInput.click()
+    }
+  }
 
-  
-
-     
-
+  handleFileInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files) {
+      // Access the selected file(s) from the files property
+     this.imgFile = inputElement.files[0];
+      // You can also display the file name or other information as needed
+      if (this.imgFile) {
+        this.selectedFile = this.imgFile.name
+      }
+    }
   }
   
   

@@ -10,7 +10,7 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit{
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false }
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false , imgId: ''}
   changePasswordForm: FormGroup;
   @Output() cancel: EventEmitter<void> = new EventEmitter<void>();
   @Output() changesSaved: EventEmitter<void> = new EventEmitter<void>();
@@ -41,7 +41,7 @@ export class ChangePasswordComponent implements OnInit{
   changePassword(): void {
     if (this.changePasswordForm.valid) {
       const { newPassword } = this.changePasswordForm.value;
-        this.userService.updateUser(this.user.id, this.user.username, this.user.email, newPassword, this.user.artistStatus)
+        this.userService.updateUser(this.user.id, this.user.username, this.user.email, newPassword, this.user.artistStatus, null)
         .subscribe(
           (updatedUser) => {
             this.changePasswordForm.reset();
