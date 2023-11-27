@@ -11,6 +11,9 @@
             <li class="u-option">
                 <button mat-raised-button (click)="openAddEventDialog()">Add event</button>
             </li>
+            <li class="u-option">
+                <button mat-raised-button *ngIf="!hasChat()" (click)="createChat(user)">create chat</button>
+            </li>
         </ul>
     </div>
     <hr>
