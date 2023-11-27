@@ -16,7 +16,7 @@ export class UnauthGuard implements CanActivate {
     if(!this.tokenService.isLoggedIn()){
       return true
     } else {
-      this.router.navigate(['']);
+      this.router.navigate(['profile']);
       return false
     }
 

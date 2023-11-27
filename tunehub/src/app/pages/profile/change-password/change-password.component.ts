@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/shared/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -15,7 +16,9 @@ export class ChangePasswordComponent implements OnInit{
   @Output() changesSaved: EventEmitter<void> = new EventEmitter<void>();
 
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder){
+  constructor(private userService: UserService, 
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar){
     this.changePasswordForm = this.formBuilder.group({
     newPassword: ['', [Validators.required, Validators.minLength(8)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(8), this.comparePasswords.bind(this)]],
@@ -28,6 +31,13 @@ export class ChangePasswordComponent implements OnInit{
     });
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000, 
+      verticalPosition: 'top'
+    });
+  }
+
   changePassword(): void {
     if (this.changePasswordForm.valid) {
       const { newPassword } = this.changePasswordForm.value;
@@ -36,7 +46,7 @@ export class ChangePasswordComponent implements OnInit{
           (updatedUser) => {
             this.changePasswordForm.reset();
             this.changesSaved.emit();
-            alert('Password changed successfully.')
+            this.openSnackBar('Password changed successfully.', 'Ok')
           },
           (error) => {
             console.error('Error al actualizar usuario:', error);

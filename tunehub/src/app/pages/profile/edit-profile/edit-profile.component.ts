@@ -7,6 +7,7 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 import { TokenService } from 'src/app/shared/services/token.service';
 import { Router } from '@angular/router';
 import { ChatService } from 'src/app/shared/services/chat.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-profile',
@@ -28,7 +29,8 @@ export class EditProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private tokenService: TokenService,
-    private  router: Router) {
+    private  router: Router,
+    private snackBar: MatSnackBar) {
     this.editForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -47,6 +49,13 @@ export class EditProfileComponent implements OnInit {
 
   }
   
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000, 
+      verticalPosition: 'top'
+    });
+  }
+  
   onCancel() {
     this.cancel.emit();
   }
@@ -61,7 +70,7 @@ export class EditProfileComponent implements OnInit {
             this.user = updatedUser;
             this.userService.setUser(updatedUser);
             this.changesSaved.emit();
-            alert('Information successfully updated');
+            this.openSnackBar('Information successfully updated', 'Ok')
           },
           (error) => {
             console.error('Error al actualizar usuario:', error);
