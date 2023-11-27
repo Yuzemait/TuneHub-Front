@@ -45,9 +45,10 @@ export class UserService {
     username: string,
     email: string,
     password: string | null,
-    artistStatus: boolean,
+    artistStatus: boolean | null,
     profilePicture: File | null
   ): Observable<User> {
+    console.log(artistStatus);
     const token = this.tokenService.get();
     const formData = new FormData();
     formData.append('username',username );
@@ -55,15 +56,20 @@ export class UserService {
     if (password){
       formData.append('password', password );
     }
-    formData.append('artistStatus', artistStatus.toString());
-    if (profilePicture){
-      formData.append('file', profilePicture, profilePicture.name);
+
+    if(artistStatus){
+      formData.append("artistStatus", "true")
     }
+    // formData.append('artistStatus', artistStatus);
+=======
+    formData.append('artistStatus', artistStatus.toString());
 
     const headers = new HttpHeaders({
       // 'Content-Type': 'application/json',
       'token': token
     });
+
+    console.log("form data: ", formData);
 
     const url: string = `${environment.apiUrl}users/${userId}`;
 
