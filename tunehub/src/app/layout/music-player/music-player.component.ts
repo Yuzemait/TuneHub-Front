@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from 'src/app/shared/services/token.service';
 import { environment } from 'src/environments/environment';
 import { SongService } from 'src/app/shared/services/song.service';
-
 @Component({
   selector: 'app-music-player',
   templateUrl: './music-player.component.html',
@@ -19,8 +18,7 @@ export class MusicPlayerComponent implements OnInit {
 
   }
 
-  playlist: string[][] = 
-  [];
+  playlist: string[][] = [];
 
   currentSongIndex: number = 0;
   isPlaying: boolean = false;
@@ -28,12 +26,14 @@ export class MusicPlayerComponent implements OnInit {
   duration: number = 0;
   currentVolume: number = 1;
   songName: string = '';
+  songImg: string = 'default_music.png';
+  apiUrl: string = environment.apiUrl;
   
   ngOnInit(): void {
     // this.playSong(0);
     this.songService.getSongs().subscribe((data)=>{
       data.forEach(song => {
-        this.playlist.push([song.song, song.name])
+        this.playlist.push([song.song, song.name, song.songImg])
       });
       console.log(this.playlist);
     })
@@ -43,11 +43,12 @@ export class MusicPlayerComponent implements OnInit {
    playSong(index: number) {
     this.currentSongIndex = index;
     const audioPlayer = document.getElementById('audioPlayer') as HTMLAudioElement;
-    audioPlayer.src = environment.apiUrl+'assets/'+this.playlist[this.currentSongIndex][0]+'.mp3';
+    audioPlayer.src = environment.apiUrl+'assets/'+this.playlist[this.currentSongIndex][0];
     audioPlayer.load();
     audioPlayer.addEventListener('canplaythrough', () => {
       this.duration = audioPlayer.duration;
       this.songName = this.playlist[this.currentSongIndex][1];
+      this.songImg = this.playlist[this.currentSongIndex][2];
       // Set the initial volume
       audioPlayer.volume = this.currentVolume;
     });

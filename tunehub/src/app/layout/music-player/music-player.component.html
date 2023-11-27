@@ -7,7 +7,7 @@
         <audio controls id="audioPlayer" (timeupdate)="updateProgress($event)">
         </audio>
         <div class="image-container">
-            <img src="http://localhost:3000/assets/default_music.png" alt="">
+            <img src="{{apiUrl}}assets/{{songImg}}" alt="">
         </div>
         <div class="song-name-container">
             <span>{{songName}}</span>

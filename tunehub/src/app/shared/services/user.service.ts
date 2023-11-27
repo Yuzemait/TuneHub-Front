@@ -56,13 +56,13 @@ export class UserService {
     if (password){
       formData.append('password', password );
     }
+
     if(artistStatus){
       formData.append("artistStatus", "true")
     }
     // formData.append('artistStatus', artistStatus);
-    if (profilePicture){
-      formData.append('file', profilePicture, profilePicture.name);
-    }
+=======
+    formData.append('artistStatus', artistStatus.toString());
 
     const headers = new HttpHeaders({
       // 'Content-Type': 'application/json',
