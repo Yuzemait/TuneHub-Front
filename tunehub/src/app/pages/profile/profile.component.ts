@@ -12,7 +12,7 @@ import { ChatService } from 'src/app/shared/services/chat.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address : '' , imgId: '', ownChat:""}
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address : '' , imgId: 'default.png', ownChat:""}
   isEditProfileVisible = false;
   isChangePasswordVisible = false;
 

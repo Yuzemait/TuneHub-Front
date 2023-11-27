@@ -13,9 +13,10 @@ export class SongService {
 
   constructor(private http: HttpClient) {}
 
-  uploadSong(file: File, songData: any): Observable<any> {
+  uploadSong(files: File[], songData: any): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('file', file, file.name);
+    formData.append('files', files[0]);
+    formData.append('files', files[1]);
 
     formData.append('name', songData.name);
     formData.append('artistID', songData.artistID);
