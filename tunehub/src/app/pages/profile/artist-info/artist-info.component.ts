@@ -14,7 +14,7 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
   styleUrls: ['./artist-info.component.scss']
 })
 export class ArtistInfoComponent implements OnInit{
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false };
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false , imgId:''};
   events: Event[] = [];
 
   constructor(private userService: UserService, private eventService: EventService, public dialog: MatDialog ) {}

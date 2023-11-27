@@ -18,7 +18,7 @@ import { ChatpopupComponent } from './chatpopup/chatpopup.component';
 export class ArtistComponent implements OnInit {
   id : string = '';
   artist  = { id: '', username: '', email: '', password: '', artistStatus: false, ownChat: '' };
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false}
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, imgId:''}
   events: Event[] = [];
 
   constructor(

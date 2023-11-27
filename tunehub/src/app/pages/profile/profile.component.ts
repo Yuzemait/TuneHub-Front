@@ -11,7 +11,7 @@ import { EventComponent } from 'src/app/pages/event/event.component';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address : '' }
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address : '' , imgId: ''}
   isEditProfileVisible = false;
   isChangePasswordVisible = false;
 

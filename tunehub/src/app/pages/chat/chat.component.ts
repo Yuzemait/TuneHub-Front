@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false }
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false , imgId:''}
   chats: Chat[] = []
   chat: any = ''
   chatids: [string] |undefined = ['']
