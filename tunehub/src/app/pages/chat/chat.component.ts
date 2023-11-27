@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ArtistService } from '../../shared/services/artist.service';
@@ -18,7 +18,8 @@ import { environment } from 'src/environments/environment';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewChecked {
+  @ViewChild('chatList') private chatList!: ElementRef;
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false , imgId:''}
   chats: Chat[] = []
   chat: any = ''
@@ -29,6 +30,10 @@ export class ChatComponent implements OnInit {
   currentChat: string = ''
   socket: Socket;
   content: string = ''
+
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
   
   constructor(private route: ActivatedRoute, 
     private artistService: ArtistService, 
@@ -124,6 +129,12 @@ export class ChatComponent implements OnInit {
     }
 
   }
+  private scrollToBottom(): void {
+    try {
+      this.chatList.nativeElement.scrollTop = this.chatList.nativeElement.scrollHeight;
+    } catch(err) { } 
+  }
+  
   
 }
 

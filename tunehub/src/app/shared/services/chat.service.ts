@@ -13,12 +13,28 @@ export class ChatService {
   constructor(private httpClient: HttpClient) { }
 
   joinChat(chat_id: string, user_id: string): Observable<any> {
+    console.log(chat_id, user_id);
     if (chat_id && user_id) {
       const body = {
         'userId': user_id,
         'chatId': chat_id
       };
+      
       const url: string = `${environment.apiUrl}chats/join`;
+      return this.httpClient.put(url, body);
+    } else {
+      return throwError(() => new Error('not found'));
+    }
+  }
+  leaveChat(chat_id: string, user_id: string): Observable<any> {
+    console.log(chat_id, user_id);
+    if (chat_id && user_id) {
+      const body = {
+        'userId': user_id,
+        'chatId': chat_id
+      };
+      
+      const url: string = `${environment.apiUrl}chats/leave`;
       return this.httpClient.put(url, body);
     } else {
       return throwError(() => new Error('not found'));
@@ -35,11 +51,14 @@ export class ChatService {
   }
 
   createChat(user_id: string, username: string ){
-    const url: string = `${environment.apiUrl}chats/join`;
+    console.log("in chat services in create chat");
+    const url: string = `${environment.apiUrl}chats/create/${user_id}`;
     const body = {
       'userId' : user_id,
       'chatName' : username
     }
+
+    
     return this.httpClient.post(url, body);
 
   }

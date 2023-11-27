@@ -71,6 +71,7 @@ export class ArtistComponent implements OnInit {
       userProfile: this.user, 
       artistProfile: this.artist
     };
+    console.log('Opening dialog with data:', currentChat);
   
     const dialogRef = this.dialog.open(ChatpopupComponent, {
       width: '40%',
@@ -82,10 +83,12 @@ export class ArtistComponent implements OnInit {
       // You can also do something with the result here
     });
   }
-
-  
-  
-
+  haveChat(){
+    if(this.artist.ownChat){
+      return true
+    }
+    else return false
+  }
   
   
 

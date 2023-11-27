@@ -10,6 +10,7 @@ export interface User {
     chats?: [string],
     albums?: [string],
     events?: [string],
-    address?:string
+    address?:string,
+    ownChat?:string
 
 }

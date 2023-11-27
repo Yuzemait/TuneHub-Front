@@ -14,19 +14,50 @@ export class ChatpopupComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ChatpopupComponent>,
     private chatService: ChatService
-  ) { }
+  ) {}
 
   buyShares(){
+    
     let result: any = ''
-    if(this.data.artist.ownChat && this.data.user.id){
-      let chatId: string = this.data.artist.ownChat;
-      let userId: string = this.data.user.id
+    console.log(this.data.artistProfile.id);
+    if( this.data.userProfile.id){
+      console.log("here");
+      let chatId: string = this.data.artistProfile.ownChat;
+      let userId: string = this.data.userProfile.id
       this.chatService.joinChat(chatId,userId).subscribe(
         (data)=>{
           result = data
+          console.log("result: " , result.transaction);
         }
       )
+      return result
     }
-    return result
+    else{
+      return 'failed'
+    }
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
+  sellShares(){
+    let result: any = ''
+    console.log(this.data.artistProfile.id);
+    if( this.data.userProfile.id){
+      console.log("here");
+      let chatId: string = this.data.artistProfile.ownChat;
+      let userId: string = this.data.userProfile.id
+      this.chatService.leaveChat(chatId,userId).subscribe(
+        (data)=>{
+          result = data
+          console.log("result: " , result.transaction);
+        }
+      )
+      return result
+    }
+    else{
+      return 'failed'
+    }
+
   }
 }

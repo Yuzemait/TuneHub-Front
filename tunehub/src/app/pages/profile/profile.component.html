@@ -7,10 +7,12 @@
     <h2>{{user.username}}</h2>
     <h2>{{user.email}}</h2>
     <button mat-raised-button (click)="copyAddressToClipboard(user.address)">
+        
         <mat-icon>content_copy {{formatAddress(user.address ?? '')}}</mat-icon>{{formatAddress(user.address ?? '')}}
     </button>
     <button mat-raised-button *ngIf="!isEditProfileVisible && !isChangePasswordVisible" (click)="showEditProfile()"><mat-icon>build</mat-icon>Edit profile</button>
     <button mat-raised-button *ngIf="!isEditProfileVisible && !isChangePasswordVisible" (click)="showChangePassword()"><mat-icon>lock</mat-icon>Change Password</button>
+    <button mat-raised-button *ngIf="!hasChat && user.address" (click)="createChat(user)">create chat</button>
 
   
 </div>

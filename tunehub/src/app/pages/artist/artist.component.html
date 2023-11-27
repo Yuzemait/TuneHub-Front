@@ -4,7 +4,7 @@
     </div>
     <h2>{{artist.username}}</h2>
     <h2>Artist<mat-icon>grade</mat-icon></h2>
-    <h2><button mat-raised-button (click)="openDialog()">Join the community</button></h2>
+    <h2><button mat-raised-button *ngIf="haveChat() " (click)="openDialog()">Join the community</button></h2>
 
     <div class="events-container">
         <h2>Upcoming Events</h2>
