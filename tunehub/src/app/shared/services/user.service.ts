@@ -55,7 +55,7 @@ export class UserService {
     if (password){
       formData.append('password', password );
     }
-    // formData.append('artistStatus', artistStatus);
+    formData.append('artistStatus', artistStatus.toString());
     if (profilePicture){
       formData.append('file', profilePicture, profilePicture.name);
     }
