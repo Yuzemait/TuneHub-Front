@@ -13,7 +13,7 @@ import { TokenService } from './token.service';
 })
 export class UserService {
   
-  selectedUser: BehaviorSubject<User> = new BehaviorSubject<User>({ id: '', username: '', email: '', password: '', artistStatus: false, address: ''});
+  selectedUser: BehaviorSubject<User> = new BehaviorSubject<User>({ id: '', username: '', email: '', password: '', artistStatus: false, address: '', imgId: ''});
   user$ = this.selectedUser.asObservable();
   isEditModeSubject = new BehaviorSubject<boolean>(false);
   isEditMode$ = this.isEditModeSubject.asObservable();
@@ -45,21 +45,34 @@ export class UserService {
     username: string,
     email: string,
     password: string | null,
-    artistStatus: boolean
+    artistStatus: boolean,
+    profilePicture: File | null
   ): Observable<User> {
     const token = this.tokenService.get();
+    const formData = new FormData();
+    formData.append('username',username );
+    formData.append('email',email );
+    if (password){
+      formData.append('password', password );
+    }
+    // formData.append('artistStatus', artistStatus);
+    if (profilePicture){
+      formData.append('file', profilePicture, profilePicture.name);
+    }
 
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
       'token': token
     });
 
     const url: string = `${environment.apiUrl}users/${userId}`;
 
-    const body = { username, email, password, artistStatus };
+    // const body = { username, email, password, artistStatus };
 
-    return this.httpClient.put<User>(url,  body, { headers });
+    return this.httpClient.put<User>(url,  formData, { headers });
   }
+
+
 
   setUser(user: User) {
     this.selectedUser.next(user);

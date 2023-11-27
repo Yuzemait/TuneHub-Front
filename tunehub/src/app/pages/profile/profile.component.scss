@@ -15,8 +15,13 @@
         margin-top: 150px;
 
         .user-image {
-            font-size: 180px;
-            color: #FFFBF5;
+            // font-size: 180px;
+            // width: 60%;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #FFFBF5; 
+            // color: #FFFBF5;
+            clip-path: circle();
         }
     }
 

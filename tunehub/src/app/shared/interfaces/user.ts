@@ -3,6 +3,7 @@ export interface User {
     id: string,
     username: string,
     email: string,
+    imgId: string,
     password: string,
     artistStatus: boolean,
     playlists?: [string],

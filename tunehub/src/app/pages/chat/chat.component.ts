@@ -18,9 +18,9 @@ import { environment } from 'src/environments/environment';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit, AfterViewChecked  {
+export class ChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('chatList') private chatList!: ElementRef;
-  user: User = { id: '', username: '', email: '', password: '', artistStatus: false }
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false , imgId:''}
   chats: Chat[] = []
   chat: any = ''
   chatids: [string] |undefined = ['']
