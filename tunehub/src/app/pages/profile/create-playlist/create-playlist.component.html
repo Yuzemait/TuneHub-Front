@@ -1,0 +1,15 @@
+<div class="dialog-container">
+    <div class="song-form">
+        <button class="close-button" (click)="closeDialog()">&times;</button>
+        <form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="pl-name">Playlist Name:</label>
+                <input type="text" formControlName="name" id="pl-name" name="pl-name" class="form-control" placeholder="Enter playlist name">
+            </div>
+
+            <button type="submit"  color="primary" mat-raised-button>Submit</button>
+
+            
+        </form>
+    </div>
+</div>
