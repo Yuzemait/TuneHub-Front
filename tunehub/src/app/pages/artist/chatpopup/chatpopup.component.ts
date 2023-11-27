@@ -45,7 +45,7 @@ export class ChatpopupComponent {
     if(info.transaction.sold == 'yes'){
       alert('you succesfully sold here is your transaction:: '+info.transaction.hash);
     }
-    else{
+    if(info.transaction.sold == 'yes' ||info.transaction.sent == 'yes'){
       alert('there was an error processing your transaction make sure you have funds '+info.transaction.hash);
 
     }
