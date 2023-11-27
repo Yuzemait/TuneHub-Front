@@ -82,10 +82,6 @@ export class ArtistComponent implements OnInit {
       // You can also do something with the result here
     });
   }
-
-  
-  
-
   
   
 

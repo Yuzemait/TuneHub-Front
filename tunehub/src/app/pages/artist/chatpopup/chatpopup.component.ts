@@ -17,8 +17,10 @@ export class ChatpopupComponent {
   ) { }
 
   buyShares(){
+    console.log("here");
     let result: any = ''
     if(this.data.artist.ownChat && this.data.user.id){
+      console.log(this.data.artist.ownChat);
       let chatId: string = this.data.artist.ownChat;
       let userId: string = this.data.user.id
       this.chatService.joinChat(chatId,userId).subscribe(
