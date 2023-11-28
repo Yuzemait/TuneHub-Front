@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ChatService } from 'src/app/shared/services/chat.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -8,18 +9,39 @@ import { ChatService } from 'src/app/shared/services/chat.service';
   templateUrl: './chatpopup.component.html',
   styleUrls: ['./chatpopup.component.scss']
 })
-export class ChatpopupComponent {
+export class ChatpopupComponent implements OnInit {
+  price : any = 0
   
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ChatpopupComponent>,
-    private chatService: ChatService
-  ) {}
+    private chatService: ChatService,
+    private snackBar: MatSnackBar
+  ) {
+    
+  }
+  
+
+  ngOnInit(): void {
+    this.chatService.getPrice(this.data.artistProfile.address)
+      .subscribe(price => {
+        this.price = price;
+        console.log("price", this.price);
+      }, error => {
+        console.error("Error fetching price:", error);
+      });
+  }
+
+  getPrice(){
+    let x = this.chatService.getPrice(this.data.artistProfile.address)
+    return x
+  }
 
   buyShares(){
     
     let result: any = ''
-    console.log(this.data.artistProfile.id);
+    let message = 'wait while your transaction confirms'
+    this.snackBar.open(message, 'Close', { duration: 10000 });
     if( this.data.userProfile.id){
       console.log("here");
       let chatId: string = this.data.artistProfile.ownChat;
@@ -38,27 +60,27 @@ export class ChatpopupComponent {
     }
   }
   launchAnnouncement(info: any): void {
-
-    if(info.transaction.sent == 'yes'){
-      alert('you succesfully bought. here is your transaction: '+info.transaction.hash);
+    let message = '';
+    let url = 'https://goerli.basescan.org/tx/'
+    if(info.transaction.sent === 'yes'){
+      message = 'You successfully bought. Here is your transaction: ' + url+info.transaction.hash;
+      this.closeDialog()
+    } else if(info.transaction.sold === 'yes'){
+      this.closeDialog()
+      message = 'You successfully sold. Here is your transaction: ' + url+info.transaction.hash;
+    } else {
+      message = 'There was an error processing your transaction. Make sure you have funds.';
     }
-    if(info.transaction.sold == 'yes'){
-      alert('you succesfully sold here is your transaction:: '+info.transaction.hash);
-    }
-    if(info.transaction.sold == 'yes' ||info.transaction.sent == 'yes'){
-      alert('there was an error processing your transaction make sure you have funds '+info.transaction.hash);
-
-    }
-
-    
+    this.snackBar.open(message, 'Close', { duration: 10000 });
   }
 
   closeDialog() {
     this.dialogRef.close();
   }
   sellShares(){
+    let message = 'wait while your transaction confirms'
+    this.snackBar.open(message, 'Close', { duration: 10000 });
     let result: any = ''
-    console.log(this.data.artistProfile.id);
     if( this.data.userProfile.id){
       console.log("here");
       let chatId: string = this.data.artistProfile.ownChat;

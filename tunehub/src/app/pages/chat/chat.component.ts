@@ -83,6 +83,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
   getMessegesForChat(chat_id: string) {
     this.currentChat = chat_id;
+
     this.chatService.getMessegesbyChatId(chat_id).subscribe(
       (data) => {
         this.allMesseges = data;

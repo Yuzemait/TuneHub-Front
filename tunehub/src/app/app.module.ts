@@ -39,6 +39,7 @@ import { IsArtistDirective } from './shared/directives/is-artist.directive';
 import { ArtistInfoComponent } from './pages/profile/artist-info/artist-info.component';
 import { CreateSongComponent } from './pages/profile/create-song/create-song.component';
 import { ChatpopupComponent } from './pages/artist/chatpopup/chatpopup.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { ChatpopupComponent } from './pages/artist/chatpopup/chatpopup.component
     HttpClientModule,
     FormsModule,
     SocialLoginModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
 
   ],
   providers: [{
