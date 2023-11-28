@@ -22,14 +22,14 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('chatList') private chatList!: ElementRef;
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false , imgId:''}
   chats: Chat[] = []
-  chat: any = ''
   chatids: [string] |undefined = ['']
   userMesseges: Messege[] = []
   othersMesseges: Messege[] = []
   allMesseges: Messege[] = []
-  currentChat: string = ''
+  currentChat: Chat = {id: '', artist_id: '', messege_ids: [], name: '' }
   socket: Socket;
   content: string = ''
+  edit: boolean = false
 
   ngAfterViewChecked(): void {
     this.scrollToBottom();
@@ -67,7 +67,12 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       });
   }
   getUserChats(chatlist: [string]){
+    if( this.user.ownChat){
+      chatlist.push(this.user.ownChat)
+    }
+    
     let chatset = [...new Set(chatlist)];
+    
 
     chatset.forEach(element => {
       this.artistService.getChatbyArtistId(element).subscribe(
@@ -82,15 +87,12 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     });
   }
   getMessegesForChat(chat_id: string) {
-    this.currentChat = chat_id;
-
+    this.getChatById(chat_id)
     this.chatService.getMessegesbyChatId(chat_id).subscribe(
       (data) => {
         this.allMesseges = data;
         this.userMesseges = [];
         this.othersMesseges = [];
-        
-  
         this.allMesseges.forEach(element => {
           if(element.user_id == this.user.id){
             this.userMesseges.push(element);
@@ -108,22 +110,24 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     const newMessage: Messege = {
       id: '', 
       user_id: this.user.id,
-      chatId: this.currentChat,
+      chatId: this.currentChat.id ,
       content: this.content,
       date: new Date()
     };
-  
     this.socket.emit('messegeSent', newMessage);
-  
-  
     this.content = '';
   }
-  
+  getChatById(chat_id: string) {
+    console.log('received chat id; ',chat_id);
+    let chat = this.chats.find(chat => chat.id === chat_id)
+    if ( chat){
+      this.currentChat =  chat
+  }
+}
   
   isUsers(m:Messege){
     if(m.user_id == this.user.id){
       return true
-      
     }
     else{
       return false
@@ -134,6 +138,17 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     try {
       this.chatList.nativeElement.scrollTop = this.chatList.nativeElement.scrollHeight;
     } catch(err) { } 
+  }
+
+  chatOwner(chat_id: string){
+    if (this.user.ownChat){
+      if(chat_id == this.user.ownChat){
+        return true
+      }
+      else return false
+
+    }
+    else return false
   }
   
   
