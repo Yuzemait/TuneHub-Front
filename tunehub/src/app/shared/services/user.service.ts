@@ -32,7 +32,7 @@ export class UserService {
     const token = this.tokenService.get();
 
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
       'token': token
     });
 
@@ -53,6 +53,9 @@ export class UserService {
     const formData = new FormData();
     formData.append('username',username );
     formData.append('email',email );
+    if (profilePicture){
+      formData.append('file', profilePicture);
+    }
     if (password){
       formData.append('password', password );
     }
