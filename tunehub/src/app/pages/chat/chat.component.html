@@ -16,7 +16,10 @@
     <div class="chat-container">
         <div class="chat-header">
             <div class="chat-name">
-                <span>{{this.currentChat}}</span>
+                <input type="text" *ngIf="chatOwner(this.currentChat.id)&& !this.edit" [(ngModel)]="this.currentChat.name" class="chat-name-input">
+                <span *ngIf="!chatOwner(this.currentChat.id) && !this.edit" >{{this.currentChat.name}}</span>
+                <!-- Button next to the input field -->
+                <button mat-button class="edit-chat-name-button"*ngIf="chatOwner(this.currentChat.id) "><i class="fa fa-edit"></i></button>
             </div>
         </div>
         <ul class="chat-list" >
