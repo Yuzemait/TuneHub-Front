@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { TokenService } from './token.service';
 import { Playlist} from '../interfaces/playlist';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,5 +30,21 @@ export class PlaylistService {
     return this.http.post<Playlist>(`${this.apiUrl}playlists/create`, formData, { headers });
 
 
+  }
+
+  getPlaylist(id:string): Observable<Playlist> {
+    const token = this.tokenService.get();
+
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json',
+    //   'token': token
+    // });
+
+    const url: string = `${environment.apiUrl}playlists/${id}`;
+    return this.http.get<Playlist>(url);
+  }
+
+  addSong(songId: string){
+    
   }
 }

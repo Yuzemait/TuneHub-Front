@@ -16,43 +16,12 @@
     <div  class="playlist-container">
         <h1>Playlists</h1>
         <ul class="playlist-list">
-            <li class="playlist-item">
+            <li *ngFor="let pl of playlists" class="playlist-item">
                 <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                    <button mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
                 </div>
-                <div class="playlist-name">Rock</div>
+                <div class="playlist-name"><button mat-button>{{pl.name}}</button></div>
             </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Pop</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Reggae</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Rock</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Pop</div>
-            </li> 
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Reggae</div>
-            </li> 
-            
         </ul>
         <ul class="playlist-options">
             <li class="p-option">

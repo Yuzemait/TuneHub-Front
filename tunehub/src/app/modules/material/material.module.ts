@@ -10,6 +10,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 
@@ -27,7 +29,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatTabsModule,
     MatDividerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatGridListModule
   ]
 })
 export class MaterialModule { }

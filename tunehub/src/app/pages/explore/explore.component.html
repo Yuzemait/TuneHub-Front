@@ -1,33 +1,171 @@
 
     <div class="main-container">
-        <div class="search-container">
-            <input type="text" placeholder="Search for artists albums or songs..." class="search-input">
-        </div>
-
-        <div class="playlist-container">
-            <h1>Popular Artists</h1>
-            <ul class="playlist-list">
-                <li class="playlist-item" *ngFor="let artist of artists">
-                    <a [routerLink]="['/artists', artist.id]">
-                        <div class="playlist-image">
-                            <i class="fa fa-play-circle" aria-hidden="true"></i>
-                        </div>
-                        <div class="playlist-name">{{ artist.username }}</div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="playlist-container">
-            <h1>Popular Albums</h1>
-            <ul class="playlist-list">
-                <li class="playlist-item" *ngFor="let album of albums">
-                    <div class="playlist-image">
-                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+        <mat-tab-group>
+            <mat-tab label="Songs"> 
+                <div class="container">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search for songs..." class="search-input">
                     </div>
-                    <div class="playlist-name">{{ album.title }}</div>
-                </li>
-            </ul>
-        </div>
 
+                    <div class="songs-data">
+                        <ul class="item-data">
+                            <li class="items">
+                                <ul class="item-info">
+                                    <li class="icon">
+
+                                    </li>
+                                    <li>
+                                        <mat-icon>image</mat-icon>
+                                    </li>
+                                    <li>
+                                        Name
+                                    </li>
+                                    <li>
+                                        Artist
+                                    </li>
+                                    <li>
+                                        Album
+                                    </li>
+                                    <li>
+                                        Release Date
+                                    </li>
+                                    <li>
+
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="items">
+                                <ul class="item-info">
+                                    <li class="icon">
+                                        <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
+                                    </li>
+                                    <li>
+                                        <img src="http://localhost:3000/assets/default_music.png" alt="">
+                                    </li>
+                                    <li>
+                                        Despacito
+                                    </li>
+                                    <li>
+                                        Luis Fonsi
+                                    </li>
+                                    <li>
+                                        Luis Fonsi
+                                    </li>
+                                    <li>
+                                        2018
+                                    </li>
+                                    <li>
+                                        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                            <mat-menu #menu="matMenu">
+                                            <button mat-menu-item>Add to playlist</button>
+                                            <button mat-menu-item>Go to artist</button>
+                                            <button mat-menu-item>Add to queue</button>
+                                            </mat-menu>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li *ngFor="let item of songs" class="items">
+                                <ul class="item-info">
+                                    <li class="icon">
+                                        <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
+                                    </li>
+                                    <li>
+                                        <img src="http://localhost:3000/assets/default_music.png" alt="">
+                                    </li>
+                                    <li>
+                                        {{item.name}}
+                                    </li>
+                                    <li>
+                                        <!-- {{item.artistID}} -->
+                                        Nombre
+                                    </li>
+                                    <li>
+                                        Luis Fonsi
+                                    </li>
+                                    <li>
+                                        {{item.date}}
+                                    </li>
+                                    <li>
+                                        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                            <mat-menu #menu="matMenu">
+                                            <button mat-menu-item>Add to playlist</button>
+                                            <button mat-menu-item>Go to artist</button>
+                                            <button mat-menu-item>Add to queue</button>
+                                            </mat-menu>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+         
+            </mat-tab>
+            <mat-tab label="Artists">
+                <div class="container">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search for artists..." class="search-input">
+                    </div>
+
+                    <div class="data">
+                        <mat-grid-list cols="5" rowHeight="1:1">
+                            <mat-grid-tile class="artist-container">
+                                <div class="artist-container">
+                                    <div class="round-image-container">
+                                        <img src="http://localhost:3000/assets/default.png" alt="">
+                                    </div>
+                                    <div class="artist-name">
+                                        BadBunny
+                                    </div>
+                                </div>
+                            </mat-grid-tile>
+                            <mat-grid-tile *ngFor="let item of artists" class="artist-container">
+                                <div class="artist-container">
+                                    <div class="round-image-container">
+                                        <img src="http://localhost:3000/assets/default.png" alt="">
+                                    </div>
+                                    <div class="artist-name">
+                                        {{item.username}}
+                                    </div>
+                                </div>
+                            </mat-grid-tile>
+                            
+                          </mat-grid-list>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Albums">
+                <div class="container">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search for albums..." class="search-input">
+                    </div>
+                    <div class="data">
+                        <mat-grid-list cols="5" rowHeight="1:1">
+                            <mat-grid-tile class="artist-container">
+                                <div class="artist-container">
+                                    <div class="image-container">
+                                        <img src="http://localhost:3000/assets/default_music.png" alt="">
+                                    </div>
+                                    <div class="artist-name">
+                                        DATA
+                                    </div>
+                                </div>
+                            </mat-grid-tile>
+                            <mat-grid-tile *ngFor="let item of albums" class="artist-container">
+                                <div class="artist-container">
+                                    <div class="image-container">
+                                        <img src="http://localhost:3000/assets/default_music.png" alt="">
+                                    </div>
+                                    <div class="artist-name">
+                                        {{item.username}}
+                                    </div>
+                                </div>
+                            </mat-grid-tile>
+                            
+                          </mat-grid-list>
+                    </div>
+                </div> 
+            </mat-tab>
+          </mat-tab-group>
     </div>
 
