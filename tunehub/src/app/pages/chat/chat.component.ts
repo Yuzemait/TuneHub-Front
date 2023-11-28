@@ -30,6 +30,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   socket: Socket;
   content: string = ''
   edit: boolean = false
+  filteredChats: Chat[] = [];
+  searchQuery: string = '';
 
   ngAfterViewChecked(): void {
     this.scrollToBottom();
@@ -51,6 +53,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       this.allMesseges.push(messege)
     })
     this.setUserData()
+    this.filteredChats = this.chats;
   }
   setUserData(){
     this.userService.getUserData().subscribe(
@@ -70,10 +73,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     if( this.user.ownChat){
       chatlist.push(this.user.ownChat)
     }
-    
     let chatset = [...new Set(chatlist)];
-    
-
     chatset.forEach(element => {
       this.artistService.getChatbyArtistId(element).subscribe(
         (data) => {
@@ -85,6 +85,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       );
       
     });
+    console.log("chats: get user chats");
   }
   getMessegesForChat(chat_id: string) {
     this.getChatById(chat_id)
@@ -118,7 +119,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.content = '';
   }
   getChatById(chat_id: string) {
-    console.log('received chat id; ',chat_id);
     let chat = this.chats.find(chat => chat.id === chat_id)
     if ( chat){
       this.currentChat =  chat
@@ -132,7 +132,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     else{
       return false
     }
-
   }
   private scrollToBottom(): void {
     try {
@@ -146,9 +145,31 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         return true
       }
       else return false
-
     }
     else return false
+  }
+  editChatName(){
+    this.edit = !this.edit
+  }
+  confirmName(){
+    console.log(this.currentChat.name);
+    this.edit = !this.edit
+    this.chatService.editChatName(this.currentChat.id, this.currentChat.name).subscribe({
+
+    })
+
+  }
+  filterChats(): void {
+    this.filteredChats = []
+    this.chats.filter(chat =>{
+      if(chat.name){
+       if( chat.name.toLowerCase().includes(this.searchQuery.toLowerCase())){
+        this.filteredChats.push(chat)
+
+       }
+      }
+    });
+    console.log(this.filteredChats);
   }
   
   

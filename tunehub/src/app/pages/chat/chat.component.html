@@ -1,12 +1,12 @@
 <div class="section1">
     <div class="contacts-container">
         <div class="contact-search">
-            <input class="search-input" type="text" name="" id="">
-            <button class="search-button" mat-raised-button><mat-icon>search</mat-icon></button>
+            <input class="search-input"  [(ngModel)]="searchQuery" (ngModelChange)="filterChats()" placeholder="Search chats..." type="text" name="" id="">
+           
         </div>
         <ul class="contact-list">
-            <li class="contact"  *ngFor="let chat of chats">
-                <button mat-button (click)="getMessegesForChat(chat.id)" > {{chat.name}}</button>
+            <li class="contact"  *ngFor="let chat of filteredChats">
+                <button mat-button (click)="getMessegesForChat(chat.id)" > {{this.chat.name||null}}</button>
             </li>
         </ul>
 
@@ -16,10 +16,11 @@
     <div class="chat-container">
         <div class="chat-header">
             <div class="chat-name">
-                <input type="text" *ngIf="chatOwner(this.currentChat.id)&& !this.edit" [(ngModel)]="this.currentChat.name" class="chat-name-input">
-                <span *ngIf="!chatOwner(this.currentChat.id) && !this.edit" >{{this.currentChat.name}}</span>
+                <input type="text" *ngIf="chatOwner(this.currentChat.id)&& this.edit" [(ngModel)]="this.currentChat.name" class="chat-name-input">
+                <span *ngIf="!chatOwner(this.currentChat.id) || !this.edit" >{{this.currentChat.name}}</span>
                 <!-- Button next to the input field -->
-                <button mat-button class="edit-chat-name-button"*ngIf="chatOwner(this.currentChat.id) "><i class="fa fa-edit"></i></button>
+                <button mat-button (click)=" editChatName()" class="edit-chat-name-button"*ngIf="chatOwner(this.currentChat.id) && !this.edit" ><i class="fa fa-edit"></i></button>
+                <button mat-button (click)=" confirmName()" class="edit-chat-name-button"  *ngIf="chatOwner(this.currentChat.id) && this.edit"><i class="fa fa-check"></i></button>
             </div>
         </div>
         <ul class="chat-list" >
@@ -36,6 +37,7 @@
             <div class="sender-box">
                 <input class="sender-input" type="text" [(ngModel)]="content">
                 <button mat-raised-button (click)="sendMessege()" class="sender-button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                
             </div>
         </div>
     </div>
