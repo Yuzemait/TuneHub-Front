@@ -42,6 +42,7 @@ import { ChatpopupComponent } from './pages/artist/chatpopup/chatpopup.component
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { CreatePlaylistComponent } from './pages/profile/create-playlist/create-playlist.component';
+import { AlbumComponent } from './src/app/shared/pages/album/album.component';
 
 
 
@@ -72,7 +73,8 @@ import { CreatePlaylistComponent } from './pages/profile/create-playlist/create-
     ArtistInfoComponent,
     CreateSongComponent,
     ChatpopupComponent,
-    CreatePlaylistComponent
+    CreatePlaylistComponent,
+    AlbumComponent
   ],
   imports: [
     BrowserModule,
