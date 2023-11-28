@@ -12,6 +12,18 @@ export class ChatService {
 
   constructor(private httpClient: HttpClient) { }
 
+  editChatName(chat_id: string, chatName: string){
+    const body = {
+      'chatName': chatName,
+      'chatId': chat_id
+    };
+    
+    const url: string = `${environment.apiUrl}chats`;
+
+    return this.httpClient.put(url, body);
+    
+  }
+
   joinChat(chat_id: string, user_id: string): Observable<any> {
     console.log(chat_id, user_id);
     if (chat_id && user_id) {
