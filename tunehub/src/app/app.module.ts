@@ -41,6 +41,9 @@ import { CreateSongComponent } from './pages/profile/create-song/create-song.com
 import { ChatpopupComponent } from './pages/artist/chatpopup/chatpopup.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { CreatePlaylistComponent } from './pages/profile/create-playlist/create-playlist.component';
+
+
 
 @NgModule({
   declarations: [
@@ -68,7 +71,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     IsArtistDirective,
     ArtistInfoComponent,
     CreateSongComponent,
-    ChatpopupComponent
+    ChatpopupComponent,
+    CreatePlaylistComponent
   ],
   imports: [
     BrowserModule,

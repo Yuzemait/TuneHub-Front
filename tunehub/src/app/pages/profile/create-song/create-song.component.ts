@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SongService } from 'src/app/shared/services/song.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProfileComponent } from '../profile.component';
+import { User } from 'src/app/shared/interfaces/user';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-create-song',
@@ -9,37 +12,43 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-song.component.scss']
 })
 export class CreateSongComponent {
-  constructor(private dialogRef: MatDialogRef<CreateSongComponent>, private formBuilder: FormBuilder, private songService: SongService) {
-    this.signupForm = this.formBuilder.group({
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address : '' , imgId: 'default.png', ownChat:""}
+  constructor(private dialogRef: MatDialogRef<CreateSongComponent>, private formBuilder: FormBuilder, private songService: SongService, private userService: UserService) {
+    
+    this.songForm = this.formBuilder.group({
       // your existing form controls
       name: ['', [Validators.required, Validators.minLength(2)]],
-      artistID: ['']
+      artistId: ['']
     });
   }
 
   selectedFile: string = '';
   selectedSong: string = '';
-  signupForm: FormGroup;
-  file: File | null = null;
+  songForm: FormGroup;
+  files: File[] = [];
+  // songFile: File | null = null;
 
   ngOnInit() {
-    // Retrieve the token from localStorage
-    const token = localStorage.getItem('token');
-  
-    // Check if the token is not null or undefined before setting the value
-    if (token) {
-      // Set the 'artistId' form control value
-      this.signupForm.get('artistID')!.setValue(token);
-    }
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.user = data;
+        this.userService.setUser(this.user);
+        this.songForm.get('artistId')!.setValue(this.user.id)
+      },
+      (error) => {
+        console.error('Error al obtener datos del usuario:', error);
+      }
+    );
+    
   }
 
   onSubmit(): void {
 
     
-    if (this.signupForm.valid && this.file) {
-      const formData = this.signupForm.value;
+    if (this.songForm.valid && this.files[0] && this.files[1]) {
+      const formData = this.songForm.value;
       console.log("Submit");
-      this.songService.uploadSong(this.file, formData).subscribe(
+      this.songService.uploadSong(this.files,formData).subscribe(
         (data) => {
           console.log('Song uploaded successfully:', data);
           // Handle the response from the server if needed
@@ -72,10 +81,10 @@ export class CreateSongComponent {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files) {
       // Access the selected file(s) from the files property
-      const file = inputElement.files[0];
+      this.files[0] = inputElement.files[0];
       // You can also display the file name or other information as needed
-      if (file) {
-        this.selectedFile = file.name
+      if (this.files[0]) {
+        this.selectedFile = this.files[0].name
       }
     }
   }
@@ -83,10 +92,10 @@ export class CreateSongComponent {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files) {
       // Access the selected file(s) from the files property
-      this.file = inputElement.files[0];
+      this.files[1] = inputElement.files[0];
       // You can also display the file name or other information as needed
-      if (this.file) {
-        this.selectedSong = this.file.name
+      if (this.files[1]) {
+        this.selectedSong = this.files[1].name
       }
     }
   }

@@ -15,11 +15,14 @@ import { ChatpopupComponent } from './chatpopup/chatpopup.component';
   templateUrl: './artist.component.html',
   styleUrls: ['./artist.component.scss']
 })
+
+
 export class ArtistComponent implements OnInit {
   id : string = '';
-  artist  = { id: '', username: '', email: '', password: '', artistStatus: false, ownChat: '' };
+  artist  = { id: '', username: '', email: '', password: '', artistStatus: false, ownChat: '' , imgId: 'default.png'};
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false, imgId:''}
   events: Event[] = [];
+  // imgId: string = 'default.png';
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +34,7 @@ export class ArtistComponent implements OnInit {
     
   ) { }
 
+
   ngOnInit(): void {
     this.setUserData();
     this.route.params.subscribe((params: Params) => {
@@ -39,6 +43,7 @@ export class ArtistComponent implements OnInit {
         this.artistService.getArtistById(this.id).subscribe(
           (data) => {
             this.artist = data;
+            
             this.eventService.getArtistEvents(this.id).subscribe(
               (data) => {
                 this.events = data;

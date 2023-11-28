@@ -1,19 +1,19 @@
 <div class="dialog-container">
     <div class="song-form">
         <button class="close-button" (click)="closeDialog()">&times;</button>
-        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="songForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-                <label for="eventName">Song:</label>
+                <label for="song-name">Song:</label>
                 <input type="text" formControlName="name" id="song-name" name="song-name" class="form-control" placeholder="Enter song name">
             </div>
 
             <div class="form-group">
-                <input type="file" id="file-input" (change)="handleFileInput($event)">
+                <input type="file" id="file-input" name="file" (change)="handleFileInput($event)">
                 <label for="file-button">Select song image: {{selectedFile}}</label>
                 <button id="file-button" (click)="triggerFileInput()"  type="button" mat-button><mat-icon>image</mat-icon></button>
             </div>
             <div class="form-group">
-                <input type="file" id="song-input" (change)="handleSongInput($event)">
+                <input type="file" id="song-input" name="songFile" (change)="handleSongInput($event)">
                 <label for="song-button">Select song: {{selectedSong}}</label>
                 <button id="song-button" (click)="triggerSongInput()"  type="button" mat-button><mat-icon>music_note</mat-icon></button>
             </div>
