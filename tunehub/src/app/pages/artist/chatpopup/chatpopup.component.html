@@ -3,7 +3,7 @@
         <h2>Take part in {{ data.artistProfile.username }}'s Community</h2>
         <p class="username"></p>
         <div class="button-container">
-            <span>Price : </span>
+            <span>Price : $ {{this.price}} USD</span>
             <button (click)="buyShares()" class="buy-button">Join</button>
             <button (click)="sellShares()"  class="sell-button">Leave</button>
             <button (click)="closeDialog()">Cancel</button>

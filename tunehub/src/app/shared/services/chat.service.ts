@@ -57,10 +57,14 @@ export class ChatService {
       'userId' : user_id,
       'chatName' : username
     }
-
-    
     return this.httpClient.post(url, body);
+  }
 
+  getPrice(chatAddress: string){
+    
+    const url: string = `${environment.apiUrl}chats/price/${chatAddress}`;
+    console.log(url);
+    return this.httpClient.get(url);
   }
 
 }
