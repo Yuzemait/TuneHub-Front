@@ -6,7 +6,7 @@ export interface User {
     imgId: string,
     password: string,
     artistStatus: boolean,
-    playlists?: [string],
+    playlists?: string[],
     chats?: [string],
     albums?: [string],
     events?: [string],
