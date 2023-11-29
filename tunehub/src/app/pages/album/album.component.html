@@ -1,1 +1,21 @@
-
+<div class="album-section2">
+    <div class="album-details">
+        <div class="album-cover-container">
+            <img src="album-cover-url" alt="Album Cover" class="album-cover">
+        </div>
+        <div class="album-info">
+            <h2>titulo: {{ selectedAlbum.title }}</h2>
+            <p>idArtista: {{ selectedAlbum.artist }}</p>
+            <div class="tracklist">
+                Songs:
+                <div class="track" *ngFor="let track of selectedAlbum.songs">
+                    <span class="track-name">{{ track }}</span>
+                </div>
+                <div class="track">
+                   
+                    <span>song</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

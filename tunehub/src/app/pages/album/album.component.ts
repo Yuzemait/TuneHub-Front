@@ -20,6 +20,7 @@ export class AlbumComponent implements OnInit {
       this.albumId = params['id'];
     });
     if(this.albumId){
+      this.getSongsbyAlbumId()
       this.albumService.getAlbumById(this.albumId).subscribe(
         data => {
           this.selectedAlbum = data
@@ -32,6 +33,7 @@ export class AlbumComponent implements OnInit {
 
 
   getSongsbyAlbumId(){
+    this.selectedAlbum.songs = ['song']
 
   }
 

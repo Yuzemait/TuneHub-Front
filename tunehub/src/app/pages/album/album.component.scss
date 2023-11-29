@@ -1,0 +1,74 @@
+.album-section1 {
+    // styles for empty section 
+  }
+  
+  .album-section2 {
+    margin: 8%;
+    background-color: #C3ACD0 ;
+    height: 300%;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    
+  
+    .album-details {
+      display: flex;
+      align-items: center;
+      
+      .album-cover-container {
+        flex: 1;
+        
+        border-radius: 10px;
+        
+
+        .album-cover {
+          max-width: 300px;
+        }
+      }
+      
+      .album-info {
+        flex: 2;
+        padding: 20px;
+        
+        h2 {
+          font-size: 28px;
+          margin-bottom: 10px;  
+        }
+        
+        p {
+          font-size: 18px;
+          color: #777;
+          margin-bottom: 20px;
+        }
+        
+        .tracklist {
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            div.track {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                cursor: pointer;
+    
+                &:hover {
+                    background-color: #E0D4E5;
+                }
+    
+                .track-number {
+                    width: 30px;
+                    font-weight: bold;
+                }
+                .track-name {
+                    flex: 1;
+                    margin-left: 10px;
+                }
+                .track-duration {
+                    margin-left: 10px;
+                }
+            }
+        }
+      }
+    }
+  }
