@@ -120,6 +120,7 @@
                                 </div>
                             </mat-grid-tile>
                             <mat-grid-tile *ngFor="let item of artists" class="artist-container">
+                                <a [routerLink]="['/artists', item.id]">
                                 <div class="artist-container">
                                     <div class="round-image-container">
                                         <img src="http://localhost:3000/assets/default.png" alt="">
@@ -128,6 +129,7 @@
                                         {{item.username}}
                                     </div>
                                 </div>
+                            </a>
                             </mat-grid-tile>
                             
                           </mat-grid-list>
@@ -142,6 +144,7 @@
                     <div class="data">
                         <mat-grid-list cols="5" rowHeight="1:1">
                             <mat-grid-tile class="artist-container">
+                                
                                 <div class="artist-container">
                                     <div class="image-container">
                                         <img src="http://localhost:3000/assets/default_music.png" alt="">
@@ -153,12 +156,14 @@
                             </mat-grid-tile>
                             <mat-grid-tile *ngFor="let item of albums" class="artist-container">
                                 <div class="artist-container">
+                                    <a [routerLink]="['/album', item.id]">
                                     <div class="image-container">
                                         <img src="http://localhost:3000/assets/default_music.png" alt="">
                                     </div>
                                     <div class="artist-name">
                                         {{item.username}}
                                     </div>
+                                </a>
                                 </div>
                             </mat-grid-tile>
                             

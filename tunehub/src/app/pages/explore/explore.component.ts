@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ArtistService } from '../../shared/services/artist.service';
 import { AlbumsService } from 'src/app/shared/services/albums.service';
 import { SongService } from 'src/app/shared/services/song.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-explore',
