@@ -27,9 +27,17 @@
             <li class="message"*ngFor="let m of allMesseges">
                     <div class="sent" *ngIf="isUsers(m)">
                         <span>{{m.content}} <small>{{m.date| date:'mediumTime' }}</small> </span> 
+                        <li>
+                            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                <mat-menu #menu="matMenu">
+                                <button mat-menu-item>edit</button>
+                                <button mat-menu-item>delete</button>
+                                </mat-menu>
+                        </li>
                     </div>
                     <div class="received" *ngIf="!isUsers(m)">
                         <span>{{m.content}} <small>{{m.date| date:'mediumTime'}}</small></span> 
+                        
                     </div>
             </li>
         </ul>
