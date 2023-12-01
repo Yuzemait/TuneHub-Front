@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ArtistService } from '../../shared/services/artist.service';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -7,7 +6,6 @@ import { ChatService } from 'src/app/shared/services/chat.service';
 import { User } from 'src/app/shared/interfaces/user';
 import {Chat} from 'src/app/shared/interfaces/chat';
 import {Messege} from 'src/app/shared/interfaces/messege';
-import { elementAt } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { environment } from 'src/environments/environment';
 
@@ -54,6 +52,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     })
     this.setUserData()
     this.filteredChats = this.chats;
+    
   }
   setUserData(){
     this.userService.getUserData().subscribe(
@@ -63,6 +62,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         if(this.chatids){
           this.getUserChats(this.chatids)
           this.getMessegesForChat(this.chatids[0])
+          this.currentChat.id = this.chatids[0]
         }
       },
       (error) => {
@@ -108,6 +108,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     );
   }
   sendMessege() {
+    console.log(this.currentChat);
     const newMessage: Messege = {
       id: '', 
       user_id: this.user.id,

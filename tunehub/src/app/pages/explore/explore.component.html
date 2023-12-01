@@ -103,8 +103,8 @@
             </mat-tab>
             <mat-tab label="Artists">
                 <div class="container">
-                    <div class="search-container">
-                        <input type="text" placeholder="Search for artists..." class="search-input">
+                    <div class="search-container" >
+                        <input type="text" [(ngModel)]="searchQuery" (ngModelChange)="filterArtists()" placeholder="Search for artists..." class="search-input">
                     </div>
 
                     <div class="data">
@@ -119,7 +119,7 @@
                                     </div>
                                 </div>
                             </mat-grid-tile>
-                            <mat-grid-tile *ngFor="let item of artists" class="artist-container">
+                            <mat-grid-tile *ngFor="let item of filteredArtists" class="artist-container">
                                 <a [routerLink]="['/artists', item.id]">
                                 <div class="artist-container">
                                     <div class="round-image-container">
@@ -139,7 +139,7 @@
             <mat-tab label="Albums">
                 <div class="container">
                     <div class="search-container">
-                        <input type="text" placeholder="Search for albums..." class="search-input">
+                        <input type="text"  [(ngModel)]="searchQuery" (ngModelChange)="filterAlbums()" placeholder="Search for albums..." class="search-input">
                     </div>
                     <div class="data">
                         <mat-grid-list cols="5" rowHeight="1:1">
@@ -154,14 +154,14 @@
                                     </div>
                                 </div>
                             </mat-grid-tile>
-                            <mat-grid-tile *ngFor="let item of albums" class="artist-container">
+                            <mat-grid-tile *ngFor="let item of filteredAlbums" class="artist-container">
                                 <div class="artist-container">
                                     <a [routerLink]="['/album', item.id]">
                                     <div class="image-container">
                                         <img src="http://localhost:3000/assets/default_music.png" alt="">
                                     </div>
                                     <div class="artist-name">
-                                        {{item.username}}
+                                        {{item.title}}
                                     </div>
                                 </a>
                                 </div>
