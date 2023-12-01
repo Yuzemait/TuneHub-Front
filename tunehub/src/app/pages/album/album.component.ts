@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Album } from 'src/app/shared/interfaces/album'
 import { AlbumsService } from 'src/app/shared/services/albums.service';
-
+import { Song } from 'src/app/shared/interfaces/song';
 @Component({
   selector: 'app-album',
   templateUrl: './album.component.html',
@@ -11,6 +11,17 @@ import { AlbumsService } from 'src/app/shared/services/albums.service';
 export class AlbumComponent implements OnInit {
   albumId :string = ''
   selectedAlbum: Album = {id : '', title:  '', artist: '', releaseDate:'', songs:['']}
+  songArray: [Song] =[{
+    name: '', 
+    song: '',
+    date: new Date,
+    artistID: "",
+    views: 0,
+    songImg: "",
+    tags: ['']
+
+  }]
+ 
 
   constructor(private route: ActivatedRoute,private albumService: AlbumsService) { }
 

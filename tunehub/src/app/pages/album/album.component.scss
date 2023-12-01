@@ -1,74 +1,177 @@
-.album-section1 {
-    // styles for empty section 
+
+
+.main-container {
+  justify-self: center;
+  margin: auto;
+  border-radius: 25px;
+  margin-top: 100px;
+  width: 90%;
+  background: linear-gradient(to bottom, #C3ACD0, #b88bd2);
+  // padding: 20px;
+  box-sizing: border-box;
+  .album-header {
+    text-align: center;
+    padding: 20px;
   }
   
-  .album-section2 {
-    margin: 8%;
-    background-color: #C3ACD0 ;
-    height: 300%;
+  .album-header img {
+    width: 300px;
     border-radius: 10px;
-    box-sizing: border-box;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-
-    
-  
-    .album-details {
-      display: flex;
-      align-items: center;
-      
-      .album-cover-container {
-        flex: 1;
-        
-        border-radius: 10px;
-        
-
-        .album-cover {
-          max-width: 300px;
-        }
-      }
-      
-      .album-info {
-        flex: 2;
-        padding: 20px;
-        
-        h2 {
-          font-size: 28px;
-          margin-bottom: 10px;  
-        }
-        
-        p {
-          font-size: 18px;
-          color: #777;
-          margin-bottom: 20px;
-        }
-        
-        .tracklist {
-            list-style: none;
-            padding: 0;
-            font-size: 14px;
-            div.track {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-                cursor: pointer;
-    
-                &:hover {
-                    background-color: #E0D4E5;
-                }
-    
-                .track-number {
-                    width: 30px;
-                    font-weight: bold;
-                }
-                .track-name {
-                    flex: 1;
-                    margin-left: 10px;
-                }
-                .track-duration {
-                    margin-left: 10px;
-                }
-            }
-        }
-      }
-    }
   }
+}
+
+.container{
+  padding: 1000px;
+  display: inline;
+  justify-content: center;
+  align-content: center;
+  
+
+  .songs-data{
+    
+      margin: auto;
+      margin-bottom: 25px;
+      // border-radius: 10px;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+      width: 90%;
+      background-color: white;
+      .item-data{
+          margin: 0;
+          padding: 0;
+          
+          .items{
+              margin: 0;
+              padding: 0;
+              width: 100%;
+              list-style: none;
+              .item-info{
+                  padding: 0px;
+                  height: 50px;
+                  align-items: center;
+                  display: inline-flex;
+                  list-style: none;
+                  width: 100%;
+                  justify-content: center;
+                  text-align: left;
+                  
+                  border-bottom: 1px solid black;
+                  
+                  .more-vert{
+                      color: black;
+                  }
+                  
+                  .icon{
+                      text-align: center;
+                      
+                      width: 8%;
+                      .play-button{
+                          background-color: black;
+                          color: white;
+                      }
+                      
+                  }
+                  li{
+                      width: 16.6%;
+                      color: black;
+                      font-size: 18px;
+                      // margin: auto;
+                      // width: 20%;
+                      align-items: center;
+                      margin: auto;
+                      padding: auto;
+                      // display: flex;
+                      img{
+                          // padding: auto;
+                          width: 40px;
+                          border-radius: 10%;
+                          border: 1px solid black;
+                      }
+                  }
+              }
+  
+          }
+          .items:not(:first-child):hover{
+              background-color: #c1bfbf;
+              
+          }
+      }
+  }
+}
+
+.data{
+  width: 80%;
+  background-color: white;
+  margin: auto;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  .artist-container{
+      display: block;
+      padding: 10px;
+      border-radius: 10px;
+      :hover{
+          background-color: #c1bfbf;
+
+          color: white;
+      }
+      .round-image-container{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img{
+              height: 100px;
+              border-radius: 50%;
+              border: 3px solid black; 
+              // color: #FFFBF5;
+              clip-path: circle();
+          }
+      }
+      .image-container{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img{
+              height: 100px;
+              border-radius: 10px;
+              border: 3px solid black; 
+              // color: #FFFBF5;
+          }
+      }
+      .artist-name{
+          margin-top: 10px;
+          text-align: center;
+      }
+  }
+}
+
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  .search-input {
+      width: 80%; /* Larger width on smaller screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .search-input {
+      width: 90%; /* Even larger width on very small screens */
+  }
+}

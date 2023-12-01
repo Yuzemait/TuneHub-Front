@@ -1,21 +1,107 @@
-<div class="album-section2">
-    <div class="album-details">
-        <div class="album-cover-container">
-            <img src="album-cover-url" alt="Album Cover" class="album-cover">
+<div class="main-container">
+    <div class="album">
+
+        <div class="album-header">
+          <h1>{{selectedAlbum.title}}</h1>
+          <img src="https://i.scdn.co/image/ab67616d00001e02a5971936e3b8d91f8b616b17">
+          <p>{{selectedAlbum.artist}}</p>
+          <p>{{selectedAlbum.releaseDate | date}}</p>
         </div>
-        <div class="album-info">
-            <h2>titulo: {{ selectedAlbum.title }}</h2>
-            <p>idArtista: {{ selectedAlbum.artist }}</p>
-            <div class="tracklist">
-                Songs:
-                <div class="track" *ngFor="let track of selectedAlbum.songs">
-                    <span class="track-name">{{ track }}</span>
-                </div>
-                <div class="track">
-                   
-                    <span>song</span>
+
+    <mat-tab-group>
+        <mat-tab label="Songs"> 
+            <div class="container">
+                <div class="songs-data">
+                    <ul class="item-data">
+                        <li class="items">
+                            <ul class="item-info">
+                                <li class="icon">
+
+                                </li>
+                                <li>
+                                    <mat-icon>image</mat-icon>
+                                </li>
+                                <li>
+                                    Name
+                                </li>
+                                <li>
+                                    Artist
+                                </li>
+                                <li>
+                                    Album
+                                </li>
+                                <li>
+                                    Release Date
+                                </li>
+                                <li>
+
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="items">
+                            <ul class="item-info">
+                                <li class="icon">
+                                    <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
+                                </li>
+                                <li>
+                                    <img src="http://localhost:3000/assets/default_music.png" alt="">
+                                </li>
+                                <li>
+                                    Despacito
+                                </li>
+                                <li>
+                                    Luis Fonsi
+                                </li>
+                                <li>
+                                    Luis Fonsi
+                                </li>
+                                <li>
+                                    2018
+                                </li>
+                                <li>
+                                    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                        <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>Add to playlist</button>
+                                        <button mat-menu-item>Go to artist</button>
+                                        <button mat-menu-item>Add to queue</button>
+                                        </mat-menu>
+                                </li>
+                            </ul>
+                        </li>
+                        <li *ngFor="let item of songArray" class="items">
+                            <ul class="item-info">
+                                <li class="icon">
+                                    <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
+                                </li>
+                                <li>
+                                    <img src="http://localhost:3000/assets/default_music.png" alt="">
+                                </li>
+                                <li>
+                                    {{item.name}}
+                                </li>
+                                <li>
+                                    <!-- {{item.artistID}} -->
+                                    Nombre
+                                </li>
+                                <li>
+                                    Luis Fonsi
+                                </li>
+                                <li>
+                                    {{item.date}}
+                                </li>
+                                <li>
+                                    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                        <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>Add to playlist</button>
+                                        <button mat-menu-item>Go to artist</button>
+                                        <button mat-menu-item>Add to queue</button>
+                                        </mat-menu>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+            
+    
+        </mat-tab>
