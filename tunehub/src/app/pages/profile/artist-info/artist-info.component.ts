@@ -9,6 +9,8 @@ import { Event } from 'src/app/shared/interfaces/event';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { ChatService } from 'src/app/shared/services/chat.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SongService } from 'src/app/shared/services/song.service';
+import { Song } from 'src/app/shared/interfaces/song';
 
 @Component({
   selector: 'app-artist-info',
@@ -18,12 +20,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ArtistInfoComponent implements OnInit{
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false , imgId:''};
   events: Event[] = [];
+  songs: Song[] = [];
 
   constructor(private userService: UserService, 
     private eventService: EventService,
     public dialog: MatDialog,
     private chatService: ChatService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private songService: SongService
     
     ) {}
 
@@ -38,6 +42,15 @@ export class ArtistInfoComponent implements OnInit{
           },
           (error) => {
             console.error('Error al obtener eventos del usuario:', error);
+          }
+        );
+
+        this.songService.getSongsByArtist(this.user.id).subscribe(
+          (data) => {
+            this.songs = data;
+          },
+          (error) => {
+            console.error('Error al obtener canciones del artista:', error);
           }
         );
       },

@@ -46,84 +46,23 @@
         <ul class="album-list">
             <li class="album-item">
                 <div class="album-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
                 </div>
-                <div class="album-name">Rock</div>
-            </li> 
-            <li class="album-item">
-                <div class="album-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                <div class="album-name">
                 </div>
-                <div class="album-name">Pop</div>
             </li> 
-            <li class="album-item">
-                <div class="album-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="album-name">Reggae</div>
-            </li> 
-            <li class="album-item">
-                <div class="album-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="album-name">Rock</div>
-            </li> 
-            <li class="album-item">
-                <div class="album-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="album-name">Pop</div>
-            </li> 
-            <li class="album-item">
-                <div class="album-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="album-name">Reggae</div>
-            </li> 
-            
         </ul>
     </div>
 
-    <div  class="song-container">
+    <div class="song-container">
         <h1>Songs</h1>
         <ul class="song-list">
-            <li class="song-item">
-                <div class="song-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="song-name">Rock</div>
-            </li> 
-            <li class="song-item">
-                <div class="song-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="song-name">Pop</div>
-            </li> 
-            <li class="song-item">
-                <div class="song-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="song-name">Reggae</div>
-            </li> 
-            <li class="song-item">
-                <div class="song-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="song-name">Rock</div>
-            </li> 
-            <li class="song-item">
-                <div class="song-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="song-name">Pop</div>
-            </li> 
-            <li class="song-item">
-                <div class="song-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="song-name">Reggae</div>
-            </li> 
+          <li *ngFor="let song of songs" class="song-item">
+            <div class="song-image">
+               <img src="http://localhost:3000/assets/{{song.songImg}}" alt="">
+            </div>
+            <div class="song-name">{{ song.name }}</div>
+          </li>
         </ul>
-    </div>
+      </div>
 
 </div>
