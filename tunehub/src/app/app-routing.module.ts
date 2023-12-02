@@ -10,6 +10,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { ArtistComponent } from './pages/artist/artist.component';
+import { AlbumComponent } from './pages/album/album.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent, canActivate: [UnauthGuard] },
   { path: 'explore', component: ExploreComponent, canActivate: [AuthGuard] },
   { path: 'artists/:id', component: ArtistComponent, canActivate: [AuthGuard] },
+  { path: 'album/:id', component: AlbumComponent, canActivate: [AuthGuard] },
 /*
   {path: 'artist', component:ArtistComponent, canActivate: [AuthGuard], children:[
     {path: ':id/chat', component:ArtistComponent, canActivate: [AuthGuard]}

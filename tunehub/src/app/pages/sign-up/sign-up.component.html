@@ -51,8 +51,8 @@
                     <mat-error *ngIf="submitted && hasError('terms', 'required')">Debe aceptar los términos y condiciones</mat-error>
                 </li>
                 <li *ngIf="userAlreadyExists">
-                    <p style="color: red;">Ya hay un usuario registrado con este correo electrónico. Por favor, utiliza otro correo.</p>
-                </li>
+                    <p style="color: red;">{{ userAlreadyExistsMessage }}</p>
+                  </li>
                 <li>
                     <button mat-raised-button type="submit">Sign Up</button>
                 </li>

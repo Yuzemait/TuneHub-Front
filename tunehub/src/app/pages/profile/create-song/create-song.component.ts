@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SongService } from 'src/app/shared/services/song.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProfileComponent } from '../profile.component';
+import { User } from 'src/app/shared/interfaces/user';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-create-song',
@@ -9,36 +12,41 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-song.component.scss']
 })
 export class CreateSongComponent {
-  constructor(private dialogRef: MatDialogRef<CreateSongComponent>, private formBuilder: FormBuilder, private songService: SongService) {
-    this.signupForm = this.formBuilder.group({
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address : '' , imgId: 'default.png', ownChat:""}
+  constructor(private dialogRef: MatDialogRef<CreateSongComponent>, private formBuilder: FormBuilder, private songService: SongService, private userService: UserService) {
+    
+    this.songForm = this.formBuilder.group({
       // your existing form controls
       name: ['', [Validators.required, Validators.minLength(2)]],
-      artistID: ['']
+      artistId: ['']
     });
   }
 
   selectedFile: string = '';
   selectedSong: string = '';
-  signupForm: FormGroup;
+  songForm: FormGroup;
   files: File[] = [];
   // songFile: File | null = null;
 
   ngOnInit() {
-    // Retrieve the token from localStorage
-    const token = localStorage.getItem('token');
-  
-    // Check if the token is not null or undefined before setting the value
-    if (token) {
-      // Set the 'artistId' form control value
-      this.signupForm.get('artistID')!.setValue(token);
-    }
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.user = data;
+        this.userService.setUser(this.user);
+        this.songForm.get('artistId')!.setValue(this.user.id)
+      },
+      (error) => {
+        console.error('Error al obtener datos del usuario:', error);
+      }
+    );
+    
   }
 
   onSubmit(): void {
 
     
-    if (this.signupForm.valid && this.files[0] && this.files[1]) {
-      const formData = this.signupForm.value;
+    if (this.songForm.valid && this.files[0] && this.files[1]) {
+      const formData = this.songForm.value;
       console.log("Submit");
       this.songService.uploadSong(this.files,formData).subscribe(
         (data) => {

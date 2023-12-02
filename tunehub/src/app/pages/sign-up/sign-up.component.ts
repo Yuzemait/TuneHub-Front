@@ -16,12 +16,11 @@ export class SignUpComponent {
   signupForm: FormGroup;
   submitted = false;
   userAlreadyExists = false;
+  userAlreadyExistsMessage: string = '';
 
   constructor(
     private formBuilder: FormBuilder, 
     private userService: UserService,
-    private loginService: LoginService,
-    private tokenService: TokenService,
     private router: Router
     ) {
     this.signupForm = this.formBuilder.group({
@@ -56,19 +55,19 @@ export class SignUpComponent {
 
   signup(): void {
     this.submitted = true;
-  
+
     if (this.signupForm.valid) {
       const { username, email, password } = this.signupForm.value;
-      
+
       this.userService.userRegister(username, email, password).subscribe({
         next: () => {
-          alert('Registro exitoso. Favor de iniciar sesión')
+          alert('Registro exitoso. Favor de iniciar sesión');
           this.router.navigate(['login']);
-          
         },
         error: (err) => {
-          if (err.status === 400 && err.error.message === 'El usuario ya existe') {
+          if (err.status === 400 && (err.error.message.includes('email') || err.error.message.includes('username'))) {
             this.userAlreadyExists = true;
+            this.userAlreadyExistsMessage = 'Ya hay un usuario registrado con este ' + (err.error.message.includes('email') ? 'correo electrónico.' : 'nombre de usuario.');
           } else {
             alert('No se pudo hacer el registro.');
           }
@@ -76,4 +75,5 @@ export class SignUpComponent {
       });
     }
   }
+
 }

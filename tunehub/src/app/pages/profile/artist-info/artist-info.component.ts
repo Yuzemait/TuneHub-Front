@@ -7,6 +7,8 @@ import { CreateSongComponent } from '../create-song/create-song.component';
 import { EventService } from 'src/app/shared/services/event.service';
 import { Event } from 'src/app/shared/interfaces/event';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { ChatService } from 'src/app/shared/services/chat.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-artist-info',
@@ -17,7 +19,13 @@ export class ArtistInfoComponent implements OnInit{
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false , imgId:''};
   events: Event[] = [];
 
-  constructor(private userService: UserService, private eventService: EventService, public dialog: MatDialog ) {}
+  constructor(private userService: UserService, 
+    private eventService: EventService,
+    public dialog: MatDialog,
+    private chatService: ChatService,
+    private snackBar: MatSnackBar
+    
+    ) {}
 
   ngOnInit(): void {
     this.userService.getUserData().subscribe(
@@ -132,6 +140,29 @@ export class ArtistInfoComponent implements OnInit{
 
   
   }
+
+  createChat(user: User){
+    let message = 'Wait while your transaction to create chat is confirmed'
+    this.snackBar.open(message, 'Close', { duration: 10000 });
+    this.chatService.createChat(this.user.id, this.user.username).subscribe(
+      (data) => {
+       
+        console.log(data);
+        let message = 'Your chat has been created'
+      this.snackBar.open(message, 'Close', { duration: 10000 });
+      },
+      (error) => {
+        console.error('Error al obtener datos del usuario:', error);
+      }
+    );
+  }
+  hasChat(){
+    if(this.user.ownChat){
+      return true
+    }
+    else return false    
+  }
+
 
 
 }

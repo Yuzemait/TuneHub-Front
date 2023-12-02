@@ -39,6 +39,10 @@ import { IsArtistDirective } from './shared/directives/is-artist.directive';
 import { ArtistInfoComponent } from './pages/profile/artist-info/artist-info.component';
 import { CreateSongComponent } from './pages/profile/create-song/create-song.component';
 import { ChatpopupComponent } from './pages/artist/chatpopup/chatpopup.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { CreatePlaylistComponent } from './pages/profile/create-playlist/create-playlist.component';
+import { AlbumComponent } from './pages/album/album.component';
 
 
 @NgModule({
@@ -67,7 +71,9 @@ import { ChatpopupComponent } from './pages/artist/chatpopup/chatpopup.component
     IsArtistDirective,
     ArtistInfoComponent,
     CreateSongComponent,
-    ChatpopupComponent
+    ChatpopupComponent,
+    CreatePlaylistComponent,
+    AlbumComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +84,8 @@ import { ChatpopupComponent } from './pages/artist/chatpopup/chatpopup.component
     HttpClientModule,
     FormsModule,
     SocialLoginModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
 
   ],
   providers: [{

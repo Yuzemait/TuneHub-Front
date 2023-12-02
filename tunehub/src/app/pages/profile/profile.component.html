@@ -12,8 +12,6 @@
     </button>
     <button mat-raised-button *ngIf="!isEditProfileVisible && !isChangePasswordVisible" (click)="showEditProfile()"><mat-icon>build</mat-icon>Edit profile</button>
     <button mat-raised-button *ngIf="!isEditProfileVisible && !isChangePasswordVisible" (click)="showChangePassword()"><mat-icon>lock</mat-icon>Change Password</button>
-    <button mat-raised-button *ngIf="!hasChat()" (click)="createChat(user)">create chat</button>
-
   
 </div>
 

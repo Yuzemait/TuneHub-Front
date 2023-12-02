@@ -19,7 +19,7 @@ export class SongService {
     formData.append('files', files[1]);
 
     formData.append('name', songData.name);
-    formData.append('artistID', songData.artistID);
+    formData.append('artistId', songData.artistId);
     const headers = new HttpHeaders();
     // headers = headers.append('Authorization', 'Bearer YOUR_ACCESS_TOKEN');
 

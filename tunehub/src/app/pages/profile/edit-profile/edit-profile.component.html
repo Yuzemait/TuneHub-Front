@@ -8,6 +8,9 @@
           <mat-error *ngIf="hasError('username', 'required')">Este campo es requerido</mat-error>
           <mat-error *ngIf="hasError('username', 'minlength')">El nombre de usuario debe tener al menos 3 caracteres</mat-error>
         </mat-form-field>
+        <span style="color: red;  margin-bottom: 10px;" *ngIf="(userAlreadyExists && userAlreadyExistsMessage.includes('nombre de usuario'))">
+          {{ userAlreadyExistsMessage }}
+        </span>
   
         <mat-form-field>
           <mat-label for="email">Email</mat-label>
@@ -15,6 +18,9 @@
           <mat-error *ngIf="hasError('email', 'required')">Este campo es requerido</mat-error>
           <mat-error *ngIf="hasError('email', 'email')">Se necesita un correo valido</mat-error>
         </mat-form-field>
+        <span style="color: red;  margin-bottom: 10px;" *ngIf="(userAlreadyExists && userAlreadyExistsMessage.includes('correo electrónico'))">
+          {{ userAlreadyExistsMessage }}
+        </span>
 
         <div>
           <label for="file-button">Select new profile image: {{selectedFile}}</label>

@@ -22,7 +22,8 @@ export class EditProfileComponent implements OnInit {
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false , imgId: ''}
   editForm: FormGroup;
   selectedFile: string = '';
-
+  userAlreadyExists = false;
+  userAlreadyExistsMessage: string = '';
   imgFile: File | null = null;
 
 
@@ -66,17 +67,26 @@ export class EditProfileComponent implements OnInit {
   saveChanges(): void {
     if (this.editForm.valid) {
       const { username, email } = this.editForm.value;
-
+  
       this.userService.updateUser(this.user.id, username, email, null, this.user.artistStatus, this.imgFile)
         .subscribe(
           (updatedUser) => {
             this.user = updatedUser;
             this.userService.setUser(updatedUser);
             this.changesSaved.emit();
-            this.openSnackBar('Information successfully updated', 'Ok')
+            this.openSnackBar('Information successfully updated', 'Ok');
           },
           (error) => {
             console.error('Error al actualizar usuario:', error);
+            console.log(error.error.error);
+  
+            if (error.status === 400 && (error.error.error.includes('email') || error.error.error.includes('username'))) {
+              this.userAlreadyExists = true;
+              this.userAlreadyExistsMessage = 'Ya hay un usuario registrado con este ' + (error.error.error.includes('email') ? 'correo electrónico.' : 'nombre de usuario.');
+              console.log(this.userAlreadyExistsMessage);
+            } else {
+              alert('No se pudo hacer la actualización.');
+            }
           }
         );
     }
