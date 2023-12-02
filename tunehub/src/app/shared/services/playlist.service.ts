@@ -60,4 +60,18 @@ export class PlaylistService {
   addSong(songId: string){
     
   }
+
+  updatePlaylist(playlistId: string, updateData: any): Observable<Playlist> {
+    const token = this.tokenService.get();
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': token
+    });
+
+    const url: string = `${environment.apiUrl}playlists/${playlistId}/edit`;
+
+    return this.http.put<Playlist>(url, updateData, { headers });
+  }
+
 }

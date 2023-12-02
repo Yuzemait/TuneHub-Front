@@ -18,7 +18,8 @@ export class CreateSongComponent {
     this.songForm = this.formBuilder.group({
       // your existing form controls
       name: ['', [Validators.required, Validators.minLength(2)]],
-      artistId: ['']
+      artistId: [''],
+      artistName: ['']
     });
   }
 
@@ -34,6 +35,7 @@ export class CreateSongComponent {
         this.user = data;
         this.userService.setUser(this.user);
         this.songForm.get('artistId')!.setValue(this.user.id)
+        this.songForm.get('artistName')!.setValue(this.user.username)
       },
       (error) => {
         console.error('Error al obtener datos del usuario:', error);
@@ -48,6 +50,7 @@ export class CreateSongComponent {
     if (this.songForm.valid && this.files[0] && this.files[1]) {
       const formData = this.songForm.value;
       console.log("Submit");
+      console.log(formData);
       this.songService.uploadSong(this.files,formData).subscribe(
         (data) => {
           console.log('Song uploaded successfully:', data);

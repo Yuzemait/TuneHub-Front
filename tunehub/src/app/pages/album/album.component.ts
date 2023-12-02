@@ -12,14 +12,14 @@ export class AlbumComponent implements OnInit {
   albumId :string = ''
   selectedAlbum: Album = {id : '', title:  '', artist: '', releaseDate:'', songs:['']}
   songArray: [Song] =[{
+    id: '',
     name: '', 
     song: '',
     date: new Date,
     artistID: "",
+    artistName: "",
     views: 0,
     songImg: "",
-    tags: ['']
-
   }]
  
 

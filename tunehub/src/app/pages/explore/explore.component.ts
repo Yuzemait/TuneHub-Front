@@ -2,7 +2,12 @@ import { Component } from '@angular/core';
 import { ArtistService } from '../../shared/services/artist.service';
 import { AlbumsService } from 'src/app/shared/services/albums.service';
 import { SongService } from 'src/app/shared/services/song.service';
-import { RouterLink } from '@angular/router';
+import { formatDate } from '@angular/common';
+import { UserService } from 'src/app/shared/services/user.service';
+import { PlaylistService } from 'src/app/shared/services/playlist.service';
+import { User } from 'src/app/shared/interfaces/user';
+import { Playlist } from 'src/app/shared/interfaces/playlist';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-explore',
@@ -15,16 +20,24 @@ export class ExploreComponent {
   albums: any[] = [];
   filteredAlbums: any[] = [];
   songs: any[] = [];
+  filteredSongs: any[] = [];
   searchQuery: string = '';
+  user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address: '', imgId: 'default.png', ownChat: "", playlists: [] }
+  playlists: Playlist[] = [];
 
-  constructor(private artistService: ArtistService, private albumService: AlbumsService, private songService: SongService) { }
+
+  constructor(private artistService: ArtistService,
+    private albumService: AlbumsService,
+    private songService: SongService,
+    private userService: UserService,
+    private playlistService: PlaylistService,
+    private snackBar: MatSnackBar ) { }
 
   ngOnInit(): void {
     this.artistService.getAllArtists().subscribe(
       data => {
         this.artists = data;
-        this.filteredArtists = data
-        console.log("artist data: ", data);
+        this.filteredArtists = data;
       },
       error => {
         console.log(error);
@@ -33,50 +46,105 @@ export class ExploreComponent {
     this.albumService.getAllAlbums().subscribe(
       data => {
         this.albums = data;
-        
-        this.filteredAlbums = data
-        //console.log(data);
+        this.filteredAlbums = data;
       },
       error => {
         console.log(error);
       }
-    )
+    );
 
     this.songService.getSongs().subscribe(
       data => {
         this.songs = data;
+        this.filteredSongs = data;
       },
-      error =>{
+      error => {
         console.log(error);
       }
-      
-    )
+    );
 
+    this.loadUserData();
+  }
 
-
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000, 
+      verticalPosition: 'top'
+    });
   }
 
   filterAlbums() {
-    console.log("albums", this.albums);
-    if(this.searchQuery){
+    if (this.searchQuery) {
       this.filteredAlbums = this.albums.filter(album => {
-        return album.title.toLowerCase().includes(this.searchQuery.toLowerCase()); 
+        return album.title.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
-  }
-  else{
-    this.filteredAlbums = this.albums
-  }
-  }
-  filterArtists() {
-    console.log("in filter artist");
-    if(this.searchQuery){
-      this.filteredArtists = this.artists.filter(artist => {
-        return artist.username.toLowerCase().includes(this.searchQuery.toLowerCase()); 
-      });
-    }
-    else{
-      this.filteredArtists = this.artists
+    } else {
+      this.filteredAlbums = this.albums;
     }
   }
 
+  filterArtists() {
+    if (this.searchQuery) {
+      this.filteredArtists = this.artists.filter(artist => {
+        return artist.username.toLowerCase().includes(this.searchQuery.toLowerCase());
+      });
+    } else {
+      this.filteredArtists = this.artists;
+    }
+  }
+
+  filterSongs() {
+    if (this.searchQuery) {
+      this.filteredSongs = this.songs.filter(song => {
+        return song.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+      });
+    } else {
+      this.filteredSongs = this.songs;
+    }
+  }
+
+  formatDate(date: Date): string {
+    return formatDate(date, 'MMMM d, y', 'en-US');
+  }
+
+  addToPlaylist(playlistId: string, newSong: string): void {
+    const updateData = { songs: newSong };
+
+    this.playlistService.updatePlaylist(playlistId, updateData)
+      .subscribe(
+        (playlistActualizada) => {
+          console.log('Playlist actualizada:', playlistActualizada);
+          this.openSnackBar('Song added to your playlist', 'Ok');
+        },
+        (error) => {
+          console.error('Error al actualizar la playlist:', error);
+        }
+      );
+  }
+
+  loadUserData() {
+    this.userService.getUserData().subscribe(
+      (data) => {
+        this.user = data;
+        this.userService.setUser(this.user);
+
+        if (this.user.playlists) {
+          this.playlists = []; // Limpia la lista de reproducción antes de volver a cargar
+          for (const playlistId of this.user.playlists) {
+            this.playlistService.getPlaylist(playlistId).subscribe(
+              (playlist: Playlist) => {
+                this.playlists.push(playlist);
+              },
+              (error) => {
+                console.error('Error getting playlist:', error);
+              }
+            );
+          }
+        }
+      },
+      (error) => {
+        console.error('Error al obtener datos del usuario:', error);
+      }
+    );
+  }
 }

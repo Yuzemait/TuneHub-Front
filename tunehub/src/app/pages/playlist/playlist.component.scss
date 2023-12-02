@@ -10,11 +10,6 @@
     background: linear-gradient(to bottom, #C3ACD0, #b88bd2);
     // padding: 20px;
     box-sizing: border-box;
-    .playlist{
-        button{
-            background-color: #f1f1f1;
-        }
-    }
     
     .playlist-header {
       text-align: center;
@@ -28,14 +23,13 @@
   }
   
   .container{
-    padding: 1000px;
+
     display: inline;
     justify-content: center;
     align-content: center;
     
-  
+
     .songs-data{
-      
         margin: auto;
         margin-bottom: 25px;
         // border-radius: 10px;
@@ -54,7 +48,7 @@
                 list-style: none;
                 .item-info{
                     padding: 0px;
-                    height: 50px;
+                    height: 65px;
                     align-items: center;
                     display: inline-flex;
                     list-style: none;
@@ -102,55 +96,13 @@
                 background-color: #c1bfbf;
                 
             }
-        }
-    }
-  }
-  
-  .data{
-    width: 80%;
-    background-color: white;
-    margin: auto;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    .artist-container{
-        display: block;
-        padding: 10px;
-        border-radius: 10px;
-        :hover{
-            background-color: #c1bfbf;
-  
-            color: white;
-        }
-        .round-image-container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            img{
-                height: 100px;
-                border-radius: 50%;
-                border: 3px solid black; 
-                // color: #FFFBF5;
-                clip-path: circle();
+            .items:not(:first-child){
+                height: 65px;
+                
             }
         }
-        .image-container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            img{
-                height: 100px;
-                border-radius: 10px;
-                border: 3px solid black; 
-                // color: #FFFBF5;
-            }
-        }
-        .artist-name{
-            margin-top: 10px;
-            text-align: center;
-        }
     }
-  }
-  
+}
   
   /* Scrollbar Styles */
   ::-webkit-scrollbar {

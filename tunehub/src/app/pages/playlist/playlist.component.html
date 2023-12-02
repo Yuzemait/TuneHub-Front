@@ -1,81 +1,60 @@
 <div class="main-container">
     <div class="playlist">
-        <button mat-button routerLink="/profile">
-            <mat-icon>keyboard_return</mat-icon>
-        </button>
-       
-
-        <div class="playlist-header">
-          <h1>{{selectedPlaylist.name}} </h1>
-          <p>Created Date: {{ formatDate(selectedPlaylist.createdDate) }}</p>
-          <button mat-icon-button color="warn" style="margin-left: auto;" (click)="deletePlaylist()">
-            <mat-icon aria-label="Delete">delete</mat-icon>
-        </button>
-        </div>
-
-    <mat-tab-group>
-        <mat-tab label="Songs"> 
-            <div class="container">
-                <div class="songs-data">
-                    <ul class="item-data">
-                        <li class="items">
-                            <ul class="item-info">
-                                <li class="icon">
-
-                                </li>
-                                <li>
-                                    <mat-icon>image</mat-icon>
-                                </li>
-                                <li>
-                                    Name
-                                </li>
-                                <li>
-                                    Artist
-                                </li>
-                                <li>
-                                    Album
-                                </li>
-                                <li>
-                                    Release Date
-                                </li>
-                                <li>
-
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="items">
-                            <ul class="item-info">
-                                <li class="icon">
-                                    <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
-                                </li>
-                                <li>
-                                    <img src="http://localhost:3000/assets/default_music.png" alt="">
-                                </li>
-                                <li>
-                                    Despacito
-                                </li>
-                                <li>
-                                    Luis Fonsi
-                                </li>
-                                <li>
-                                    Luis Fonsi
-                                </li>
-                                <li>
-                                    2018
-                                </li>
-                                <li>
-                                    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-                                        <mat-menu #menu="matMenu">
-                                        <button mat-menu-item>Add to playlist</button>
-                                        <button mat-menu-item>Go to artist</button>
-                                        <button mat-menu-item>Add to queue</button>
-                                        </mat-menu>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+      <button mat-button routerLink="/profile">
+        <mat-icon>keyboard_return</mat-icon>
+      </button>
+  
+      <div class="playlist-header">
+        <h1>
+            {{ selectedPlaylist.name }}
+            <button mat-icon-button routerLink="/explore"><mat-icon>library_add</mat-icon></button>
+        </h1>
+        
+        <p>Created Date: {{ formatDate(selectedPlaylist.createdDate) }}</p>
+      </div>
+  
+      <mat-tab-group>
+        <mat-tab label="Songs">
+          <div class="container">
+            <div class="songs-data">
+              <ul class="item-data">
+                <li class="items">
+                  <ul class="item-info">
+                    <li class="icon"></li>
+                    <li><mat-icon>image</mat-icon></li>
+                    <li>Name</li>
+                    <li>Artist</li>
+                    <li>Release Date</li>
+                    <li></li>
+                  </ul>
+                </li>
+                <li *ngFor="let song of songArray" class="items">
+                  <ul class="item-info">
+                    <li class="icon">
+                      <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
+                    </li>
+                    <li><img src="http://localhost:3000/assets/{{ song.songImg }}" alt=""></li>
+                    <li>{{ song.name }}</li>
+                    <li>{{ song.artistName }}</li>
+                    <li>{{ formatDate(song.date) }}</li>
+                    <li>
+                      <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="deleteSongFromPlaylist(song.id)">Remove from playlist</button>
+                        <button mat-menu-item>Add to queue</button>
+                      </mat-menu>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </div>
-            
-    
+          </div>
         </mat-tab>
+      </mat-tab-group>
+      <button mat-button  style="margin: 0 auto; background-color: aliceblue; margin: 10px; color: #6627dc"  (click)="deletePlaylist()">
+        Delete playlist
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  

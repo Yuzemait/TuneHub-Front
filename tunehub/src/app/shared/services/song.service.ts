@@ -15,11 +15,13 @@ export class SongService {
 
   uploadSong(files: File[], songData: any): Observable<any> {
     const formData: FormData = new FormData();
+    console.log(songData);
     formData.append('files', files[0]);
     formData.append('files', files[1]);
 
     formData.append('name', songData.name);
     formData.append('artistId', songData.artistId);
+    formData.append('artistName', songData.artistName);
     const headers = new HttpHeaders();
     // headers = headers.append('Authorization', 'Bearer YOUR_ACCESS_TOKEN');
 
@@ -30,6 +32,6 @@ export class SongService {
     return this.http.get<Song[]>(`${this.apiUrl}songs`);
   }
   getSongsById(id:string){
-    return this.http.get<Song[]>(`${this.apiUrl}songs/${id}`);
+    return this.http.get<Song>(`${this.apiUrl}songs/${id}`);
   }
 }
