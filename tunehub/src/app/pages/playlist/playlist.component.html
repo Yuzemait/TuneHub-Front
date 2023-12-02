@@ -1,0 +1,81 @@
+<div class="main-container">
+    <div class="playlist">
+        <button mat-button routerLink="/profile">
+            <mat-icon>keyboard_return</mat-icon>
+        </button>
+       
+
+        <div class="playlist-header">
+          <h1>{{selectedPlaylist.name}} </h1>
+          <p>Created Date: {{ formatDate(selectedPlaylist.createdDate) }}</p>
+          <button mat-icon-button color="warn" style="margin-left: auto;" (click)="deletePlaylist()">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        </div>
+
+    <mat-tab-group>
+        <mat-tab label="Songs"> 
+            <div class="container">
+                <div class="songs-data">
+                    <ul class="item-data">
+                        <li class="items">
+                            <ul class="item-info">
+                                <li class="icon">
+
+                                </li>
+                                <li>
+                                    <mat-icon>image</mat-icon>
+                                </li>
+                                <li>
+                                    Name
+                                </li>
+                                <li>
+                                    Artist
+                                </li>
+                                <li>
+                                    Album
+                                </li>
+                                <li>
+                                    Release Date
+                                </li>
+                                <li>
+
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="items">
+                            <ul class="item-info">
+                                <li class="icon">
+                                    <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
+                                </li>
+                                <li>
+                                    <img src="http://localhost:3000/assets/default_music.png" alt="">
+                                </li>
+                                <li>
+                                    Despacito
+                                </li>
+                                <li>
+                                    Luis Fonsi
+                                </li>
+                                <li>
+                                    Luis Fonsi
+                                </li>
+                                <li>
+                                    2018
+                                </li>
+                                <li>
+                                    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                                        <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>Add to playlist</button>
+                                        <button mat-menu-item>Go to artist</button>
+                                        <button mat-menu-item>Add to queue</button>
+                                        </mat-menu>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+    
+        </mat-tab>

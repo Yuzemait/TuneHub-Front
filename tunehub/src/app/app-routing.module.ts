@@ -11,6 +11,7 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ExploreComponent } from './pages/explore/explore.component';
 import { ArtistComponent } from './pages/artist/artist.component';
 import { AlbumComponent } from './pages/album/album.component';
+import { PlaylistComponent } from './pages/playlist/playlist.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'explore', component: ExploreComponent, canActivate: [AuthGuard] },
   { path: 'artists/:id', component: ArtistComponent, canActivate: [AuthGuard] },
   { path: 'album/:id', component: AlbumComponent, canActivate: [AuthGuard] },
+  { path: 'playlist/:id', component: PlaylistComponent, canActivate: [AuthGuard] },
 /*
   {path: 'artist', component:ArtistComponent, canActivate: [AuthGuard], children:[
     {path: ':id/chat', component:ArtistComponent, canActivate: [AuthGuard]}

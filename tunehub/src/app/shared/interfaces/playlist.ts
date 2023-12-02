@@ -3,5 +3,6 @@ export interface Playlist {
     songs: [],
     name: string,
     creator: string
+    createdDate: Date
   }
   

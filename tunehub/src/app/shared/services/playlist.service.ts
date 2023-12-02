@@ -35,13 +35,26 @@ export class PlaylistService {
   getPlaylist(id:string): Observable<Playlist> {
     const token = this.tokenService.get();
 
-    // const headers = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    //   'token': token
-    // });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': token
+    });
 
     const url: string = `${environment.apiUrl}playlists/${id}`;
-    return this.http.get<Playlist>(url);
+    return this.http.get<Playlist>(url, { headers });
+  }
+
+
+  deletePlaylist(id:string): Observable<Playlist> {
+    const token = this.tokenService.get();
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': token
+    });
+
+    const url: string = `${environment.apiUrl}playlists/${id}/remove`;
+    return this.http.request<Playlist>('delete', url, {  headers });
   }
 
   addSong(songId: string){

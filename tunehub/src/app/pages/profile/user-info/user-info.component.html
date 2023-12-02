@@ -18,9 +18,11 @@
         <ul class="playlist-list">
             <li *ngFor="let pl of playlists" class="playlist-item">
                 <div class="playlist-image">
-                    <button mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
+                    <p><mat-icon >library_music</mat-icon></p>
                 </div>
-                <div class="playlist-name"><button mat-button>{{pl.name}}</button></div>
+                <div class="playlist-name">
+                    <button mat-button [routerLink]="['/playlist', pl.id]">{{pl.name}}</button>
+                </div>
             </li> 
         </ul>
         <ul class="playlist-options">
