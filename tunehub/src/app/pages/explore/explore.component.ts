@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { ArtistService } from '../../shared/services/artist.service';
 import { AlbumsService } from 'src/app/shared/services/albums.service';
 import { SongService } from 'src/app/shared/services/song.service';
@@ -8,6 +8,7 @@ import { PlaylistService } from 'src/app/shared/services/playlist.service';
 import { User } from 'src/app/shared/interfaces/user';
 import { Playlist } from 'src/app/shared/interfaces/playlist';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-explore',
@@ -15,6 +16,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./explore.component.scss']
 })
 export class ExploreComponent {
+  @ViewChild('artistsPaginator') artistsPaginator!: MatPaginator;
+  @ViewChild('albumsPaginator') albumsPaginator!: MatPaginator;
+  @ViewChild('songsPaginator') songsPaginator!: MatPaginator;
   artists: any[] = [];
   filteredArtists: any[] = [];
   albums: any[] = [];
@@ -24,14 +28,17 @@ export class ExploreComponent {
   searchQuery: string = '';
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address: '', imgId: 'default.png', ownChat: "", playlists: [] }
   playlists: Playlist[] = [];
-
+  pageSize = 10; 
+  currentPage = 0;
+  currentTab: number = 0;
 
   constructor(private artistService: ArtistService,
     private albumService: AlbumsService,
     private songService: SongService,
     private userService: UserService,
     private playlistService: PlaylistService,
-    private snackBar: MatSnackBar ) { }
+    private snackBar: MatSnackBar,
+    private cdr: ChangeDetectorRef ) { }
 
   ngOnInit(): void {
     this.artistService.getAllArtists().subscribe(
@@ -72,6 +79,37 @@ export class ExploreComponent {
       verticalPosition: 'top'
     });
   }
+
+  getPaginatedItems(items: any[]): any[] {
+    const startIndex = this.currentPage * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return items.slice(startIndex, endIndex);
+  }
+  
+  changePage(event: any): void {
+    this.currentPage = event.pageIndex;
+  }
+
+  switchTab(index: number): void {
+    if (this.currentTab !== index) {
+      this.currentPage = 0;
+  
+      switch (this.currentTab) {
+        case 0: 
+        this.songsPaginator.pageIndex = 0;   
+          break;
+        case 1:
+          this.artistsPaginator.pageIndex = 0;
+          break;
+        case 2: 
+          this.albumsPaginator.pageIndex = 0;
+          break;
+
+      }
+    }
+    this.currentTab = index;
+  }
+  
 
   filterAlbums() {
     if (this.searchQuery) {

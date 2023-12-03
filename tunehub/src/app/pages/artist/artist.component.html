@@ -27,39 +27,31 @@
 <div class="section2">
     <h2></h2>
     <div class="user-info-container">
-        <h1>Welcome</h1>
-        <ul class="description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, harum! Commodi dignissimos, iure aspernatur rem iusto id quidem hic vel.
-            
-            
-        </ul>
+        <h2 class="bubble bubble-bottom-left">Hi! This is: {{ artist.username }}</h2>
     </div>
-    <div class="playlist-container">
-        <h1>Canciones</h1>
-        <ul class="playlist-list">
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                </div>
-                <div class="playlist-name">Rock</div>
-            </li> 
+    <div class="song-container">
+        <h1>Songs</h1>
+        <ul class="song-list">
+          <li *ngFor="let song of songs" class="song-item">
+            <div class="song-image">
+               <img src="http://localhost:3000/assets/{{song.songImg}}" alt="">
+            </div>
+            <div class="song-name">{{ song.name }}</div>
+          </li>
         </ul>
-        <ul class="playlist-options">
-            
-            
-        </ul>
-    </div>
-    <div class="playlist-container">
+      </div>
+    <div class="album-container">
         <h1>Albums</h1>
-        <ul class="playlist-list">
-            <li class="playlist-item">
-                <div class="playlist-image">
-                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+        <ul class="album-list">
+            <li class="album-item">
+                <div class="album-image">
                 </div>
-                <div class="playlist-name">Rock</div>
+                <div class="album-name">
+
+                </div>
             </li> 
         </ul>
-        <ul class="playlist-options">
+        <ul class="album-options">
             
             
         </ul>
