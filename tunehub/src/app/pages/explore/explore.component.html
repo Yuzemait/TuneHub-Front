@@ -1,13 +1,17 @@
 
     <div class="main-container">
-        <mat-tab-group>
-            <mat-tab label="Songs"> 
+        <mat-tab-group (selectedIndexChange)="switchTab($event)">
+            <mat-tab label="Songs">
                 <div class="container">
                     <div class="search-container">
                         <input type="text" [(ngModel)]="searchQuery" (ngModelChange)="filterSongs()" placeholder="Search for songs..." class="search-input">
                     </div>
 
                     <div class="songs-data">
+                        <mat-paginator  #songsPaginator [length]="filteredSongs.length"
+                                        [pageSize]="pageSize"
+                                        (page)="changePage($event)">
+                        </mat-paginator>
                         <ul class="item-data">
                             <li class="items">
                                 <ul class="item-info">
@@ -31,7 +35,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li *ngFor="let item of filteredSongs" class="items">
+                            <li *ngFor="let item of getPaginatedItems(filteredSongs)" class="items">
                                 <ul class="item-info">
                                     <li class="icon">
                                         <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
@@ -79,8 +83,12 @@
                     </div>
 
                     <div class="data">
+                        <mat-paginator #artistsPaginator [length]="filteredArtists.length"
+                                        [pageSize]="pageSize"
+                                        (page)="changePage($event)">
+                         </mat-paginator>
                         <mat-grid-list cols="5" rowHeight="1:1">
-                            <mat-grid-tile *ngFor="let item of filteredArtists" class="artist-container">
+                            <mat-grid-tile *ngFor="let item of getPaginatedItems(filteredArtists)" class="artist-container">
                                 <a [routerLink]="['/artists', item.id]">
                                 <div class="artist-container">
                                     <div class="round-image-container">
@@ -103,8 +111,12 @@
                         <input type="text"  [(ngModel)]="searchQuery" (ngModelChange)="filterAlbums()" placeholder="Search for albums..." class="search-input">
                     </div>
                     <div class="data">
+                        <mat-paginator #albumsPaginator  [length]="filteredAlbums.length"
+                                        [pageSize]="pageSize"
+                                        (page)="changePage($event)">
+                        </mat-paginator>
                         <mat-grid-list cols="5" rowHeight="1:1">
-                            <mat-grid-tile *ngFor="let item of filteredAlbums" class="artist-container">
+                            <mat-grid-tile *ngFor="let item of getPaginatedItems(filteredAlbums)" class="artist-container">
                                 <div class="artist-container">
                                     <a [routerLink]="['/album', item.id]">
                                     <div class="image-container">

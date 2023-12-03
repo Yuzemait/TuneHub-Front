@@ -160,7 +160,14 @@
             text-align: center;
         }
     }
+
+    .mat-tab-body-active .mat-paginator-range-label {
+        display: none;
+      }
+  
 }
+
+
 
 
 /* Scrollbar Styles */
@@ -179,6 +186,7 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
 
 
 /* Responsive adjustments */
