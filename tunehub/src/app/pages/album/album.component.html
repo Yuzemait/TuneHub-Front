@@ -3,9 +3,9 @@
 
         <div class="album-header">
           <h1>{{selectedAlbum.title}}</h1>
-          <img src="https://i.scdn.co/image/ab67616d00001e02a5971936e3b8d91f8b616b17">
-          <p>{{selectedAlbum.artist}}</p>
-          <p>{{selectedAlbum.releaseDate | date}}</p>
+          <img src="http://localhost:3000/assets/{{this.albumImg}}">
+          <p>{{this.artist}}</p>
+          <p>{{selectedAlbum.releaseDate | date:'yyyy'}}</p>
         </div>
 
     <mat-tab-group>
@@ -38,56 +38,26 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="items">
-                            <ul class="item-info">
-                                <li class="icon">
-                                    <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
-                                </li>
-                                <li>
-                                    <img src="http://localhost:3000/assets/default_music.png" alt="">
-                                </li>
-                                <li>
-                                    Despacito
-                                </li>
-                                <li>
-                                    Luis Fonsi
-                                </li>
-                                <li>
-                                    Luis Fonsi
-                                </li>
-                                <li>
-                                    2018
-                                </li>
-                                <li>
-                                    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-                                        <mat-menu #menu="matMenu">
-                                        <button mat-menu-item>Add to playlist</button>
-                                        <button mat-menu-item>Go to artist</button>
-                                        <button mat-menu-item>Add to queue</button>
-                                        </mat-menu>
-                                </li>
-                            </ul>
-                        </li>
+                       
                         <li *ngFor="let item of songArray" class="items">
                             <ul class="item-info">
                                 <li class="icon">
                                     <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
                                 </li>
                                 <li>
-                                    <img src="http://localhost:3000/assets/default_music.png" alt="">
+                                    <img src="http://localhost:3000/assets/{{this.item.songImg}}" alt="">
                                 </li>
                                 <li>
                                     {{item.name}}
                                 </li>
                                 <li>
-                                    <!-- {{item.artistID}} -->
-                                    Nombre
+                                    {{item.artistName}}
                                 </li>
                                 <li>
-                                    Luis Fonsi
+                                    {{this.selectedAlbum.title}}
                                 </li>
                                 <li>
-                                    {{item.date}}
+                                    {{item.date| date:'yyyy'}}
                                 </li>
                                 <li>
                                     <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
