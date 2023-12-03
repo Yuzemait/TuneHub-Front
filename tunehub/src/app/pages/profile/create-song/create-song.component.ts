@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SongService } from 'src/app/shared/services/song.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProfileComponent } from '../profile.component';
 import { User } from 'src/app/shared/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 
