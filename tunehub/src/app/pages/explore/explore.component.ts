@@ -28,7 +28,7 @@ export class ExploreComponent {
   searchQuery: string = '';
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address: '', imgId: 'default.png', ownChat: "", playlists: [] }
   playlists: Playlist[] = [];
-  pageSize = 10; 
+  pageSize = 5; 
   currentPage = 0;
   currentTab: number = 0;
 
@@ -37,8 +37,7 @@ export class ExploreComponent {
     private songService: SongService,
     private userService: UserService,
     private playlistService: PlaylistService,
-    private snackBar: MatSnackBar,
-    private cdr: ChangeDetectorRef ) { }
+    private snackBar: MatSnackBar, ) { }
 
   ngOnInit(): void {
     this.artistService.getAllArtists().subscribe(

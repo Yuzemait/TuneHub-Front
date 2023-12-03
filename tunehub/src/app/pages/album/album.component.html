@@ -1,10 +1,11 @@
 <div class="main-container">
     <div class="album">
-
+        <button mat-button routerLink="/explore">
+            <mat-icon>keyboard_return</mat-icon>
+        </button>
         <div class="album-header">
           <h1>{{selectedAlbum.title}}</h1>
-          <img src="https://i.scdn.co/image/ab67616d00001e02a5971936e3b8d91f8b616b17">
-          <p>{{selectedAlbum.artist}}</p>
+          <img src="http://localhost:3000/assets/{{ selectedAlbum.albumImg }}" alt="">
           <p>{{selectedAlbum.releaseDate | date}}</p>
         </div>
 
@@ -38,62 +39,39 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="items">
-                            <ul class="item-info">
-                                <li class="icon">
-                                    <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
-                                </li>
-                                <li>
-                                    <img src="http://localhost:3000/assets/default_music.png" alt="">
-                                </li>
-                                <li>
-                                    Despacito
-                                </li>
-                                <li>
-                                    Luis Fonsi
-                                </li>
-                                <li>
-                                    Luis Fonsi
-                                </li>
-                                <li>
-                                    2018
-                                </li>
-                                <li>
-                                    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-                                        <mat-menu #menu="matMenu">
-                                        <button mat-menu-item>Add to playlist</button>
-                                        <button mat-menu-item>Go to artist</button>
-                                        <button mat-menu-item>Add to queue</button>
-                                        </mat-menu>
-                                </li>
-                            </ul>
-                        </li>
                         <li *ngFor="let item of songArray" class="items">
                             <ul class="item-info">
                                 <li class="icon">
                                     <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
                                 </li>
                                 <li>
-                                    <img src="http://localhost:3000/assets/default_music.png" alt="">
+                                    <img src="http://localhost:3000/assets/{{ selectedAlbum.albumImg }}" alt="">
                                 </li>
                                 <li>
-                                    {{item.name}}
+                                    {{ item.name }}
                                 </li>
                                 <li>
-                                    <!-- {{item.artistID}} -->
-                                    Nombre
+                                    {{ item.artistName }}
+                
                                 </li>
                                 <li>
-                                    Luis Fonsi
+                                    {{ selectedAlbum.title }}
                                 </li>
                                 <li>
-                                    {{item.date}}
+                                    {{ item.date | date }}
                                 </li>
                                 <li>
                                     <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
                                         <mat-menu #menu="matMenu">
-                                        <button mat-menu-item>Add to playlist</button>
-                                        <button mat-menu-item>Go to artist</button>
+                                            <ng-container *ngIf="playlists && playlists.length > 0">
+                                                <mat-menu #addToPlaylistMenu="matMenu">
+                                                  <button mat-menu-item *ngFor="let playlist of playlists" (click)="addToPlaylist(playlist.id, item.id)">
+                                                    {{ playlist.name }}
+                                                  </button>
+                                                </mat-menu>
+                                                <button mat-menu-item [matMenuTriggerFor]="addToPlaylistMenu">Add to playlist</button>
+                                              </ng-container>
+                                        <button mat-menu-item [routerLink]="['/artists', selectedAlbum.artist]">Go to artist</button>
                                         <button mat-menu-item>Add to queue</button>
                                         </mat-menu>
                                 </li>

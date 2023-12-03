@@ -44,10 +44,12 @@
     <div  class="album-container">
         <h1>Albums</h1>
         <ul class="album-list">
-            <li class="album-item">
+            <li *ngFor="let album of albums" class="album-item">
                 <div class="album-image">
+                    <img src="http://localhost:3000/assets/{{album.albumImg}}" alt="">
                 </div>
                 <div class="album-name">
+                    {{ album.title }}
                 </div>
             </li> 
         </ul>

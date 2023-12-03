@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ChatpopupComponent } from './chatpopup/chatpopup.component';
 import { SongService } from 'src/app/shared/services/song.service';
 import { Song } from 'src/app/shared/interfaces/song';
+import { AlbumsService } from 'src/app/shared/services/albums.service';
+import { Album } from 'src/app/shared/interfaces/album';
 
 
 @Component({
@@ -25,6 +27,7 @@ export class ArtistComponent implements OnInit {
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false, imgId:''}
   events: Event[] = [];
   songs: Song[] = [];
+  albums: Album[] = [];
   // imgId: string = 'default.png';
 
   constructor(
@@ -34,8 +37,8 @@ export class ArtistComponent implements OnInit {
     private chatService: ChatService,
     private eventService: EventService,
     public dialog: MatDialog,
-    private songService: SongService
-    
+    private songService: SongService,
+    private albumService: AlbumsService
     
   ) { }
 
@@ -66,6 +69,17 @@ export class ArtistComponent implements OnInit {
                 console.error('Error al obtener canciones del artista:', error);
               }
             );
+
+
+            this.albumService.getAlbumsByArtist(this.id).subscribe(
+              (data) => {
+                this.albums = data;
+              },
+              (error) => {
+                console.error('Error al obtener albumes del artista:', error);
+              }
+            );
+
           },
           (error) => {
             console.log('error getting artist', error);

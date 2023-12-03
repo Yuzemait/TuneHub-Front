@@ -30,7 +30,7 @@ export class UserInfoComponent implements OnInit {
         this.userService.setUser(this.user);
 
         if (this.user.playlists) {
-          this.playlists = []; // Limpia la lista de reproducción antes de volver a cargar
+          this.playlists = [];
           for (const playlistId of this.user.playlists) {
             this.playlistService.getPlaylist(playlistId).subscribe(
               (playlist: Playlist) => {
@@ -56,8 +56,8 @@ export class UserInfoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       setTimeout(() => {
-        this.loadUserData(); // Vuelve a cargar la información del usuario después de cerrar el diálogo
-      }, 1000); // Ajusta el tiempo según sea necesario
+        this.loadUserData(); 
+      }, 1000); 
     });
   }
 }

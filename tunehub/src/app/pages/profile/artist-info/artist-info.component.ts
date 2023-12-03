@@ -12,6 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SongService } from 'src/app/shared/services/song.service';
 import { Song } from 'src/app/shared/interfaces/song';
 import { CreateAlbumComponent } from '../create-album/create-album.component';
+import { AlbumsService } from 'src/app/shared/services/albums.service';
+import { Album } from 'src/app/shared/interfaces/album';
 
 @Component({
   selector: 'app-artist-info',
@@ -22,14 +24,15 @@ export class ArtistInfoComponent implements OnInit{
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false , imgId:''};
   events: Event[] = [];
   songs: Song[] = [];
+  albums: Album[] = [];
 
   constructor(private userService: UserService, 
     private eventService: EventService,
     public dialog: MatDialog,
     private chatService: ChatService,
     private snackBar: MatSnackBar,
-    private songService: SongService
-    
+    private songService: SongService,
+    private albumService: AlbumsService
     ) {}
 
   ngOnInit(): void {
@@ -52,6 +55,15 @@ export class ArtistInfoComponent implements OnInit{
           },
           (error) => {
             console.error('Error al obtener canciones del artista:', error);
+          }
+        );
+
+        this.albumService.getAlbumsByArtist(this.user.id).subscribe(
+          (data) => {
+            this.albums = data;
+          },
+          (error) => {
+            console.error('Error al obtener albumes del artista:', error);
           }
         );
       },
@@ -87,23 +99,35 @@ export class ArtistInfoComponent implements OnInit{
   openAddSongDialog() {
     const dialogRef = this.dialog.open(CreateSongComponent, {
       width: '30%',
-      // You can pass data or configuration here
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // Handle results if needed
+
+      this.songService.getSongsByArtist(this.user.id).subscribe(
+        (data) => {
+          this.songs = data;
+        },
+        (error) => {
+          console.error('Error al obtener canciones del artista:', error);
+        }
+      );
+     
     });
   }
   openAddAlbumDialog() {
     const dialogRef = this.dialog.open(CreateAlbumComponent, {
       width: '30%',
-      // You can pass data or configuration here
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // Handle results if needed
+      this.albumService.getAlbumsByArtist(this.user.id).subscribe(
+        (data) => {
+          this.albums = data;
+        },
+        (error) => {
+          console.error('Error al obtener canciones del artista:', error);
+        }
+      );
     });
   }
 
