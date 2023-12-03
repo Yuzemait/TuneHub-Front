@@ -11,6 +11,7 @@ import { ChatService } from 'src/app/shared/services/chat.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SongService } from 'src/app/shared/services/song.service';
 import { Song } from 'src/app/shared/interfaces/song';
+import { CreateAlbumComponent } from '../create-album/create-album.component';
 
 @Component({
   selector: 'app-artist-info',
@@ -85,6 +86,17 @@ export class ArtistInfoComponent implements OnInit{
 
   openAddSongDialog() {
     const dialogRef = this.dialog.open(CreateSongComponent, {
+      width: '30%',
+      // You can pass data or configuration here
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // Handle results if needed
+    });
+  }
+  openAddAlbumDialog() {
+    const dialogRef = this.dialog.open(CreateAlbumComponent, {
       width: '30%',
       // You can pass data or configuration here
     });

@@ -24,9 +24,9 @@ export class AlbumsService {
     formData.append('file', file);
     formData.append('title', albumData.name);
     formData.append('artist', albumData.artistId);
-    formData.append('songs', JSON.stringify(songs));
-    const headers = new HttpHeaders({
-    });
+    formData.append('songs', JSON.stringify(songs))
+    const headers = new HttpHeaders();
+    
 
     return this.http.post<any>(`${this.apiUrl}albums/create`, formData, { headers });
   }
