@@ -1,0 +1,33 @@
+<div class="dialog-container">
+    <div class="song-form">
+        <button class="close-button" (click)="closeDialog()">&times;</button>
+        <form [formGroup]="albumForm" (ngSubmit)="onSubmit()" >
+            <div class="form-group">
+                <label for="song-name">Album:</label>
+                <input type="text" formControlName="name" id="album-name" name="album-name" class="form-control" placeholder="Enter album name">
+            </div>
+
+            <div class="form-group">
+                <input type="file" id="file-input" name="file" (change)="handleFileInput($event)">
+                <label for="file-button">Select album image: {{selectedFile}}</label>
+                <button id="file-button" (click)="triggerFileInput()"  type="button" mat-button><mat-icon>image</mat-icon></button>
+            </div>
+            <div>
+                <input type="file" id="song-input" name="songFile" (change)="handleSongInput($event)">
+            <button id="song-button" (click)="triggerSongInput()"  type="button" mat-button>Add Song<mat-icon>music_note</mat-icon></button>
+            </div>
+            <div *ngFor="let name of selectedSong" class="form-group">
+                <label for="song-button">Selected song: {{name}}</label>
+                <input type="text"  id="song-{{name}}" name="song-{{name}}" class="form-control" placeholder="Enter song name">
+            </div>
+
+            <!-- <div>
+                <button type="button" (click)="addSong()">Add Song</button>
+            </div> -->
+
+            <button type="submit"  color="primary" mat-raised-button>Submit</button>
+
+            
+        </form>
+    </div>
+</div>

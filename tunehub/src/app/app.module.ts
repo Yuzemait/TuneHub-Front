@@ -45,6 +45,7 @@ import { CreatePlaylistComponent } from './pages/profile/create-playlist/create-
 import { AlbumComponent } from './pages/album/album.component';
 import { PlaylistComponent } from './pages/playlist/playlist.component';
 import { LyricsComponent } from './layout/lyrics/lyrics.component';
+import { CreateAlbumComponent } from './pages/profile/create-album/create-album.component';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { LyricsComponent } from './layout/lyrics/lyrics.component';
     AlbumComponent,
     PlaylistComponent,
     LyricsComponent,
+    CreateAlbumComponent,
   ],
   imports: [
     BrowserModule,

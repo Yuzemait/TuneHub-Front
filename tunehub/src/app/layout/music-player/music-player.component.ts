@@ -42,7 +42,7 @@ export class MusicPlayerComponent implements OnInit {
       data.forEach(song => {
         this.playlist.push([song.song, song.name, song.songImg, song.artistName])
       });
-      console.log(this.playlist);
+      // console.log(this.playlist);
     })
     
   }
