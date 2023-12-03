@@ -23,24 +23,29 @@
                 <button mat-button (click)=" confirmName()" class="edit-chat-name-button"  *ngIf="chatOwner(this.currentChat.id) && this.edit"><i class="fa fa-check"></i></button>
             </div>
         </div>
-        <ul class="chat-list" >
-            <li class="message"*ngFor="let m of allMesseges">
-                    <div class="sent" *ngIf="isUsers(m)">
-                        <span>{{m.content}} <small>{{m.date| date:'mediumTime' }}</small> </span> 
-                        <li>
-                            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-                                <mat-menu #menu="matMenu">
-                                <button mat-menu-item>edit</button>
-                                <button mat-menu-item>delete</button>
-                                </mat-menu>
-                        </li>
-                    </div>
-                    <div class="received" *ngIf="!isUsers(m)">
-                        <span>{{m.content}} <small>{{m.date| date:'mediumTime'}}</small></span> 
-                        
-                    </div>
+        <ul class="chat-list">
+            <li class="message" *ngFor="let m of allMesseges">
+              <div *ngIf="editingMessageId !== m.id">
+                <div class="sent" *ngIf="isUsers(m)">
+                  <span>{{m.content}} <small>{{m.date| date:'mediumTime' }}</small> </span> 
+                  <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="startEditMessage(m)">edit</button>
+                    <button mat-menu-item (click)="deleteMessege(m.id)">delete</button>
+                  </mat-menu>
+                </div>
+                <div class="received" *ngIf="!isUsers(m)">
+                  <span>{{m.content}} <small>{{m.date| date:'mediumTime'}}</small></span> 
+                </div>
+              </div>
+              <div class="message-editing" *ngIf="editingMessageId === m.id">
+                <input type="text" [(ngModel)]="editingContent" />
+                <button (click)="confirmEditMessage()">Save</button>
+                <button (click)="cancelEditMessage()">Cancel</button>
+              </div>
             </li>
-        </ul>
+          </ul>
+          
         <div class="sender-container">
             <div class="sender-box">
                 <input class="sender-input" type="text" [(ngModel)]="content">

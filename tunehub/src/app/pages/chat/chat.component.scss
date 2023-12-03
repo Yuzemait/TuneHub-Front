@@ -136,7 +136,7 @@
           min-height: 25px;
           max-height: fit-content;
           align-items: center;
-          justify-content: right;
+          justify-content: flex-end;
           .received{
            background-color: green;
            min-width: 50px;
@@ -147,17 +147,26 @@
            min-height: 25px;
            max-height: fit-content;
            text-align: center;
+           display: flex;
+          align-items: center;
+          justify-content: flex-start;
           }
           .sent{
-           background-color: #6627dc;
-           min-width: 50px;
+           
+           
+          justify-content: flex-end; 
+           float: right;
+          
+           margin-right: 20px;
+           span {
+            min-width: 50px;
            max-width: 80%;
            border-radius: 25px;
            min-height: 25px;
-           max-height: fit-content;
-           float: right;
-           text-align: center;
-           margin-right: 20px;
+          padding: 8px;
+            text-align: center;
+            background-color: #6627dc;
+           }
           }
           span {
             

@@ -30,6 +30,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   edit: boolean = false
   filteredChats: Chat[] = [];
   searchQuery: string = '';
+  editingMessageId: string | null = null;
+  editingContent: string = '';
+
 
   ngAfterViewChecked(): void {
     this.scrollToBottom();
@@ -172,6 +175,48 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     });
     console.log(this.filteredChats);
   }
+
+  deleteMessege(messege_id: string): void {
+    console.log("here deleting message");
+    this.chatService.deleteMessege(messege_id).subscribe({
+      next: (response) => {
+        this.allMesseges = this.allMesseges.filter(m => m.id !== messege_id);
+        console.log("Message deleted successfully");
+      },
+      error: (error) => {
+        console.error('Error deleting message:', error);
+      }
+    });
+  }
+  
+  startEditMessage(m: Messege): void {
+    this.editingMessageId = m.id;
+    this.editingContent = m.content;
+  }
+
+  cancelEditMessage(): void {
+    this.editingMessageId = null;
+    this.editingContent = '';
+  }
+
+  confirmEditMessage(): void {
+    if (this.editingMessageId) {
+      this.chatService.editMessege(this.editingMessageId, this.editingContent).subscribe(
+        response => {
+          const messageIndex = this.allMesseges.findIndex(m => m.id === this.editingMessageId);
+          if (messageIndex !== -1) {
+            this.allMesseges[messageIndex].content = this.editingContent;
+          }
+          this.cancelEditMessage(); 
+        },
+        error => {
+          console.error('Error editing message:', error);
+          this.cancelEditMessage(); 
+        }
+      );
+    }
+  }
+
   
   
 }

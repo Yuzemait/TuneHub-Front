@@ -79,4 +79,16 @@ export class ChatService {
     return this.httpClient.get(url);
   }
 
+  deleteMessege(messege_id:string){
+    const url: string =  `${environment.apiUrl}chats/messege/delete/${messege_id}`;
+    return this.httpClient.delete(url)
+  }
+  editMessege( messege_id:string, content: string){
+    const url: string =  `${environment.apiUrl}chats/messege/edit/${messege_id}`;
+    const body = {
+      'content': content
+    }
+    return this.httpClient.put(url, body)
+  }
+
 }
