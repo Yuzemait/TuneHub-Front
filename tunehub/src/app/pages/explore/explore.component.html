@@ -38,7 +38,7 @@
                             <li *ngFor="let item of getPaginatedItems(filteredSongs)" class="items">
                                 <ul class="item-info">
                                     <li class="icon">
-                                        <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
+                                        <button class="play-button" (click)="playSong(item.song, item.songImg, item.name)" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
                                     </li>
                                     <li>
                                         <img src="http://localhost:3000/assets/{{item.songImg}}" alt="">

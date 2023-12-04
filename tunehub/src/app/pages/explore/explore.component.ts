@@ -9,6 +9,9 @@ import { User } from 'src/app/shared/interfaces/user';
 import { Playlist } from 'src/app/shared/interfaces/playlist';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
+// import { MusicPlayerComponent } from 'src/app/layout/music-player/music-player.component';
+import { MusicPlayerService } from 'src/app/shared/services/music-player.service';
+
 
 @Component({
   selector: 'app-explore',
@@ -19,6 +22,7 @@ export class ExploreComponent {
   @ViewChild('artistsPaginator') artistsPaginator!: MatPaginator;
   @ViewChild('albumsPaginator') albumsPaginator!: MatPaginator;
   @ViewChild('songsPaginator') songsPaginator!: MatPaginator;
+  // @ViewChild('musicPlayerComponent') musicPlayer1: MusicPlayerComponent ;
   artists: any[] = [];
   filteredArtists: any[] = [];
   albums: any[] = [];
@@ -37,7 +41,10 @@ export class ExploreComponent {
     private songService: SongService,
     private userService: UserService,
     private playlistService: PlaylistService,
-    private snackBar: MatSnackBar, ) { }
+    private snackBar: MatSnackBar,
+    private musicPlayerService: MusicPlayerService ) { }
+
+  
 
   ngOnInit(): void {
     this.artistService.getAllArtists().subscribe(
@@ -183,5 +190,15 @@ export class ExploreComponent {
         console.error('Error al obtener datos del usuario:', error);
       }
     );
+  }
+
+  playSong(songId: string, songImg: string, songName: string){
+    console.log(songId, songImg);
+
+    if (this.musicPlayerService.musicPlayer) {
+      this.musicPlayerService.musicPlayer.selectSong(songId, songImg, songName);
+    } else {
+      console.error('MusicPlayerComponent is not defined.');
+    }
   }
 }

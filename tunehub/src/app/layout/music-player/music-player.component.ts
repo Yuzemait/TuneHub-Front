@@ -5,6 +5,8 @@ import { SongService } from 'src/app/shared/services/song.service';
 import { LyricsService } from 'src/app/shared/services/lyrics.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LyricsComponent } from '../lyrics/lyrics.component';
+import { MusicPlayerService } from 'src/app/shared/services/music-player.service';
+
 @Component({
   selector: 'app-music-player',
   templateUrl: './music-player.component.html',
@@ -17,11 +19,14 @@ export class MusicPlayerComponent implements OnInit {
   constructor(private tokenService: TokenService,
     private songService: SongService,
     private lyricsService: LyricsService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private musicPlayerService: MusicPlayerService) {
 
     this.tokenService.loginStatus.subscribe((status:boolean) =>{
       this.loginStatus = status;
     });
+
+    this.musicPlayerService.musicPlayer = this;
 
   }
 
@@ -37,28 +42,40 @@ export class MusicPlayerComponent implements OnInit {
   apiUrl: string = environment.apiUrl;
   
   ngOnInit(): void {
-    // this.playSong(0);
-    this.songService.getSongs().subscribe((data)=>{
-      data.forEach(song => {
-        this.playlist.push([song.song, song.name, song.songImg, song.artistName])
-      });
-      // console.log(this.playlist);
-    })
+    // this.songService.getSongs().subscribe((data)=>{
+    //   data.forEach(song => {
+    //     this.playlist.push([song.song, song.name, song.songImg, song.artistName])
+    //   });
+    //   // console.log(this.playlist);
+    // })
+
+    
     
   }
 
+  selectSong(songId: string, songImg: string, songName: string){
+    this.playlist = []
+    this.playlist.push([songId, songName, songImg])
+
+    console.log(this.playlist);
+    this.playSong(0);
+  }
+
    playSong(index: number) {
-    this.currentSongIndex = index;
-    const audioPlayer = document.getElementById('audioPlayer') as HTMLAudioElement;
-    audioPlayer.src = environment.apiUrl+'assets/'+this.playlist[this.currentSongIndex][0];
-    audioPlayer.load();
-    audioPlayer.addEventListener('canplaythrough', () => {
+    if (this.playlist.length != 0){
+      this.currentSongIndex = index;
+      const audioPlayer = document.getElementById('audioPlayer') as HTMLAudioElement;
+      audioPlayer.src = environment.apiUrl+'assets/'+this.playlist[this.currentSongIndex][0];
+      audioPlayer.load();
+      audioPlayer.addEventListener('canplaythrough', () => {
       this.duration = audioPlayer.duration;
       this.songName = this.playlist[this.currentSongIndex][1];
       this.songImg = this.playlist[this.currentSongIndex][2];
       // Set the initial volume
       audioPlayer.volume = this.currentVolume;
+      this.togglePlayback()
     });
+    }
   }
 
   togglePlayback(): void {
