@@ -111,7 +111,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     );
   }
   sendMessege() {
-    console.log(this.currentChat);
     const newMessage: Messege = {
       id: '', 
       user_id: this.user.id,
