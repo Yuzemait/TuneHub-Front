@@ -1,7 +1,7 @@
 <div class="section1">
     <div class="user-image-container">
         <!-- <i class="fa fa-user-circle user-image" aria-hidden="true"></i> -->
-        <img class="user-image" src="http://localhost:3000/assets/{{artist.imgId}}" alt="">
+        <img class="user-image" src="https://tunehub-hnol.onrender.com/assets/{{artist.imgId}}" alt="">
     </div>
     <h2>{{artist.username}}</h2>
     <h2>Artist<mat-icon>grade</mat-icon></h2>
@@ -34,7 +34,7 @@
         <ul class="song-list">
           <li *ngFor="let song of songs" class="song-item">
             <div class="song-image">
-               <img src="http://localhost:3000/assets/{{song.songImg}}" alt="">
+               <img src="https://tunehub-hnol.onrender.com/assets/{{song.songImg}}" alt="">
             </div>
             <div class="song-name">{{ song.name }}</div>
           </li>
@@ -45,7 +45,7 @@
         <ul class="album-list">
             <li *ngFor="let album of albums" class="album-item">
                 <div class="album-image">
-                    <img src="http://localhost:3000/assets/{{album.albumImg}}" alt="">
+                    <img src="https://tunehub-hnol.onrender.com/assets/{{album.albumImg}}" alt="">
                 </div>
                 <div class="album-name">
                     {{ album.title }}

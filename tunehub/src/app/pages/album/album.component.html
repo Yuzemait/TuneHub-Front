@@ -5,7 +5,7 @@
         </button>
         <div class="album-header">
           <h1>{{selectedAlbum.title}}</h1>
-          <img src="http://localhost:3000/assets/{{ selectedAlbum.albumImg }}" alt="">
+          <img src="https://tunehub-hnol.onrender.com/assets/{{ selectedAlbum.albumImg }}" alt="">
           <p>{{selectedAlbum.releaseDate | date}}</p>
           <button (click)="playAlbum()" mat-button>Play Album <mat-icon>play_arrow</mat-icon></button>
         </div>
@@ -46,7 +46,7 @@
                                     <button (click)="playSong(item.song, item.songImg, item.name)" class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
                                 </li>
                                 <li>
-                                    <img src="http://localhost:3000/assets/{{ selectedAlbum.albumImg }}" alt="">
+                                    <img src="https://tunehub-hnol.onrender.com/assets/{{ selectedAlbum.albumImg }}" alt="">
                                 </li>
                                 <li>
                                     {{ item.name }}

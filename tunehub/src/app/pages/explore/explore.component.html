@@ -41,7 +41,7 @@
                                         <button class="play-button" (click)="playSong(item.song, item.songImg, item.name)" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
                                     </li>
                                     <li>
-                                        <img src="http://localhost:3000/assets/{{item.songImg}}" alt="">
+                                        <img src="https://tunehub-hnol.onrender.com/assets/{{item.songImg}}" alt="">
                                     </li>
                                     <li>
                                         {{item.name}}
@@ -92,7 +92,7 @@
                                 <a [routerLink]="['/artists', item.id]">
                                 <div class="artist-container">
                                     <div class="round-image-container">
-                                        <img src="http://localhost:3000/assets/{{item.imgId}}" alt="">
+                                        <img src="https://tunehub-hnol.onrender.com/assets/{{item.imgId}}" alt="">
                                     </div>
                                     <div class="artist-name">
                                         {{item.username}}
@@ -120,7 +120,7 @@
                                 <div class="artist-container">
                                     <a [routerLink]="['/album', item.id]">
                                     <div class="image-container">
-                                        <img src="http://localhost:3000/assets/{{ item.albumImg }}" alt="">
+                                        <img src="https://tunehub-hnol.onrender.com/assets/{{ item.albumImg }}" alt="">
                                     </div>
                                     <div class="artist-name">
                                         {{item.title}}
