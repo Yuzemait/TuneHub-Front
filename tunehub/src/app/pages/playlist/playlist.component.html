@@ -11,6 +11,7 @@
         </h1>
         
         <p>Created Date: {{ formatDate(selectedPlaylist.createdDate) }}</p>
+        <button (click)="playPlaylist()" mat-button>Play Playlist <mat-icon>play_arrow</mat-icon></button>
       </div>
   
       <mat-tab-group>
@@ -31,7 +32,7 @@
                 <li *ngFor="let song of songArray" class="items">
                   <ul class="item-info">
                     <li class="icon">
-                      <button class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
+                      <button class="play-button" (click)="playSong(song.song, song.songImg, song.name)" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
                     </li>
                     <li><img src="http://localhost:3000/assets/{{ song.songImg }}" alt=""></li>
                     <li>{{ song.name }}</li>

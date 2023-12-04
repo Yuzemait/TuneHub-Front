@@ -9,6 +9,7 @@ import { PlaylistService } from 'src/app/shared/services/playlist.service';
 import { User } from 'src/app/shared/interfaces/user';
 import { Playlist } from 'src/app/shared/interfaces/playlist';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MusicPlayerService } from 'src/app/shared/services/music-player.service';
 @Component({
   selector: 'app-album',
   templateUrl: './album.component.html',
@@ -16,7 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AlbumComponent implements OnInit {
   albumId :string = ''
-  selectedAlbum: Album = {id : '', title:  '', artist: '', releaseDate:'', albumImg: '', songs:['']}
+  selectedAlbum: Album = {id : '', title:  '', artist: '', releaseDate:'', albumImg: '', songs:[]}
   songArray: Song[] = [];
   user: User = { id: '', username: '', email: '', password: '', artistStatus: false, address: '', imgId: 'default.png', ownChat: "", playlists: [] }
   playlists: Playlist[] = [];
@@ -26,7 +27,8 @@ export class AlbumComponent implements OnInit {
     private songService: SongService,
     private userService: UserService,
     private playlistService: PlaylistService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private musicPlayerService: MusicPlayerService
    ) { }
 
    openSnackBar(message: string, action: string) {
@@ -101,6 +103,22 @@ export class AlbumComponent implements OnInit {
         console.error('Error al obtener datos del usuario:', error);
       }
     );
+  }
+
+  playSong(songId: string, songImg: string, songName: string){
+    console.log(songId, songImg);
+
+    if (this.musicPlayerService.musicPlayer) {
+      this.musicPlayerService.musicPlayer.selectSong(songId, songImg, songName);
+    } else {
+      console.error('MusicPlayerComponent is not defined.');
+    }
+  }
+
+  playAlbum(){
+    if (this.musicPlayerService.musicPlayer){
+      this.musicPlayerService.musicPlayer.selectPlaylist(this.selectedAlbum.songs);
+    }
   }
 
 

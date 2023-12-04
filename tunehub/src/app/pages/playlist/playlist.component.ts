@@ -7,6 +7,7 @@ import { PlaylistService } from 'src/app/shared/services/playlist.service';
 import { ConfirmDialogComponent } from '../profile/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SongService } from 'src/app/shared/services/song.service';
+import { MusicPlayerService } from 'src/app/shared/services/music-player.service';
 
 @Component({
   selector: 'app-playlist',
@@ -22,7 +23,8 @@ export class PlaylistComponent {
     private playlistService: PlaylistService,
     public dialog: MatDialog,
     private router: Router,
-    private songService: SongService) { }
+    private songService: SongService,
+    private musicPlayerService: MusicPlayerService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -46,6 +48,12 @@ export class PlaylistComponent {
           
         }
       );
+    }
+  }
+
+  playPlaylist(){
+    if (this.musicPlayerService.musicPlayer){
+      this.musicPlayerService.musicPlayer.selectPlaylist(this.selectedPlaylist.songs);
     }
   }
 
@@ -75,9 +83,17 @@ export class PlaylistComponent {
           }
         );
       } 
-    });
-
+    });   
+  }
   
+  playSong(songId: string, songImg: string, songName: string){
+    console.log(songId, songImg);
+
+    if (this.musicPlayerService.musicPlayer) {
+      this.musicPlayerService.musicPlayer.selectSong(songId, songImg, songName);
+    } else {
+      console.error('MusicPlayerComponent is not defined.');
+    }
   }
 
   deleteSongFromPlaylist(songId: string): void {

@@ -4,5 +4,5 @@ export interface Album {
     artist: string;
     releaseDate: string;
     albumImg: string;
-    songs?: [string];
+    songs: string[];
 }

@@ -61,6 +61,16 @@ export class MusicPlayerComponent implements OnInit {
     this.playSong(0);
   }
 
+  selectPlaylist(pl: string[]){
+    this.playlist = []
+    for (const s of pl){
+      this.songService.getSongsById(s).subscribe((data) =>{
+        this.playlist.push([data.song, data.name, data.songImg])
+      })
+    }
+    this.playSong(0);
+  }
+
    playSong(index: number) {
     if (this.playlist.length != 0){
       this.currentSongIndex = index;
