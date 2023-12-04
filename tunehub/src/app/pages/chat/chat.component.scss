@@ -58,6 +58,9 @@
         overflow-y: scroll;
         border-bottom: 2px solid #7743DB;
         border-top: 2px solid #7743DB;
+        .chatOwner{
+          border: 2px solid #7743DB;
+        }
         
   
         .contact {
@@ -152,13 +155,12 @@
           justify-content: flex-start;
           }
           .sent{
-           
-           
           justify-content: flex-end; 
            float: right;
           
-           margin-right: 20px;
+           
            span {
+            margin-right: -10px;
             min-width: 50px;
            max-width: 80%;
            border-radius: 25px;

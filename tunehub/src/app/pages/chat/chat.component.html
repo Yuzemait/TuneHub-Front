@@ -5,8 +5,9 @@
            
         </div>
         <ul class="contact-list">
-            <li class="contact"  *ngFor="let chat of filteredChats">
-                <button mat-button (click)="getMessegesForChat(chat.id)" > {{this.chat.name||null}}</button>
+            <li class="contact"   *ngFor="let chat of filteredChats">
+                <button mat-button *ngIf="!chatOwner(chat.id)"  (click)="getMessegesForChat(chat.id)" > {{this.chat.name||null}}</button>
+                <button mat-button class="chatOwner" *ngIf="chatOwner(chat.id)"  (click)="getMessegesForChat(chat.id)" > {{this.chat.name||null}}</button>
             </li>
         </ul>
 

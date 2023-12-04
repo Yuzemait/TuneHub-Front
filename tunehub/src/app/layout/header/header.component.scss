@@ -6,6 +6,7 @@
   height: 120px;
   display: flex;
   z-index: 1000;
+  
 }
 
 .nav-logo-container{
@@ -37,7 +38,7 @@
 }
 
 .logo {
-  
+  color: white;
   font-weight: bold;
   margin: 0; /* Remove default margin */
   span {
@@ -82,5 +83,7 @@ input {
   border-bottom: none;
 
 }
-
+#explore{
+  color: #FFFBF5;
+}
 
