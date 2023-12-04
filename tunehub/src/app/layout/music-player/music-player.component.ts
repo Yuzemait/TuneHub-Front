@@ -55,7 +55,7 @@ export class MusicPlayerComponent implements OnInit {
 
   selectSong(songId: string, songImg: string, songName: string, artistName: string){
     this.playlist = []
-    this.playlist.push([songId, songName, songImg])
+    this.playlist.push([songId, songName, songImg, artistName])
 
     console.log(this.playlist);
     this.playSong(0);
