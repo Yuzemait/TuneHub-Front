@@ -43,7 +43,7 @@
                         <li *ngFor="let item of songArray" class="items">
                             <ul class="item-info">
                                 <li class="icon">
-                                    <button (click)="playSong(item.song, item.songImg, item.name)" class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
+                                    <button (click)="playSong(item.song, item.songImg, item.name, item.artistName)" class="play-button" mat-mini-fab><mat-icon>play_arrow</mat-icon></button>
                                 </li>
                                 <li>
                                     <img src="https://tunehub-hnol.onrender.com/assets/{{ selectedAlbum.albumImg }}" alt="">

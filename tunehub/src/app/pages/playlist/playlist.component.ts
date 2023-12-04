@@ -86,11 +86,11 @@ export class PlaylistComponent {
     });   
   }
   
-  playSong(songId: string, songImg: string, songName: string){
+  playSong(songId: string, songImg: string, songName: string, artistName: string){
     console.log(songId, songImg);
 
     if (this.musicPlayerService.musicPlayer) {
-      this.musicPlayerService.musicPlayer.selectSong(songId, songImg, songName);
+      this.musicPlayerService.musicPlayer.selectSong(songId, songImg, songName, artistName);
     } else {
       console.error('MusicPlayerComponent is not defined.');
     }

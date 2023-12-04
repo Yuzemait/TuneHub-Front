@@ -53,7 +53,7 @@ export class MusicPlayerComponent implements OnInit {
     
   }
 
-  selectSong(songId: string, songImg: string, songName: string){
+  selectSong(songId: string, songImg: string, songName: string, artistName: string){
     this.playlist = []
     this.playlist.push([songId, songName, songImg])
 
@@ -65,7 +65,7 @@ export class MusicPlayerComponent implements OnInit {
     this.playlist = []
     for (const s of pl){
       this.songService.getSongsById(s).subscribe((data) =>{
-        this.playlist.push([data.song, data.name, data.songImg])
+        this.playlist.push([data.song, data.name, data.songImg, data.artistName])
       })
     }
     this.playSong(0);
